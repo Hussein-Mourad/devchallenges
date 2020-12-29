@@ -1,0 +1,357 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", "sans-serif";
+  padding: 0 30px;
+}
+
+.recipe-title {
+  color: #000;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 4rem;
+  font-family: "Playfair Display", "serif";
+  margin-bottom: 15px;
+}
+
+.recipe-img {
+  width: 100%;
+  height: auto;
+  margin: 40px 0;
+}
+
+.dots {
+  margin: 5px 15px 0 5px;
+}
+
+.recipe-description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.recipe-description span {
+  color: #4f4f4f;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  max-width: 600px;
+}
+
+.recipe-subtitle1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin-bottom: 30px;
+}
+
+.recipe-subtitle2 {
+  font-family: Playfair Display;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.recipe-steps {
+  float: left;
+  width: 78%;
+}
+
+.card-container {
+  float: right;
+  width: 22%;
+}
+
+.recipe-step {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30px auto;
+      grid-template-columns: 30px auto;
+  margin-bottom: 15px;
+  min-height: 30px;
+}
+
+.recipe-step input {
+  -webkit-transform: scale(1.6);
+          transform: scale(1.6);
+  vertical-align: middle;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 15px;
+  float: left;
+}
+
+.recipe-instruction {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50px auto;
+      grid-template-columns: 50px auto;
+  margin-bottom: 30px;
+}
+
+.recipe-instruction div {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #f2994a;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Playfair Display", "serif";
+  font-weight: 700;
+}
+
+.recipe-source {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.recipe-source a {
+  text-decoration: none;
+}
+
+.card {
+  width: 216px;
+  height: 367px;
+  padding: 30px;
+  padding-left: 40px;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.card-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card-item i {
+  margin-right: 20px;
+}
+
+.card-icon {
+  font-size: 1.75rem;
+}
+
+.card-txt h6 {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+}
+
+.card-txt p {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+footer {
+  margin: 100px 0 20px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #a9a9a9;
+}
+
+/* Utilities */
+.container {
+  overflow: auto;
+  margin: 40px auto;
+  padding: 0 10px;
+  max-width: 1000px;
+}
+
+.mb-35 {
+  margin-bottom: 35px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.text-gray1 {
+  color: #333333;
+}
+
+.text-gray2 {
+  color: #4f4f4f;
+}
+
+.text-gray4 {
+  color: #bdbdbd;
+}
+
+.text-gray5 {
+  color: #a9a9a9;
+}
+
+.text-orange {
+  color: #f2994a;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 1024px) {
+  .recipe-steps {
+    width: 70%;
+  }
+  .card-container {
+    width: 30%;
+  }
+  .card {
+    float: right;
+    width: 196px;
+    height: 350px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .recipe-title {
+    font-size: 2.5rem;
+  }
+  .recipe-steps,
+  .card-container {
+    float: none;
+    width: 100%;
+    padding: 0;
+  }
+  .card-container {
+    width: 90%;
+  }
+  .card {
+    float: none;
+    width: 100%;
+    height: unset;
+    padding: 0;
+    margin-bottom: 20px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .card-item:first-child {
+    width: 100%;
+  }
+  .card-item:last-child {
+    margin-right: 0;
+  }
+  .card-item {
+    margin: 20px 20px 20px 0;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .recipe-title {
+    font-size: 2rem;
+  }
+  .card-item {
+    margin: 15px 0;
+  }
+  .card-item i {
+    margin-right: 15px;
+  }
+  .card-txt h6 {
+    font-size: 0.625rem;
+  }
+  .card-txt p {
+    font-size: 0.75rem;
+  }
+  .card-icon {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  body {
+    padding: 0;
+  }
+  .recipe-title {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+  .recipe-description span {
+    font-size: 0.75rem;
+  }
+  .recipe-img {
+    margin: 10px 0;
+  }
+  .recipe-subtitle1 {
+    font-size: 1.125rem;
+    margin-bottom: 15px;
+  }
+  .recipe-subtitle2 {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  .recipe-step {
+    font-size: 0.875rem;
+  }
+  .recipe-step input {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  .recipe-instruction {
+    font-size: 0.875rem;
+  }
+  .recipe-source {
+    font-size: 0.75rem;
+  }
+  .card-item {
+    margin: 10px 0;
+  }
+  .card-item i {
+    margin-right: 10px;
+  }
+  .card-txt h6 {
+    font-size: 0.5rem;
+  }
+  .card-txt p {
+    font-size: 0.625rem;
+  }
+  .card-icon {
+    font-size: 1rem;
+  }
+  .container {
+    overflow: auto;
+    margin: 10px auto;
+    padding: 0 10px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

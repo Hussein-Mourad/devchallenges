@@ -1,0 +1,215 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Space Mono", monospace;
+  color: #333333;
+  padding: 30px 50px;
+}
+
+.title {
+  font-family: "Inconsolata", monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 1600px;
+  width: 100vw;
+  margin: 15vh auto;
+}
+
+.container img {
+  width: 40%;
+  height: auto;
+}
+
+.right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 5%;
+}
+
+.right h1 {
+  font-weight: bold;
+  font-size: 3rem;
+  letter-spacing: -0.035em;
+}
+
+.right p {
+  font-family: "Inconsolata", monospace;
+  margin: 2rem 0;
+  width: 60%;
+  font-size: 1.5rem;
+}
+
+.right .btn {
+  text-transform: uppercase;
+  display: block;
+  width: 40%;
+  padding: 1.5rem 2.5rem;
+  margin: 2rem 0;
+  color: white;
+  background-color: #333333;
+  border: none;
+}
+
+footer {
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  font-weight: 600;
+  font-size: 0.875rem;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+@media only screen and (max-width: 1024px) {
+  body {
+    padding: 0px;
+  }
+  .title {
+    padding: 30px;
+  }
+  .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 90vw;
+    margin: 5vh auto;
+  }
+  .container img {
+    margin: 0 auto;
+    width: 60%;
+    height: auto;
+  }
+  .right {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 2rem;
+    padding: 0 5%;
+  }
+  .right h1 {
+    font-weight: bold;
+    font-size: 2rem;
+    letter-spacing: -0.035em;
+  }
+  .right p {
+    font-family: "Inconsolata", monospace;
+    margin: 2rem 0;
+    width: 50%;
+    font-size: 1.5rem;
+  }
+  .right .btn {
+    text-transform: uppercase;
+    display: block;
+    width: 40%;
+    padding: 1.5rem 2.5rem;
+    margin: 2rem 0;
+    color: white;
+    background-color: #333333;
+    border: none;
+  }
+  footer {
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    width: 100vw;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    padding: 0px;
+  }
+  .title {
+    padding: 30px;
+  }
+  .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 95%;
+    margin: 5vh auto;
+  }
+  .container img {
+    width: 100%;
+    height: auto;
+  }
+  .right {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    padding: 0 5%;
+  }
+  .right h1 {
+    font-weight: bold;
+    font-size: 2rem;
+    letter-spacing: -0.035em;
+    margin-top: 2rem;
+  }
+  .right p {
+    font-family: "Inconsolata", monospace;
+    margin: 1.5rem 0;
+    width: 95%;
+    font-size: 1.2rem;
+  }
+  .right .btn {
+    text-transform: uppercase;
+    display: block;
+    width: 70%;
+    font-size: 0.8rem;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    color: white;
+    background-color: #333333;
+    border: none;
+  }
+  footer {
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    width: 100vw;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */

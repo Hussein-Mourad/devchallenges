@@ -1,0 +1,292 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: white;
+  background-color: #181719;
+  font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.container {
+  margin: 50px auto;
+  width: 90vw;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  margin-bottom: 150px;
+
+  .nav-brand {
+    font-family: "Crimson Pro", serif;
+    margin: auto 0;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    height: 2rem;
+    width: auto;
+    border: 1px solid white;
+  }
+
+  .nav-menu {
+    width: 50%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  .nav-menu li:nth-child(1) {
+    font-weight: 700;
+  }
+
+  .menu-btn {
+    display: none;
+    z-index: 2;
+    font-size: 45px !important;
+    cursor: pointer;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 200px;
+
+  .left {
+    max-width: 400px;
+    margin-right: 50px;
+
+    h1 {
+      text-align: start;
+      font-family: "Lora", serif;
+      font-size: 3rem;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-weight: 100;
+      margin-bottom: 30px;
+    }
+
+    span {
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.375rem;
+
+      i {
+        display: inline-flex;
+        vertical-align: top;
+      }
+    }
+  }
+
+  .right {
+    position: relative;
+
+    .interior-img {
+      max-width: 700px;
+      padding-top: 10px;
+    }
+
+    .card {
+      position: absolute;
+      background-color: #181719;
+      bottom: 0;
+      right: 5%;
+      transform: translate(0, 50%);
+      width: 65%;
+      height: 35%;
+      padding: 30px;
+      padding-right: 150px;
+
+      .card-header {
+        display: flex;
+        margin-bottom: 25px;
+      }
+
+      .card-info {
+        margin-top: 10px;
+        font-weight: 500;
+        font-size: 0.875rem;
+
+        span {
+          display: block;
+          margin-top: 10px;
+          font-size: 0.75rem;
+          color: #828282;
+        }
+      }
+
+      img {
+        width: 60px;
+        height: auto;
+        border-radius: 50%;
+        margin-right: 30px;
+      }
+
+      .card-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: "Lora", serif;
+      }
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Utilities */
+
+.hide {
+  display: none;
+}
+
+/* Animations */
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    margin: 20px auto;
+    width: 95vw;
+  }
+
+  .navbar {
+    margin-bottom: 100px;
+  }
+
+  .interior-img {
+    max-width: 600px !important;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .navbar {
+    margin-bottom: 100px;
+  }
+
+  .content {
+    flex-direction: column;
+
+    .left {
+      margin-bottom: 40px;
+    }
+
+    .interior-img {
+      max-width: 100% !important;
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .navbar {
+    margin-bottom: 50px;
+
+    .nav-menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      flex-direction: column;
+      justify-content: space-evenly;
+      background-color: #181719;
+      width: 100vw;
+      height: 100vh;
+      font-size: 1.5rem;
+      margin-top: 20px;
+      transition: transform 0.5s ease-in;
+      display: none;
+      li {
+        opacity: 0;
+      }
+    }
+    .nav-active {
+      display: flex;
+    }
+
+    .menu-btn {
+      display: block;
+    }
+  }
+
+  .left {
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+  }
+
+  .right {
+    .card {
+      width: 85% !important;
+      padding: 20px;
+      padding-right: 10px !important;
+      transform: translate(0, 60%);
+
+      .card-info {
+        font-size: 0.75rem;
+        margin-top: 0;
+      }
+
+      img {
+        width: 40px;
+      }
+
+      .card-text {
+        font-size: 1.125rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .content {
+    .right {
+      .card {
+        width: 250px;
+        height: 138px;
+        padding: 20px;
+        transform: translate(0, 60%);
+
+        .card-info {
+          font-size: 0.75rem;
+          margin-top: 0;
+        }
+
+        img {
+          width: 40px;
+        }
+
+        .card-text {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
