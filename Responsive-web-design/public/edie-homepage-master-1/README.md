@@ -12,7 +12,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://github.com/Hussein-Mourad/edie-homepage-challenge">
+    <a href="https://github.com/Hussein-Mourad/devchallenges/tree/main/Responsive-web-design/public/edie-homepage-master-1">
       Solution
     </a>
     <span> | </span>
