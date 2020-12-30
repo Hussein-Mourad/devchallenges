@@ -44,6 +44,7 @@
 
 - Html
 - Css
+-JS
 
 ## Features
 
@@ -54,5 +55,5 @@ This application/site was created as a submission to a [DevChallenges](https://d
 
 ## Contact
 
-- GitHub [@Hussein-Mourad](https://{github.com/Hussein-Mourad})
-- Twitter [@HusseinMourad0](https://{twitter.com/HusseinMourad0})
+- GitHub [@Hussein-Mourad](https://github.com/Hussein-Mourad)
+- Twitter [@HusseinMourad0](https://twitter.com/HusseinMourad0)
