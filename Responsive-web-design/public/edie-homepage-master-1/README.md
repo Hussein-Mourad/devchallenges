@@ -44,7 +44,7 @@
 
 - Html
 - Css
--JS
+- JS
 
 ## Features
 
