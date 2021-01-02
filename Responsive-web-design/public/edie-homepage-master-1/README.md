@@ -12,7 +12,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://github.com/Hussein-Mourad/edie-homepage-challenge">
+    <a href="https://github.com/Hussein-Mourad/devchallenges/tree/main/Responsive-web-design/public/edie-homepage-master-1">
       Solution
     </a>
     <span> | </span>
@@ -44,6 +44,7 @@
 
 - Html
 - Css
+- JS
 
 ## Features
 
@@ -54,5 +55,5 @@ This application/site was created as a submission to a [DevChallenges](https://d
 
 ## Contact
 
-- GitHub [@Hussein-Mourad](https://{github.com/Hussein-Mourad})
-- Twitter [@HusseinMourad0](https://{twitter.com/HusseinMourad0})
+- GitHub [@Hussein-Mourad](https://github.com/Hussein-Mourad)
+- Twitter [@HusseinMourad0](https://twitter.com/HusseinMourad0)

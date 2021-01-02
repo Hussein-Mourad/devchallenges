@@ -12,7 +12,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://github.com/Hussein-Mourad/my-gallery-challenge">
+    <a href="https://github.com/Hussein-Mourad/devchallenges/tree/main/Responsive-web-design/public/my-gallery-master">
       Solution
     </a>
     <span> | </span>
