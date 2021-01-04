@@ -23,7 +23,7 @@ export const CardProject = (props) => {
         <div className="mt-5">
           <a
             href={props.data.demoLink}
-            className="px-9 py-2 mr-5 bg-blue-500 text-white rounded-xl border border-blue-500  dark:bg-blue-600 dark:border-blue-600"
+            className="px-9 py-2 mr-5 bg-blue-500 text-white rounded-xl border border-blue-500  dark:bg-blue-600 dark:border-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500"
             target="_blank"
             rel="noreferrer"
           >
@@ -31,7 +31,7 @@ export const CardProject = (props) => {
           </a>
           <a
             href={props.data.codeLink}
-            className=" px-9 py-2 text-blue-500 border border-blue-500 rounded-xl  dark:text-blue-600 dark:border-blue-600"
+            className=" px-9 py-2 text-blue-500 border border-blue-500 rounded-xl  dark:text-blue-600 dark:border-blue-600 hover:bg-blue-500 hover:text-white dark:hover:text-white"
             target="_blank"
             rel="noreferrer"
           >
