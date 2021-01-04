@@ -1,6 +1,6 @@
 export const CardHobbies = (props) => {
   return (
-    <div className="my-5 p-5 shadow-lg max-w-full rounded-xl bg-white text-gray-600">
+    <div className="my-5 p-5 shadow-lg max-w-full rounded-xl bg-white text-gray-600 dark:bg-gray-800 dark:shadow-dark dark:text-white">
       <h1 className="text-2xl mb-5">Hobbies</h1>
       <div className="grid sm:grid-cols-3 gap-10">
         <div>
@@ -10,9 +10,7 @@ export const CardHobbies = (props) => {
             alt="coding img"
           />
           <h1 className="mt-3 mb-2">Coding</h1>
-          <p>
-            I enjoy problem solving and making ideas come to life.
-          </p>
+          <p>I enjoy problem solving and making ideas come to life.</p>
         </div>
         <div>
           <img
@@ -21,9 +19,7 @@ export const CardHobbies = (props) => {
             alt="random img"
           />
           <h1 className="mt-3 mb-2">Motorcycling</h1>
-          <p>
-            Cruising with a motorcycle is the best thing ever.
-          </p>
+          <p>Cruising with a motorcycle is the best thing ever.</p>
         </div>
         <div>
           <img
@@ -32,15 +28,12 @@ export const CardHobbies = (props) => {
             alt="random img"
           />
           <h1 className="mt-3 mb-2">Electronics</h1>
-          <p>
-           I love playing with electronics and making simple circuits.
-          </p>
+          <p>I love playing with electronics and making simple circuits.</p>
         </div>
       </div>
     </div>
   );
 };
-
 
 //  <div className="m-10 p-5 shadow-lg w-1/3 rounded-xl bg-white text-gray-600">
 //    <h1 className="text-2xl mb-5">Hobbies</h1>

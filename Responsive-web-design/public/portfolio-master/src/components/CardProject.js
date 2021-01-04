@@ -1,10 +1,6 @@
-
-
-
 export const CardProject = (props) => {
-  
   return (
-    <div className="p-5 shadow-lg rounded-xl bg-white text-gray-600">
+    <div className="p-5 shadow-lg rounded-xl bg-white text-gray-600 dark:bg-gray-800 dark:shadow-dark dark:text-white">
       <div className="h-56 mb-5 overflow-hidden">
         <img
           src={props.data.img}
@@ -27,7 +23,7 @@ export const CardProject = (props) => {
         <div className="mt-5">
           <a
             href={props.data.demoLink}
-            className="px-9 py-2 mr-5 bg-blue-500 text-white rounded-xl border border-blue-500"
+            className="px-9 py-2 mr-5 bg-blue-500 text-white rounded-xl border border-blue-500  dark:bg-blue-600 dark:border-blue-600"
             target="_blank"
             rel="noreferrer"
           >
@@ -35,7 +31,7 @@ export const CardProject = (props) => {
           </a>
           <a
             href={props.data.codeLink}
-            className=" px-9 py-2 text-blue-500 border border-blue-500 rounded-xl"
+            className=" px-9 py-2 text-blue-500 border border-blue-500 rounded-xl  dark:text-blue-600 dark:border-blue-600"
             target="_blank"
             rel="noreferrer"
           >

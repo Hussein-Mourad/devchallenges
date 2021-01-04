@@ -1,4 +1,3 @@
-
 export const CardSkills = (props) => {
   const skills = [
     { id: 1, name: "Python", percent: "80%" },
@@ -11,17 +10,15 @@ export const CardSkills = (props) => {
     { id: 8, name: "React", percent: "10%" },
   ];
   return (
-    <div className="my-5 p-5 shadow-lg max-w-full rounded-xl bg-white text-gray-600">
+    <div className="my-5 p-5 shadow-lg max-w-full rounded-xl bg-white text-gray-600 dark:bg-gray-800 dark:shadow-dark dark:text-white">
       <h1 className="text-2xl mb-3">FullStack</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
         {skills.map((skill) => (
           <div className="flex justify-between" key={skill.id}>
-            <span className="w-24">
-              {skill.name}
-            </span>
-            <div className="w-full h-3 bg-gray-300 rounded-xl my-auto mx-3">
+            <span className="w-24">{skill.name}</span>
+            <div className="w-full h-3 bg-gray-300  rounded-xl my-auto mx-3 dark:bg-gray-200">
               <div
-                className="h-full bg-blue-500 rounded-xl"
+                className="h-full bg-blue-500  rounded-xl dark:bg-blue-600"
                 style={{ width: skill.percent }}
               ></div>
             </div>

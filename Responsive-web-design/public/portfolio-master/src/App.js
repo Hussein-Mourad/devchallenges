@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
+import { ThemeProvider } from "./themeContext";
 import { Navigator } from "./components/Navigator.js";
 import { CardPersonal } from "./components/CardPersonal.js";
 import { CardProject } from "./components/CardProject.js";
 import { CardSkills } from "./components/CardSkills.js";
 import { CardHobbies } from "./components/CardHobbies.js";
 import { CardProjectsSelector } from "./components/CardProjectsSelector.js";
+import { DarkModeSwitch } from "./components/DarkModeSwitch.js";
+import { Footer } from "./components/Footer.js";
 import { objects } from "./objects.js";
 
 function App() {
@@ -35,23 +38,27 @@ function App() {
   };
 
   return (
-    <div className="md:container lg:px-20 p-2 lg:py-3 mx-auto ">
-      <CardPersonal width="full" />
-      <CardSkills />
-      <CardHobbies />
-      <CardProjectsSelector totalProjects={projects.length} />
-      <div className="grid  md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {currentProjects.map((project) => (
-          <CardProject data={project.data} key={project.id} />
-        ))}
+    <ThemeProvider>
+      <div className="md:container lg:px-20 p-2 lg:py-3 mx-auto ">
+        <DarkModeSwitch />
+        <CardPersonal width="full" />
+        <CardSkills />
+        <CardHobbies />
+        <CardProjectsSelector totalProjects={projects.length} />
+        <div className="grid  md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {currentProjects.map((project) => (
+            <CardProject data={project.data} key={project.id} />
+          ))}
+        </div>
+        <Navigator
+          currentPage={currentPage}
+          projectsPerPage={projectsPerPage}
+          totalProjects={projects.length}
+          paginate={paginate}
+        />
+        <Footer />
       </div>
-      <Navigator
-        currentPage={currentPage}
-        projectsPerPage={projectsPerPage}
-        totalProjects={projects.length}
-        paginate={paginate}
-      />
-    </div>
+    </ThemeProvider>
   );
 }
 

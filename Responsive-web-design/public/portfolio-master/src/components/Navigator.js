@@ -9,9 +9,9 @@ export const Navigator = ({
   currentPage,
 }) => {
   const btnStyle =
-    "w-9 h-9 border border-gray-500 hover:border-blue-500 flex justify-center items-center rounded-lg text-gray-600 hover:text-blue-500  cursor-pointer mr-3";
+    "w-9 h-9 border border-gray-600 hover:border-blue-500 flex justify-center items-center rounded-lg text-gray-600 hover:text-blue-500  cursor-pointer mr-3 dark:border-gray-100 dark:text-gray-100 dark:hover:border-blue-600 dark:hover:text-blue-600";
   const btnActiveStyle =
-    "w-9 h-9 border border-blue-500 bg-blue-500 hover:border-blue-500 flex justify-center items-center rounded-lg text-white mr-3";
+    "w-9 h-9 border border-blue-600 bg-blue-500 hover:border-blue-500 flex justify-center items-center rounded-lg text-white mr-3 dark:bg-blue-600";
   const [active, setActive] = useState(1);
 
   const pageNumbers = [];
