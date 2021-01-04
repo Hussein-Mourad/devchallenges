@@ -14,8 +14,8 @@ button {
     font-size: 14px;
   }
 }
-@media only screen and (max-width: 425px) {
+/* @media only screen and (max-width: 425px) {
   html {
     font-size: 12px;
   }
-}
+} */
