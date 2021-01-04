@@ -17,10 +17,10 @@ export const CardPersonal = (props) => {
 
   return (
     <div className=" lg:my-5 mb-5 mt-3 p-5  w-full rounded-xl flex flex-col sm:flex-row bg-white items-center md:items-start md:text-left  dark:bg-gray-800 dark:shadow-dark">
-      <div className="mb-5 sm:mb-0 mr-8 w-72 sm:w-48 ">
+      <div className="mb-5 sm:mb-0  sm:mr-8 w-72 sm:w-48 max-w-full">
         <img src={Me} className="rounded-xl w-full" alt="Me" />
       </div>
-      <div className="w-96 sm:w-9/12 ">
+      <div className="w-96 sm:w-9/12 max-w-full">
         <div className="flex flex-col lg:flex-row justify-between w-full mb-2 lg:mb-6">
           <div className="mr-5 ">
             <p className="text-gray-600 text-2xl dark:text-white">
