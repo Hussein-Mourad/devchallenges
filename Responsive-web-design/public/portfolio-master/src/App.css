@@ -2,9 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
- @apply bg-gray-100;
+body {
+  @apply bg-gray-100;
 }
-button{
-    @apply focus:outline-none;
+button {
+  @apply focus:outline-none;
+}
+
+@media only screen and (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  html {
+    font-size: 12px;
+  }
 }

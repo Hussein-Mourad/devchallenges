@@ -1,6 +1,6 @@
 export const CardProjectsSelector = (props) => {
   return (
-    <div className="my-5 p-5 shadow-lg max-w-full rounded-xl bg-white text-gray-600">
+    <div className="my-10 p-5 shadow-lg max-w-full rounded-xl bg-white text-gray-600">
       <h1 className="text-2xl mb-5">Projects(3)</h1>
       <div className="flex">
         <button className="px-9 py-2 mr-5 bg-blue-500 text-white rounded-xl border border-blue-500">
