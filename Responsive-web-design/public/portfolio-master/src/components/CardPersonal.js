@@ -20,9 +20,9 @@ export const CardPersonal = (props) => {
       <div className="mb-5 sm:mb-0 mr-8 w-72 sm:w-48 ">
         <img src={Me} className="rounded-xl w-full" alt="Me" />
       </div>
-      <div className="w-96 sm:w-8/12 ">
+      <div className="w-96 sm:w-9/12 ">
         <div className="flex flex-col lg:flex-row justify-between w-full mb-2 lg:mb-6">
-          <div className="mr-10 ">
+          <div className="mr-5 ">
             <p className="text-gray-600 text-2xl">Hussein Mourad</p>
             <p className="text-gray-400"> Computer Engineering Student</p>
           </div>
