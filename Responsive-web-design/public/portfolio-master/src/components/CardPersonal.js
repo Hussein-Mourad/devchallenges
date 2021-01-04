@@ -32,8 +32,8 @@ export const CardPersonal = (props) => {
             </p>
           </div>
           <div className="mt-3 lg:mt-0">
-            <p className="text-gray-600 dark:text-white">
-              <EmailIcon className="mr-3 " />
+            <p className="text-gray-600 dark:text-white flex">
+              <EmailIcon className="mr-3" />
               husseinmouradkassem9901@gmail.com
             </p>
 
