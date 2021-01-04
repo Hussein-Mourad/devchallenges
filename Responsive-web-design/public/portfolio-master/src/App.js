@@ -9,7 +9,7 @@ import { CardProjectsSelector } from "./components/CardProjectsSelector.js";
 import { objects } from "./objects.js";
 
 function App() {
-  const [projects, setProjects] = useState(objects);
+  const [projects] = useState(objects);
   const [currentPage, setCurrentPage] = useState(1);
   const [projectsPerPage] = useState(3);
 
@@ -22,9 +22,17 @@ function App() {
   );
 
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const previousPage = () => setCurrentPage(currentPage - 1);
-  const nextPage = () => setCurrentPage(currentPage + 1);
+  const paginate = (pageNumber, previous, next) => {
+    const previousPage = currentPage - 1;
+    const nextPage = currentPage + 1;
+    if (previous) {
+      setCurrentPage(previousPage);
+    } else if (next) {
+      setCurrentPage(nextPage);
+    } else {
+      setCurrentPage(pageNumber);
+    }
+  };
 
   return (
     <div className="md:container lg:px-20 p-2 lg:py-3 mx-auto ">
@@ -38,11 +46,10 @@ function App() {
         ))}
       </div>
       <Navigator
+        currentPage={currentPage}
         projectsPerPage={projectsPerPage}
         totalProjects={projects.length}
         paginate={paginate}
-        previousPage={previousPage}
-        nextPage={nextPage}
       />
     </div>
   );

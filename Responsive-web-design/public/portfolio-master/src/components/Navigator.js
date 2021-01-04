@@ -2,47 +2,74 @@ import React, { useState } from "react";
 
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-export const Navigator = ({ totalProjects, projectsPerPage, paginate, previousPage, nextPage }) => {
+export const Navigator = ({
+  totalProjects,
+  projectsPerPage,
+  paginate,
+  currentPage,
+}) => {
   const btnStyle =
     "w-9 h-9 border border-gray-500 hover:border-blue-500 flex justify-center items-center rounded-lg text-gray-600 hover:text-blue-500  cursor-pointer mr-3";
   const btnActiveStyle =
     "w-9 h-9 border border-blue-500 bg-blue-500 hover:border-blue-500 flex justify-center items-center rounded-lg text-white mr-3";
-  const [active, setActive] = useState("1");
-  const handleClick = (e, number) => {
-    if (e.target.className === btnStyle && e.target.id !== active) {
-      e.target.className = btnActiveStyle;
-      document.getElementById(active).className = btnStyle;
-      setActive(e.target.id);
-      paginate(number);
-    }
-  };
+  const [active, setActive] = useState(1);
 
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalProjects / projectsPerPage); i++) {
     pageNumbers.push(i);
   }
+  const handleClick = (e, number, previous, next) => {
+    const previousPage = number - 1;
+    const nextPage = number + 1;
+
+    if (previous) {
+      if (previousPage >= pageNumbers[0]) {
+        setActive(number - 1);
+        paginate(number, previous, next);
+      }
+    } else if (next) {
+      if (nextPage <= pageNumbers[pageNumbers.length - 1]) {
+        paginate(number, previous, next);
+        setActive(number + 1);
+      }
+    } else if (e.target.localName === "li") {
+      setActive(number);
+      paginate(number, false, false);
+    }
+    document.getElementById(active).className = btnActiveStyle;
+  };
 
   return (
-    <div className="my-10">
+    <nav className="my-10">
       <ul className="flex">
-        <li className={btnStyle} onClick={previousPage}>
+        <button
+          className={btnStyle}
+          onClick={(e) => {
+            handleClick(e, active, true, false);
+          }}
+        >
           <NavigateBeforeIcon />
-        </li>
+        </button>
         {pageNumbers.map((number) => (
           <li
             key={number}
-            className={number == active ? btnActiveStyle : btnStyle}
+            className={number === active ? btnActiveStyle : btnStyle}
             id={number}
-            onClick={(e) => handleClick(e, number)}
+            onClick={(e) => handleClick(e, number, false, false)}
           >
             {number}{" "}
           </li>
         ))}
-        <li className={btnStyle} onClick={nextPage}>
+        <button
+          className={btnStyle}
+          onClick={(e) => {
+            handleClick(e, active, false, true);
+          }}
+        >
           <NavigateNextIcon />
-        </li>
+        </button>
       </ul>
-    </div>
+    </nav>
   );
 };
