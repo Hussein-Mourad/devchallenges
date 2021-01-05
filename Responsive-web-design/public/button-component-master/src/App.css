@@ -2,41 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Basic Styles */
 .btn {
-  @apply text-gray-800 bg-def hover:bg-defhover focus:bg-defhover focus:outline-none;
+  @apply text-gray-800 align-middle text-center
+  border border-transparent px-5 py-2 rounded-lg
+   bg-def hover:bg-defhover hover:border-defhover focus:bg-defhover focus:border-defhover focus:outline-none transition-all duration-300 ease-in-out;
 }
 
+/* Sizes */
 .btn-sm {
-  @apply btn px-3 py-1 rounded-lg;
-}
-.btn-md {
-  @apply btn px-5 py-2 rounded-lg;
-}
-.btn-lg {
-  @apply btn px-7 py-3 rounded-lg;
+  @apply px-2 py-1;
 }
 
+.btn-lg {
+  @apply px-7 py-3 text-xl;
+}
+
+/* Buttons with background */
 .btn-primary {
   @apply text-white bg-primary border border-primary hover:border-primaryhover  hover:bg-primaryhover focus:bg-primaryhover focus:border-primaryhover focus:outline-none;
 }
+
 .btn-secondary {
   @apply text-white bg-secondary border border-secondary hover:border-secondaryhover hover:bg-secondaryhover focus:bg-secondaryhover focus:border-secondaryhover focus:outline-none;
 }
+
 .btn-danger {
   @apply text-white bg-danger border  border-danger hover:border-dangerhover hover:bg-dangerhover focus:bg-dangerhover focus:border-dangerhover focus:outline-none;
 }
+
+/* Button with outline */
 .btn-primary-outline {
   @apply text-primary bg-transparent border border-primary  
-   hover:bg-blue-100 focus:bg-blue-100 focus:outline-none;
+   hover:bg-blue-50 focus:bg-blue-50 focus:outline-none;
 }
+
 .btn-secondary-outline {
   @apply text-secondary bg-transparent border border-secondary  
    hover:bg-gray-100 focus:bg-gray-100 focus:outline-none;
 }
+
 .btn-danger-outline {
- @apply text-danger bg-transparent border border-danger  
+  @apply text-danger bg-transparent border border-danger  
    hover:bg-red-100 focus:bg-red-100 focus:outline-none;
 }
-.btn-disabled {
-    @apply text-gray-400;
+
+/* Button with text only */
+.btn-primary-link {
+  @apply btn-primary-outline border-none hover:border-transparent;
+}
+.btn-secondary-link {
+  @apply btn-secondary-outline border-none hover:border-transparent;
+}
+.btn-danger-link {
+  @apply btn-danger-outline border-none hover:border-transparent;
+}
+
+/* Disabled state */
+button:disabled,
+button[disabled] {
+  @apply text-gray-400 bg-def border border-def hover:bg-def hover:border-def focus:bg-def focus:border-def focus:outline-none cursor-not-allowed shadow-none;
 }

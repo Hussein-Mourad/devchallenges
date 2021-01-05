@@ -1,36 +1,73 @@
-import React from "react";
+import PropTypes from "prop-types";
+import Icon from "@material-ui/core/Icon";
 
-const Button = (props) => {
+function Button({
+  variant,
+  size,
+  color,
+  startIcon,
+  endIcon,
+  className,
+  children,
+  disabled,
+}) {
+  function setBtnStyle() {
+    var style = "btn";
+    // Sets the size of the btn
+    if (size === "sm" || size === "lg") {
+      style += ` btn-${size}`;
+    }
+    // Sets the color and variant of the btn
+    if (variant !== "outline" && variant !== "text") {
+      style += ` btn-${color}`;
+    } else if (variant === "outline") {
+      style += ` btn-${color}-outline`;
+    } else if (variant === "text") {
+      style += ` btn-${color}-link`;
+    }
+    // Adds user classnames if existed
+    if (className) {
+      style = `${style} ${className}`;
+    }
+    return style;
+  }
+  function setIconStyle(start, end) {
+    // removes unecessary margins if there are no text
+    var style = "inline-flex align-top";
+    if (children) {
+      if (start) {
+        style += " mr-2";
+      } else if (end) {
+        style += " ml-2";
+      }
+    }
+    return style
+  }
   return (
-    <div className="container  p-10 ">
-      <button className="btn btn-md shadow-lg">Default</button>
-      <button className="outlin">Default</button>
-      <button className="m-3 btn-md btn-primary btn-primary-outline">Default</button>
-      <button className="m-3 btn-md btn-primary btn-primary-outline">Default</button>
-      <button className="m-3 btn-md btn-primary btn-primary-outline">Default</button>
-      <button className=" m-3 px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-opacity-90 focus:bg-opacity-90 focus:outline-none">
-        Default
-      </button>
-      <button className=" m-3 px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-opacity-90 focus:bg-opacity-90 focus:outline-none">
-        Default
-      </button>
-      <button className=" m-3 px-5 py-2 rounded-lg bg-gray-200 text-gray-400 focus:outline-none cursor-not-allowed">
-        Disabled
-      </button>
-      <button className=" m-3 px-3 py-1 rounded-lg bg-blue-600 text-white hover:bg-opacity-90 focus:bg-opacity-90 focus:outline-none">
-        Default
-      </button>
-      <button className=" m-3 px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-opacity-90 focus:bg-opacity-90 focus:outline-none">
-        Default
-      </button>
-      <button className=" m-3 px-7 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-800 hover:bg-opacity-90  focus:outline-none">
-        Default
-      </button>
-      <button className="btn-lg btn-primary">Default</button>
-
-      <button className="btn-lg btn-secondary">Primary</button>
-    </div>
+    <button className={setBtnStyle()} disabled={disabled}>
+      {startIcon ? (
+        <Icon className={setIconStyle(true, false)}>{startIcon}</Icon>
+      ) : (
+        ""
+      )}
+      {children ? children : ""}
+      {endIcon ? (
+        <Icon className={setIconStyle(false, true)}>{endIcon}</Icon>
+      ) : (
+        ""
+      )}
+    </button>
   );
+}
+Button.propTypes = {
+  disabled: PropTypes.bool,
+  variant: PropTypes.string,
+  size: PropTypes.string,
+  color: PropTypes.string,
+  startIcon: PropTypes.string,
+  endIcon: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.string || PropTypes.number,
 };
 
 export default Button;
