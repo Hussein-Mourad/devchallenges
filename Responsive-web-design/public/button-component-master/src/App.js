@@ -1,33 +1,68 @@
 import "./App.css";
-import StyleSelector from './compontents/StyleSelector.js'
+import { useState } from "react";
+import StyleSelector from "./compontents/StyleSelector.js";
 import Button from "./compontents/Button.js";
+import SideBar from "./compontents/SideBar.js";
+import PageContent from "./compontents/PageContent.js";
+import ButtonVariants from "./compontents/ButtonVariants.js";
+import Footer from "./compontents/Footer.js";
 
-
-
+import downArrow from "./assests/icons/downArrow.svg";
 
 function App() {
+  const [size, setSize] = useState("md");
+  const [color, setColor] = useState("default");
+  const [variant, setVariant] = useState("regular");
+  const [shadow, setShadow] = useState("");
+  const [disabled, setDisabled] = useState('');
+  const [startIcon, setStartIcon] = useState("");
+  const [endIcon, setEndIcon] = useState("");
   return (
-    // <div className="p-10 grid grid-cols-3 gap-5">
-    <div className="p-10">
-      <StyleSelector/>
-      
-      {btns.map((btn) => (
-        <div className="m-5 max-w-max">
-          <h1 className={`font-medium text-lg mb-3 text-${btn.color}`}>
-            {`${capitalizeFirstLetter(btn.variant)}-${btn.size}`}
-          </h1>
+    <>
+      <SideBar>
+        <StyleSelector
+          size={size}
+          color={color}
+          variant={variant}
+          shadow={shadow}
+          disabled={disabled}
+          startIcon={startIcon}
+          endIcon={endIcon}
+          setSize={setSize}
+          setColor={setColor}
+          setVariant={setVariant}
+          setShadow={setShadow}
+          setDisabled={setDisabled}
+          setStartIcon={setStartIcon}
+          setEndIcon={setEndIcon}
+        />
+      </SideBar>
+
+      <PageContent>
+        <div className="h-screen flex justify-center items-center relative">
+          <h1 className="absolute top-12 text-3xl text-gray-700 font-medium">Button Component Showcase</h1>
           <Button
-            key={btn.id}
-            variant={btn.variant}
-            color={btn.color}
-            size={btn.size}
-            disabled={btn.disabled}
+            size={size}
+            color={color}
+            variant={variant}
+            shadow ={shadow}
+            disabled={disabled}
+            startIcon={startIcon}
+            endIcon={endIcon}
           >
-            {btn.color}
+            Default
           </Button>
+          <img
+            src={downArrow}
+            alt="Down arrow"
+            className="w-7 opacity-90 mx-auto absolute bottom-5 animate-bounce"
+          />
         </div>
-      ))}
-    </div>
+
+        <ButtonVariants />
+        <Footer />
+      </PageContent>
+    </>
   );
 }
 

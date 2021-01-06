@@ -5,6 +5,7 @@ function Button({
   variant,
   size,
   color,
+  shadow,
   startIcon,
   endIcon,
   className,
@@ -25,6 +26,9 @@ function Button({
     } else if (variant === "text") {
       style += ` btn-${color}-link`;
     }
+    if (shadow) {
+      style += ` shadow-lg`;
+    }
     // Adds user classnames if existed
     if (className) {
       style = `${style} ${className}`;
@@ -41,7 +45,7 @@ function Button({
         style += " ml-2";
       }
     }
-    return style
+    return style;
   }
   return (
     <button className={setBtnStyle()} disabled={disabled}>

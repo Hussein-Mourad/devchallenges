@@ -4,9 +4,7 @@
 
 /* Basic Styles */
 .btn {
-  @apply text-gray-800 align-middle text-center
-  border border-transparent px-5 py-2 rounded-lg
-   bg-def hover:bg-defhover hover:border-defhover focus:bg-defhover focus:border-defhover focus:outline-none transition-all duration-300 ease-in-out;
+  @apply text-gray-800 align-middle text-center border border-transparent px-5 py-2 rounded-lg bg-def hover:bg-defhover hover:border-defhover focus:bg-defhover focus:border-defhover focus:outline-none transition-all duration-300 ease-in-out;
 }
 
 /* Sizes */
@@ -32,6 +30,10 @@
 }
 
 /* Button with outline */
+.btn-default-outline {
+  @apply text-gray-800 bg-transparent border border-gray-800  
+   hover:bg-defhover focus:bg-defhover focus:outline-none;
+}
 .btn-primary-outline {
   @apply text-primary bg-transparent border border-primary  
    hover:bg-blue-50 focus:bg-blue-50 focus:outline-none;
@@ -48,6 +50,9 @@
 }
 
 /* Button with text only */
+.btn-default-link {
+  @apply btn-default-outline border-none hover:border-transparent;
+}
 .btn-primary-link {
   @apply btn-primary-outline border-none hover:border-transparent;
 }
@@ -60,6 +65,40 @@
 
 /* Disabled state */
 button:disabled,
-button[disabled] {
+button[disabled],
+button.disabled {
   @apply text-gray-400 bg-def border border-def hover:bg-def hover:border-def focus:bg-def focus:border-def focus:outline-none cursor-not-allowed shadow-none;
+}
+
+.sidebar {
+  @apply w-full md:w-56 md:h-full relative md:fixed z-10 top-0 left-0 overflow-hidden overflow-y-scroll bg-gray-700 bg-opacity-90 py-3 px-10 md:px-5 shadow-xl;
+}
+
+.form-group {
+  @apply my-3 flex flex-col;
+}
+.form-select {
+  @apply rounded-xl px-5 py-2 bg-gray-100 hover:bg-gray-200 focus:outline-none text-gray-800;
+}
+.form-label {
+  @apply text-gray-200 mb-2 text-xl;
+}
+
+.sidebar::-webkit-scrollbar {
+  @apply w-1;
+}
+ 
+.sidebar::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(49, 35, 35, 0.2);
+}
+ 
+.sidebar::-webkit-scrollbar-thumb {
+  @apply bg-gray-500;
+  outline: 1px solid slategrey;
+}
+
+@media only screen and (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
 }
