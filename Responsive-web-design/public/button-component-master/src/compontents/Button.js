@@ -63,11 +63,12 @@ function Button({
     </button>
   );
 }
+
 Button.propTypes = {
   disabled: PropTypes.bool,
-  variant: PropTypes.string,
-  size: PropTypes.string,
-  color: PropTypes.string,
+  variant: PropTypes.oneOf("", "outline", "text"),
+  size: PropTypes.oneOf("sm", "md", "lg", ""),
+  color: PropTypes.oneOf('default',"primary", "secondary", "danger"),
   startIcon: PropTypes.string,
   endIcon: PropTypes.string,
   className: PropTypes.string,

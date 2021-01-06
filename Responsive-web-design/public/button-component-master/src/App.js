@@ -55,7 +55,7 @@ function App() {
             Default
           </Button>
           <div className="absolute mx-auto bottom-5 left-50 w-40 flex flex-col items-center">
-            <h3 className="text-sm text-gray-400 mb-3">Scroll down</h3>
+            <h3 className="text-sma text-gray-300 mb-3">Scroll down</h3>
             <img
               src={downArrow}
               alt="Down arrow"
