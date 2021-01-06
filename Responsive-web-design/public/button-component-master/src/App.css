@@ -85,15 +85,27 @@ button.disabled {
 }
 
 .sidebar::-webkit-scrollbar {
-  @apply w-1;
+  @apply w-3;
 }
  
 .sidebar::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(49, 35, 35, 0.2);
+  @apply shadow-inner;
 }
  
 .sidebar::-webkit-scrollbar-thumb {
-  @apply bg-gray-500;
+  @apply bg-gray-500 rounded-xl; 
+  outline: 1px solid slategrey;
+}
+body::-webkit-scrollbar {
+  @apply w-3;
+}
+ 
+body::-webkit-scrollbar-track {
+  @apply shadow-inner;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 rounded-xl; 
   outline: 1px solid slategrey;
 }
 

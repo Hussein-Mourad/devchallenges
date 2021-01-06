@@ -40,23 +40,28 @@ function App() {
 
       <PageContent>
         <div className="h-screen flex justify-center items-center relative">
-          <h1 className="absolute top-12 text-3xl text-gray-700 font-medium">Button Component Showcase</h1>
+          <h1 className="absolute top-12 text-3xl text-gray-700 font-medium">
+            Button Component Showcase
+          </h1>
           <Button
             size={size}
             color={color}
             variant={variant}
-            shadow ={shadow}
+            shadow={shadow}
             disabled={disabled}
             startIcon={startIcon}
             endIcon={endIcon}
           >
             Default
           </Button>
-          <img
-            src={downArrow}
-            alt="Down arrow"
-            className="w-7 opacity-90 mx-auto absolute bottom-5 animate-bounce"
-          />
+          <div className="absolute mx-auto bottom-5 left-50 w-40 flex flex-col items-center">
+            <h3 className="text-sm text-gray-400 mb-3">Scroll down</h3>
+            <img
+              src={downArrow}
+              alt="Down arrow"
+              className="w-7 opacity-90 animate-bounce"
+            />
+          </div>
         </div>
 
         <ButtonVariants />
