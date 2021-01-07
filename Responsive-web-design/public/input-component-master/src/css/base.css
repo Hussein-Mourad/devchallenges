@@ -2,16 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.input-wrapper {
-  @apply inline-flex items-center my-1 px-2 text-gray-500 border border-gray-500 rounded-lg hover:border-gray-900 focus:border-blue-600;
-}
 
-/* .input {
-
-  @apply mx-1 py-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-blue-600 rounded-lg;
-} */
 .input{
-  @apply mx-0 my-1 py-4 pl-10 text-gray-900 border border-gray-500 rounded-lg hover:border-gray-900 focus:border-blue-500 focus:outline-none;
+  @apply  my-1 py-4 pl-10 text-gray-900 border border-gray-500 rounded-lg hover:border-gray-900 focus:border-blue-400 focus:outline-none;
 }
 
 .input-label {
@@ -20,16 +13,17 @@
 .input:hover + .input-label {
   @apply text-gray-900;
 }
-.input:focus + .input-wrapper {
-  @apply border-blue-500;
+
+.input:focus + .input-label  {
+  @apply text-blue-400;
 }
-.input:focus + .input-label {
-  @apply text-blue-500;
+.input:focus + .input-icon {
+  @apply text-blue-400;
 }
 
 .input-sm {
   @apply py-2;
 } 
 
-/* .input--error {
+.input--error {
 }
