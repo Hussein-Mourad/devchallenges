@@ -29,7 +29,7 @@ function App() {
       <Input placeholder="Placeholder" size="sm" />
       <h1>fullWidth</h1>
       <Input placeholder="Placeholder" fullWidth />
-      <h1>nultiline</h1>
+      <h1>Multiline</h1>
       <Input placeholder="Placeholder" multiline rows="4" />
       <Input placeholder="Placeholder" multiline rows="4" error/>
     </div>

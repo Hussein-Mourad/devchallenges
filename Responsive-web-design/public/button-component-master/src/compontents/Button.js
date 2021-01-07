@@ -72,7 +72,7 @@ Button.propTypes = {
   startIcon: PropTypes.string,
   endIcon: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.string || PropTypes.number,
+  children: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default Button;

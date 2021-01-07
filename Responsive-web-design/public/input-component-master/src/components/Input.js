@@ -27,10 +27,11 @@ const InputBase = (props) => {
           className={props.setInputStyle()}
           onFocus={props.onFocus}
           onBlur={props.onBlur}
+          onChange={props.onChange}
           onMouseEnter={props.onMouseEnter}
           onMouseLeave={props.onMouseLeave}
           disabled={props.disabled}
-          value={props.value}
+          value={props.inputValue}
         />
         <label className={props.setLabelStyle()}>{props.label}</label>
       </div>
@@ -61,8 +62,10 @@ const InputMultiline = (props) => {
             : "border-gray-500 focus:border-blue-400"
         }`}
         placeholder={props.placeholder}
+        value={props.inputValue}
         cols={props.cols}
         rows={props.rows}
+        onChange={props.onChange}
       ></textarea>
       <label className={props.setLabelStyle()}>{props.label}</label>
     </div>
@@ -86,6 +89,7 @@ function Input({
   className,
 }) {
   const [color, setColor] = useState(error ? "red-400" : "gray-700");
+  const [inputValue, setInputvalue] = useState(value);
   function onFocus() {
     error ? setColor("red-400") : setColor("blue-400");
   }
@@ -98,7 +102,9 @@ function Input({
   function onMouseLeave() {
     error ? setColor("red-400") : setColor("gray-700");
   }
-
+  function onChange(e) {
+    setInputvalue(e.target.value)
+  }
   function setInputStyle() {
     var sizeStyle = "py-4";
     var padding = `${sizeStyle} pl-3`;
@@ -139,6 +145,7 @@ function Input({
     helperText,
     label,
     value,
+    inputValue,
     placeholder,
     size,
     fullWidth,
@@ -151,10 +158,12 @@ function Input({
     className,
     onFocus,
     onBlur,
+    onChange,
     onMouseEnter,
     onMouseLeave,
     setInputStyle,
     setLabelStyle,
+    
   };
   if (multiline) {
     return <InputMultiline {...props} />;
@@ -164,8 +173,8 @@ function Input({
 }
 
 Input.propTypes = {
-  startIcon: PropTypes.Icon,
-  endIcon: PropTypes.Icon,
+  startIcon: PropTypes.string,
+  endIcon: PropTypes.string,
   helperText: PropTypes.string,
   value: PropTypes.string,
   placeholder: PropTypes.string,
@@ -173,8 +182,8 @@ Input.propTypes = {
   size: PropTypes.string,
   fullWidth: PropTypes.bool,
   multiline: PropTypes.bool,
-  rows: PropTypes.number,
-  cols: PropTypes.number,
+  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  cols: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   error: PropTypes.bool,
   disabled: PropTypes.bool,
   className: PropTypes.string,

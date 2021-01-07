@@ -3,19 +3,11 @@
 @tailwind utilities;
 
 
-.input-label--default {
-  @apply text-gray-700;
-}
-
 .input:hover + .input-label--default {
   @apply text-gray-900;
 }
 
 .input:focus + .input-label--default {
   @apply text-blue-400;
-}
-
-.input-label--error {
-  @apply text-red-400;
 }
 
