@@ -2,28 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.input{
-  @apply  my-1 py-4 pl-10 text-gray-900 border border-gray-500 rounded-lg hover:border-gray-900 focus:border-blue-400 focus:outline-none;
-}
-
-.input-label {
-  @apply block text-sm text-gray-700;
-}
-.input:hover + .input-label {
-  @apply text-gray-900;
-}
-
-.input:focus + .input-label  {
-  @apply text-blue-400;
-}
-.input:focus + .input-icon {
-  @apply text-blue-400;
+.input {
+  @apply my-1 py-4 pl-10 rounded-lg;
 }
 
 .input-sm {
   @apply py-2;
-} 
+}
+
+.input--default {
+  @apply text-gray-900 border border-gray-500 hover:border-gray-900 focus:border-blue-400 focus:outline-none;
+}
 
 .input--error {
+  @apply text-red-400 border border-red-400 hover:border-gray-900 focus:border-red-400 focus:outline-none;
 }
+
+.input-label {
+  @apply block text-sm;
+}
+
+
+.input-label--default {
+  @apply text-gray-700;
+}
+
+.input-label--error {
+  @apply text-red-400;
+}
+
+.input:hover + .input-label {
+  @apply text-gray-900;
+}
+
+.input:hover + .input-label--error {
+  @apply text-red-400;
+}
+
+.input:focus + .input-label--default {
+  @apply text-blue-400;
+}
+

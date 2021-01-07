@@ -5,7 +5,7 @@ import Input from "./components/Input.js";
 function App() {
   return (
     <div className="m-10">
-      <Input />
+      <Input error/>
     </div>
   );
 }

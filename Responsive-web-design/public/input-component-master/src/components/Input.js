@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import Icon from "@material-ui/core/Icon";
 
-
 function Input({ error }) {
-  const [color, setColor] = useState('blue')
-  if (error) {
-    setColor('red')
+  const [color, setColor] = useState(error ? "red-400" : "gray-700");
+  function onFocus() {
+    setColor("blue-400");
+  }
+  function onBlur() {
+    setColor("gray-700");
   }
   return (
     <div>
@@ -14,20 +16,20 @@ function Input({ error }) {
           className="absolute top-1/2 transform -translate-y-1/2  left-3 mt-1 focus:outline-none"
           tabIndex="0"
         >
-          <Icon className="input-icon">phone</Icon>
+          {/* <Icon className={`text-${color}`}>phone</Icon> */}
         </span>
         <div className="flex flex-col-reverse">
           <input
             type="text"
             placeholder="Placeholder"
-            className={`input my-1 py-4 pl-10 text-gray-900 border border-gray-500 rounded-lg hover:border-gray-900 focus:border-${color}-400 focus:outline-none`}
-            
+            className="input input--error"
+            onFocus={onFocus}
+            onBlur={onBlur}
           />
-          <label className="input-label">Label</label>
+          <label className="input-label input-label--error">Label</label>
         </div>
         <small className="block text-xs text-gray-400">Some text</small>
       </div>
-      
 
       <div className="my-3">
         <label className="block text-sm text-gray-700 focus:text-blue-400">
@@ -47,4 +49,3 @@ function Input({ error }) {
 }
 
 export default Input;
-
