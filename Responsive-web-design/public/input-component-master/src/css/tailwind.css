@@ -31611,16 +31611,6 @@ video {
   color: rgba(248, 113, 113, var(--tw-text-opacity));
 }
 
-.input:hover + .input-label--error {
-  --tw-text-opacity: 1;
-  color: rgba(17, 24, 39, var(--tw-text-opacity));
-}
-
-.input:focus + .input-label--error {
-  --tw-text-opacity: 1;
-  color: rgba(248, 113, 113, var(--tw-text-opacity));
-}
-
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -186320,3 +186310,4 @@ video {
     animation: bounce 1s infinite;
   }
 }
+

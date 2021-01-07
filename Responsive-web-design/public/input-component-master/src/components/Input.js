@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Icon from "@material-ui/core/Icon";
 import PropTypes from "prop-types";
+import "../css/tailwind.css";
 
 const InputBase = (props) => {
   return (
@@ -31,7 +32,7 @@ const InputBase = (props) => {
           disabled={props.disabled}
           value={props.value}
         />
-        <label className={props.setLabelStyle()}>Label</label>
+        <label className={props.setLabelStyle()}>{props.label}</label>
       </div>
 
       <small
@@ -63,7 +64,7 @@ const InputMultiline = (props) => {
         cols={props.cols}
         rows={props.rows}
       ></textarea>
-      <label className={props.setLabelStyle()}>Label</label>
+      <label className={props.setLabelStyle()}>{props.label}</label>
     </div>
   );
 };
@@ -73,6 +74,7 @@ function Input({
   endIcon,
   helperText,
   value,
+  label,
   placeholder,
   size,
   fullWidth,
@@ -128,13 +130,14 @@ function Input({
     if (error) {
       type = "error";
     }
-    var labelStyle = `input-label--${type} block text-sm`;
+    var labelStyle = `input-label--${type} text-${color} block text-sm`;
     return labelStyle;
   }
   const props = {
     startIcon,
     endIcon,
     helperText,
+    label,
     value,
     placeholder,
     size,
@@ -161,10 +164,12 @@ function Input({
 }
 
 Input.propTypes = {
-  startIcon: PropTypes.string,
-  endIcon: PropTypes.string,
+  startIcon: PropTypes.Icon,
+  endIcon: PropTypes.Icon,
   helperText: PropTypes.string,
   value: PropTypes.string,
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
   size: PropTypes.string,
   fullWidth: PropTypes.bool,
   multiline: PropTypes.bool,
@@ -176,11 +181,13 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  size: "md",
+  size: "",
+  placeholder: "Placeholder",
+  label: "Label",
   fullWidth: false,
   multiline: false,
-  rows: 30,
-  cols: 4,
+  cols: 30,
+  rows: 4,
   error: false,
   disabled: false,
 };

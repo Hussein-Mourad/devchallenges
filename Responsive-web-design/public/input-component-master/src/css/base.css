@@ -3,18 +3,6 @@
 @tailwind utilities;
 
 
-.input--default {
-  @apply text-gray-900 border border-gray-500 hover:border-gray-900 focus:border-blue-400 focus:outline-none;
-}
-
-.input--error {
-  @apply text-red-400 border border-red-400 hover:border-gray-900 focus:border-red-400 focus:outline-none;
-}
-
-.input-label {
-  @apply block text-sm;
-}
-
 .input-label--default {
   @apply text-gray-700;
 }
