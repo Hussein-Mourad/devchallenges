@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.input {
-  @apply my-1 py-4 pl-10 rounded-lg;
-}
-
-.input-sm {
-  @apply py-2;
-}
 
 .input--default {
   @apply text-gray-900 border border-gray-500 hover:border-gray-900 focus:border-blue-400 focus:outline-none;
@@ -22,24 +15,19 @@
   @apply block text-sm;
 }
 
-
 .input-label--default {
   @apply text-gray-700;
 }
 
-.input-label--error {
-  @apply text-red-400;
-}
-
-.input:hover + .input-label {
+.input:hover + .input-label--default {
   @apply text-gray-900;
-}
-
-.input:hover + .input-label--error {
-  @apply text-red-400;
 }
 
 .input:focus + .input-label--default {
   @apply text-blue-400;
+}
+
+.input-label--error {
+  @apply text-red-400;
 }
 
