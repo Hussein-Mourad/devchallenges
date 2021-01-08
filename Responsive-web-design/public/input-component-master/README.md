@@ -36,7 +36,7 @@
 
 ## Overview
 
-![screenshot](./src/assests/Screenshot.png)
+![screenshot](./src/assets/Screenshot.png)
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
@@ -78,5 +78,5 @@ $ npm start
 
 ## Contact
 
-- GitHub [@your-username](https://github.com/Hussein-Mourad)
-- Twitter [@your-twitter](https://twitter.com/HusseinMourad0)
+- GitHub [@Hussein-Mourad](https://github.com/Hussein-Mourad)
+- Twitter [@HusseinMourad0](https://twitter.com/HusseinMourad0)
