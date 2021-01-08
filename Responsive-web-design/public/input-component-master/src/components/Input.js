@@ -107,23 +107,23 @@ function Input({
   }
   function setInputStyle() {
     var sizeStyle = "py-4";
-    var padding = `${sizeStyle} pl-3`;
     var border =
-      "border border-gray-500 hover:border-gray-900 focus:border-blue-400";
+    "border border-gray-500 hover:border-gray-900 focus:border-blue-400";
     if (size === "sm") {
       sizeStyle = "py-2";
     }
+    var padding = `${sizeStyle} pl-3`;
     if (startIcon) {
       padding = `${sizeStyle} pl-10`;
     } else if (endIcon) {
       padding = `${sizeStyle} pr-10 pl-3`;
     }
-
+    
     if (error) {
       border =
-        "border border-red-400 hover:border-gray-900 focus:border-red-400";
+      "border border-red-400 hover:border-gray-900 focus:border-red-400";
     }
-
+    
     if (disabled) {
       border = "border border-gray-200 cursor-not-allowed";
     }

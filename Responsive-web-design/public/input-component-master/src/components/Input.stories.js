@@ -1,4 +1,3 @@
-import React from 'react';
 import  Input  from './Input.js';
 const input = {
   title: 'Input',
