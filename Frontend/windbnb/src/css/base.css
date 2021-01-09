@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.search-wrapper > .search-wrapper-item:not(:first-child) {
+  @apply rounded-l-none -ml-px;
+}
+
+.search-wrapper > .search-wrapper-item:not(:last-child) {
+  @apply rounded-r-none;
+}
+
+
+@media only screen and (max-width:500px){
+  html{
+    font-size: 14px;
+  }
+}
