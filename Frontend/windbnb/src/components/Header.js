@@ -8,8 +8,11 @@ function Header({
   toggleMenu,
   handleLocationButton,
   handleGuestButton,
-  handleSearchButton,
+  city,
+  adultGuests,
+  childrenGuests,
 }) {
+  const guests = adultGuests + childrenGuests;
   return (
     <header
       className={`${className} sm:flex sm:justify-between sm:items-center`}
@@ -26,7 +29,7 @@ function Header({
               toggleMenu();
             }}
           >
-            Helsinki, Finland
+            {city}, Finland
           </Button>
 
           <Button
@@ -37,12 +40,11 @@ function Header({
               toggleMenu();
             }}
           >
-            Add guests
+            {guests !== 0 ? guests : "Add guests"}
           </Button>
           <Button
-            className="items-center py-4"
+            className="inline-flex items-center justify-center py-4"
             onClick={() => {
-              handleSearchButton();
               toggleMenu();
             }}
           >

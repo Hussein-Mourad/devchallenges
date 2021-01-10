@@ -31735,8 +31735,29 @@ video {
   border-bottom-right-radius: 0px;
 }
 
-@media only screen and (max-width:500px){
-  html{
+.header-menu {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  transform: translateY(-100%);
+  border-radius: 1000px;
+  animation: menu 0.3s ease;
+}
+
+@keyframes menu {
+  from {
+    transform: translate(100%, -100%);
+    border-radius: 1000px;
+  }
+
+  to {
+    transform: translate(0%, 0%);
+    border-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  html {
     font-size: 14px;
   }
 }

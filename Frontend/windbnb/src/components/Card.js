@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
 import Icon from "@material-ui/core/Icon";
 
-function Card({ superhost, title, rating, type, beds, photo }) {
+function Card({ superHost, title, rating, type, beds, photo }) {
+
+
   return (
     <div>
-      <div className="h-64 overflow-hidden flex items-center rounded-xl">
+      <div className="h-auto sm:h-44 md:h-36 lg:h-48 xl:h-64 2xl:h-72 overflow-hidden flex items-center rounded-xl">
         <img
           src={photo}
           className="rounded-xl w-full h-auto hover:w-10"
@@ -13,12 +15,12 @@ function Card({ superhost, title, rating, type, beds, photo }) {
       </div>
       <div className="my-2 flex justify-between w-full">
         <div>
-          {superhost ? (
+          {superHost ? (
             <span className="cursor-default px-3 py-2 mr-3 border border-gray-800 text-gray-800 rounded-xl text-xs font-extrabold">
               SUPER HOST
             </span>
           ) : (
-            ""
+            " "
           )}
           <span className="font-medium text-gray-400 text-sm">
             {type}. {beds} beds
@@ -36,12 +38,9 @@ function Card({ superhost, title, rating, type, beds, photo }) {
 }
 
 Card.propTypes = {
-  //   city: PropTypes.string,
-  //   coutry: PropTypes.string,
   superhost: PropTypes.bool,
   title: PropTypes.string,
   rating: PropTypes.number,
-  //   maxGuests: PropTypes.number,
   type: PropTypes.string,
   beds: PropTypes.number,
   photo: PropTypes.string,
