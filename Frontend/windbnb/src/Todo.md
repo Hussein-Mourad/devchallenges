@@ -1,2 +1,0 @@
-- Animation for menu bar
-- Feedback When Making Search
