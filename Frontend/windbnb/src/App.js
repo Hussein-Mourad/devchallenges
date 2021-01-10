@@ -1,4 +1,4 @@
-import "./css/tailwind.css";
+import "./css/base.css";
 import { useState } from "react";
 import uuid from "react-uuid";
 import stays from "./assets/stays.json";
