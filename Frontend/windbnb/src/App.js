@@ -15,6 +15,7 @@ function App() {
   const [adultGuests, setAdultGuests] = useState(0);
   const [childrenGuests, setChildrenGuests] = useState(0);
   const [filteredStays, setFilteredStays] = useState(stays);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -96,3 +97,4 @@ function App() {
 }
 
 export default App;
+
