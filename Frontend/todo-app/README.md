@@ -1,10 +1,10 @@
 <!-- Please update value in the {}  -->
-[![Netlify Status](https://api.netlify.com/api/v1/badges/30d8fa2a-e36e-4784-b302-47225e007662/deploy-status)](https://app.netlify.com/sites/todo-app-challenge/deploys)
 <h1 align="center">Todo app</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
 </div>
+
 
 <div align="center">
   <h3>
@@ -21,6 +21,9 @@
     </a>
   </h3>
 </div>
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/30d8fa2a-e36e-4784-b302-47225e007662/deploy-status)](https://app.netlify.com/sites/todo-app-challenge/deploys)
+
 
 <!-- TABLE OF CONTENTS -->
 
