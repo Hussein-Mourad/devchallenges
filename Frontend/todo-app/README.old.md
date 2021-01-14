@@ -1,5 +1,5 @@
 <!-- Please update value in the {}  -->
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/30d8fa2a-e36e-4784-b302-47225e007662/deploy-status)](https://app.netlify.com/sites/todo-app-challenge/deploys)
 <h1 align="center">Todo app</h1>
 
 <div align="center">
@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://todo-app-challenge.netlify.app/">
       Demo
     </a>
     <span> | </span>
