@@ -5,16 +5,12 @@ import uuid from "react-uuid";
 import Button from "./components/Button.js";
 import Input from "./components/Input.js";
 import Navigation from "./components/Navigation.js";
+import Footer from "./components/Footer.js";
 import Todos from "./components/Todos.js";
 
 function App() {
   const getLocalStorage = () => {
-    if (localStorage.getItem("todos")) {
-      return localStorage.getItem("todos");
-    } else {
-      localStorage.setItem("todos", []);
-      return [];
-    }
+    return JSON.parse(localStorage.getItem("todos") || "[]");
   };
   const [todos, setTodos] = useState(getLocalStorage());
   const [filteredTodos, setFilteredTodos] = useState(todos);
@@ -23,19 +19,15 @@ function App() {
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
-  const setLocalStorage = (value, filteredTodos) => {
-    localStorage.setItem("todos", value);
+  const setLocalStorage = (value) => {
+    localStorage.setItem("todos", JSON.stringify(value));
     setTodos(value);
-    if (filteredTodos) {
-      setFilteredTodos(filteredTodos);
-    }
   };
   const addTodo = () => {
     const todo = { id: uuid(), completed: false, text: inputValue };
     setInputValue("");
-    setTodos([...todos, todo]);
+    setLocalStorage([...todos, todo]);
     setFilteredTodos([...todos, todo]);
-    localStorage.setItem("todos", todos);
   };
   const checkTodo = (id) => {
     todos.forEach((todo) => {
@@ -43,19 +35,16 @@ function App() {
         todo.completed = !todo.completed;
       }
     });
-    setTodos([...todos]);
+    setLocalStorage([...todos]);
     setFilteredTodos([...todos]);
-    localStorage.setItem("todos", todos);
   };
   const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setLocalStorage(todos.filter((todo) => todo.id !== id));
     setFilteredTodos(todos.filter((todo) => todo.id !== id));
-    localStorage.setItem("todos", (todo) => todo.id !== id);
   };
   const deleteAllTodos = () => {
-    setTodos([]);
+    setLocalStorage([]);
     setFilteredTodos([]);
-    localStorage.setItem("todos", []);
   };
   const changeView = (e) => {
     setView(e.target.innerText);
@@ -68,22 +57,24 @@ function App() {
     }
   };
   return (
-    <div className="container mx-auto my-8">
+    <div className="container mx-auto py-8 relative min-h-screen">
       <h1 className="text-3xl text-gray-800 font-semibold text-center">
         #todo
       </h1>
       <div className="max-w-min mx-auto mt-8">
         <Navigation changeView={changeView} view={view} />
-        <div className="my-5 flex">
-          <Input
-            className="mr-5 w-full"
-            value={inputValue}
-            onChange={handleInputChange}
-          />
-          <Button bgColor="bg-blue-500" onClick={addTodo}>
-            Add
-          </Button>
-        </div>
+        {view !== "Completed" && (
+          <div className="my-5 flex">
+            <Input
+              className="mr-5 w-full"
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+            <Button className="px-10" bgColor="bg-blue-500" onClick={addTodo}>
+              Add
+            </Button>
+          </div>
+        )}
         <div className="px-1">
           <Todos
             todos={filteredTodos}
@@ -93,7 +84,7 @@ function App() {
         </div>
         {view === "Completed" && filteredTodos.length > 0 && (
           <Button
-            className="py-4 my-7 text-base float-right"
+            className="my-7 float-right"
             bgColor="bg-red-500"
             onClick={deleteAllTodos}
           >
@@ -101,6 +92,7 @@ function App() {
           </Button>
         )}
       </div>
+      <Footer className="absolute bottom-0 w-full" />
     </div>
   );
 }
