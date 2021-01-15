@@ -63,7 +63,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 $ git clone https://github.com/Hussein-Mourad/devchallenges
 
 # Get into the folder
-$ cd/Frontend/todo-app
+$ cd/Frontend/quote-generator
 
 # Install dependencies
 $ npm install
