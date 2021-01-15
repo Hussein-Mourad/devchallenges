@@ -7,14 +7,16 @@ module.exports = {
       "./src/*.{js,jsx,ts,tsx}",
     ],
   },
-  darkMode: false, 
+  darkMode: false,
   theme: {
     extend: {},
   },
   variants: {
     extend: {
-      backgroundColor: ["active"],
+      backgroundColor: ["active", "disabled"],
+      textColor: ["disabled"],
       display: ["group-hover"],
+      cursor: ["disabled"],
     },
   },
   plugins: [],

@@ -1,7 +1,6 @@
 import useFetch from "../api/useFetch";
 import data from "../data/authors.json";
 import RandomButton from "../components/RandomButton";
-import Footer from "../components/Footer";
 import Quote from "../components/Quote";
 import HandleErrorAndLoading from "../components/HandleErrorAndLoading";
 import { Link } from "react-router-dom";
@@ -18,7 +17,7 @@ function Author({ author, setAuthor }) {
   const { data: quotes, isLoading, error, loadData } = useFetch(url);
 
   return (
-    <div className="relative container mx-auto py-5 min-h-screen">
+    <>
       <RandomButton
         onClick={() => {
           setAuthor(authors[Math.floor(Math.random() * authors.length)]);
@@ -37,7 +36,7 @@ function Author({ author, setAuthor }) {
 
             <Link
               to="/"
-              className="underline text-gray-600 inline-flex items-center justify-end text-base col-start-11 col-span-2 max-h-9 "
+              className="text-gray-600 inline-flex items-center justify-end text-base col-start-11 col-span-2 max-h-9 hover:text-black"
             >
               <Icon className="mr-2" fontSize="small">
                 west
@@ -52,8 +51,7 @@ function Author({ author, setAuthor }) {
           </div>
         </div>
       )}
-      <Footer className="absolute bottom-0 w-full" />
-    </div>
+    </>
   );
 }
 
