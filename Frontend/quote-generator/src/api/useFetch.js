@@ -29,6 +29,7 @@ function useFetch(url) {
   };
   useEffect(() => {
     loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { data, isLoading, error, loadData };
 }
