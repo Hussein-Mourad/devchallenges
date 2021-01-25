@@ -1,5 +1,5 @@
 import globeImg from "../assets/undraw_adventure_4hum 1.svg";
-import winners from "../assets/undraw_winners_ao2o 2.svg";
+// import winners from "../assets/undraw_winners_ao2o 2.svg";
 function Card({ className, children }) {
   return (
     <div className={`${className}`}>
