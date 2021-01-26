@@ -1,18 +1,16 @@
 import { useState } from "react";
 import Button from "./Button";
-// import Icon from "@material-ui/core/Icon";
+
 
 function QuizForm({ question, choices, nextQuestion, score, setScore }) {
   const [btnsDisabled, setBtnsDisabled] = useState(false);
   const [clicked, setClicked] = useState("");
   
-
   return (
     <div className="pt-5">
-      <img className="w-28 rounded-md shadow-lg mb-3 " src={""} alt="" />
       <h2 className="text-title text-xl font-medium mb-3">
         {question &&
-          question.name + " is the capital of (" + question.capital + ")"}
+          question.capital + " is the capital of "}
       </h2>
       {choices.map((choice, index) => (
         <Button
