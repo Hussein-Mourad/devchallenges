@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Button from "./Button";
+// import Icon from "@material-ui/core/Icon";
 
-
-function QuizForm({ question, choices, nextQuestion }) {
+function QuizForm({ question, choices, nextQuestion, score, setScore }) {
   const [btnsDisabled, setBtnsDisabled] = useState(false);
+  const [clicked, setClicked] = useState("");
+  
 
   return (
     <div className="pt-5">
@@ -18,7 +20,12 @@ function QuizForm({ question, choices, nextQuestion }) {
           choice={choice}
           index={index}
           disabled={btnsDisabled}
+          clicked={clicked}
+          setClicked={setClicked}
+          score={score}
+          setScore={setScore}
           setBtnsDisabled={setBtnsDisabled}
+          
         />
       ))}
 
