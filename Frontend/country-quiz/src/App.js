@@ -1,10 +1,10 @@
 import Card from "./components/Card";
 import { useState } from "react";
 import shuffle from "./utils/shuffle";
-import getRandomObject from "./utils/getRandomObject";
+import generateChoices from "./utils/generateChoices";
 import Loader from "react-loader-spinner";
 import useFetch from "./api/useFetch";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 
 function App() {
   const { data, isLoading, error, loadData } = useFetch(
@@ -21,12 +21,7 @@ function App() {
   };
   try {
     currentQuestion = data.questions[questionNumber];
-    choices = shuffle([
-      { text: currentQuestion.name, correct: true },
-      { text: getRandomObject(data.data).name, correct: false },
-      { text: getRandomObject(data.data).name, correct: false },
-      { text: getRandomObject(data.data).name, correct: false },
-    ]);
+    choices = shuffle(generateChoices(data.data,currentQuestion.name));
   } catch (e) {}
   const props = {
     question: currentQuestion,
@@ -48,7 +43,7 @@ function App() {
           </div>
         )}
       </Card>
-      <Footer className="absolute bottom-0"/>
+      <Footer className="absolute bottom-0" />
     </div>
   );
 }

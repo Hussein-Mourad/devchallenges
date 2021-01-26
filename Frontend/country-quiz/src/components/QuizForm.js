@@ -10,7 +10,7 @@ function QuizForm({ question, choices, nextQuestion, score, setScore }) {
     <div className="pt-5">
       <h2 className="text-title text-xl font-medium mb-3">
         {question &&
-          question.capital + " is the capital of "}
+          question.capital + " is the capital of"}
       </h2>
       {choices.map((choice, index) => (
         <Button
