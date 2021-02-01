@@ -18,8 +18,30 @@ export class SideDrawer extends Component {
 
   render() {
     return (
-      <div className="sm:fixed sm:top-0 sm:left-0 w-full sm:w-1/5 h-screen bg-blueGray-800 py-4 overflow-x-hidden">
-        {/* <div className="w-screen h-screen bg-blueGray-800 fixed top-0 left-0 py-2 px-3">
+      <div>
+        <div className="sm:fixed sm:top-0 sm:left-0 w-full sm:w-1/5 h-screen bg-blueGray-800 py-4 overflow-x-hidden">
+          <div className="px-3 flex items-center justify-between">
+            <button className="px-4 py-2 bg-gray-500 text-coolGray-200">
+              Search for places
+            </button>
+            <button className="rounded-full bg-gray-500 text-coolGray-200 w-10 h-10 inline-flex items-center justify-center">
+              <Icon>gps_fixed</Icon>
+            </button>
+          </div>
+          <div className="transform scale-150 absolute top-32">
+            <img className="opacity-5 w-full" src={background} alt="" />
+          </div>
+          <div className="flex flex-col items-center w-full">
+            <img src={getWeatherImg("c")} alt="" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+{
+  /* <div className="w-screen h-screen bg-blueGray-800 fixed top-0 left-0 py-2 px-3">
           <div className="w-full flex justify-end text-coolGray-200 mb-4 cursor-pointer">
           <Icon>close</Icon>
           </div>
@@ -45,25 +67,7 @@ export class SideDrawer extends Component {
           </li>
           </ul>
           </div>
-        */}
-
-        <div className="px-3 flex items-center justify-between">
-          <button className="px-4 py-2 bg-gray-500 text-coolGray-200">
-            Search for places
-          </button>
-          <button className="rounded-full bg-gray-500 text-coolGray-200 w-10 h-10 inline-flex items-center justify-center">
-            <Icon>gps_fixed</Icon>
-          </button>
-        </div>
-        <div className="transform scale-150 absolute top-32">
-          <img className="opacity-5 w-full" src={background} alt="" />
-        </div>
-        <div className="flex flex-col items-center w-full">
-          <img src={getWeatherImg("c")} alt="" />
-        </div>
-      </div>
-    );
-  }
+        */
 }
 
 export default SideDrawer;
