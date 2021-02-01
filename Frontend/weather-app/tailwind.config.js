@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors')
+const colors = require("tailwindcss/colors");
 module.exports = {
   purge: {
     enabled: false,
@@ -15,6 +15,9 @@ module.exports = {
         blueGray: colors.blueGray,
         coolGray: colors.coolGray,
       },
+      minWidth: {
+        96: "24rem",
+      },
     },
   },
   variants: {
@@ -27,4 +30,3 @@ module.exports = {
   },
   plugins: [],
 };
-
