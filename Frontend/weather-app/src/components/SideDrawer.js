@@ -3,14 +3,17 @@ import Icon from "@material-ui/core/Icon";
 import getWeatherImg from "./../utils/getWeatherImg";
 import formatDate from "./../utils/formatDate";
 
-function SideDrawer({ data }) {
+function SideDrawer({ data, setIsMenuClosed }) {
     const weatherData = data.consolidated_weather[0];
     const date = formatDate(weatherData.applicable_date);
 
     return (
         <div className="sm:fixed sm:top-0 sm:left-0 w-full sm:w-1/5 md:w-4/12 h-screen bg-blueGray-800 py-4 overflow-x-hidden relative">
             <div className="px-3 flex items-center justify-between">
-                <button className="px-4 py-2 bg-gray-500 text-coolGray-200">
+                <button
+                    className="px-4 py-2 bg-gray-500 text-coolGray-200"
+                    onClick={() => setIsMenuClosed(false)}
+                >
                     Search for places
                 </button>
                 <button className="rounded-full bg-gray-500 text-coolGray-200 w-10 h-10 inline-flex items-center justify-center">
