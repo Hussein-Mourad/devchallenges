@@ -2,8 +2,10 @@ import background from "../assets/Cloud-background.png";
 import Icon from "@material-ui/core/Icon";
 import getWeatherImg from "./../utils/getWeatherImg";
 import formatDate from "./../utils/formatDate";
+import celsius_fahrenheit from "./../utils/celsius_fahrenheit";
+import getUserLocation from './../utils/getUserLocation';
 
-function SideDrawer({ data, setIsMenuClosed }) {
+function SideDrawer({ data, setIsMenuClosed, degSystem, setWoeid }) {
     const weatherData = data.consolidated_weather[0];
     const date = formatDate(weatherData.applicable_date);
 
@@ -16,7 +18,9 @@ function SideDrawer({ data, setIsMenuClosed }) {
                 >
                     Search for places
                 </button>
-                <button className="rounded-full bg-gray-500 text-coolGray-200 w-10 h-10 inline-flex items-center justify-center">
+                <button className="rounded-full bg-gray-500 text-coolGray-200 w-10 h-10 inline-flex items-center justify-center"
+                onClick={()=>{}}
+                >
                     <Icon>gps_fixed</Icon>
                 </button>
             </div>
@@ -35,8 +39,12 @@ function SideDrawer({ data, setIsMenuClosed }) {
                 />
 
                 <div className="text-white text-8xl">
-                    <span>{parseInt(weatherData.the_temp)}</span>
-                    <span className="text-5xl text-coolGray-400">&deg;C</span>
+                    <span>
+                        {celsius_fahrenheit(weatherData.the_temp, degSystem)}
+                    </span>
+                    <span className="text-5xl text-coolGray-400">
+                        &deg;{degSystem}
+                    </span>
                     <h4 className=" text-bold text-3xl text-coolGray-400 mt-16">
                         {weatherData.weather_state_name}
                     </h4>

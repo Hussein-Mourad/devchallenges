@@ -1,15 +1,8 @@
 import { useState, useEffect } from "react";
-import getUserLocation from "../utils/getUserLocation";
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const woeid = getUserLocation();
-  // if (woeid === "error") {
-  //   setError("Couldn't get user location");
-  //   return false;
-  // }
   
   const loadData = () => {
     const abortCont = new AbortController();
@@ -23,15 +16,12 @@ const useFetch = (url) => {
       })
       .then((data) => {
         setData(data);
-        setError(null);
-        setIsLoading(false);
       })
       .catch((err) => {
         if (err.name === "AbortError") {
           console.log("fetch aborted");
         } else {
           // auto catches network / connection error
-          setIsLoading(false);
           setError(err.message);
         }
       });
@@ -44,7 +34,7 @@ const useFetch = (url) => {
     // eslint-disable-next-line
   }, [url]);
 
-  return { data, isLoading, error, loadData };
+  return { data, error, loadData };
 };
 
 export default useFetch;
