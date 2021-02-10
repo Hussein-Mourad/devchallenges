@@ -1,16 +1,18 @@
 import { useState } from "react";
-import WeatherCards from "./components/WeatherCards";
-import Footer from "./components/Footer";
-import HighlightsCards from "./components/HighlightsCards";
-import SideDrawer from "./components/SideDrawer";
-import LocationMenu from "./components/LocationMenu";
-import DegreeButtons from "./components/DegreeButtons";
+import WeatherCards from "./WeatherCards";
+import Footer from "./Footer";
+import HighlightsCards from "./HighlightsCards";
+import SideDrawer from "./SideDrawer";
+import LocationMenu from "./LocationMenu";
+import DegreeButtons from "./DegreeButtons";
 
-function WeatherApp({ data, getUserLocation }) {
+function WeatherApp({ data, getUserLocation, setWoeid, setIsLoading }) {
     const [isMenuClosed, setIsMenuClosed] = useState(true);
     const [degSystem, setDegSystem] = useState("C");
     const props = {
         data,
+        setWoeid,
+        setIsLoading,
         getUserLocation,
         isMenuClosed,
         setIsMenuClosed,
@@ -25,7 +27,6 @@ function WeatherApp({ data, getUserLocation }) {
                 <DegreeButtons {...props} />
                 <WeatherCards {...props} />
 
-                
                 <HighlightsCards data={data.consolidated_weather[0]} />
                 <Footer />
             </div>

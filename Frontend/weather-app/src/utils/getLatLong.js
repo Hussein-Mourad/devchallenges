@@ -7,6 +7,8 @@ function getLatLong(callback) {
             user_position.longitude = position.coords.longitude;
             callback(user_position);
         });
-    } else return null;
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
 }
 export default getLatLong;
