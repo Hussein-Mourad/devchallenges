@@ -25,7 +25,7 @@ function App() {
         navigator.permissions
             .query({ name: "geolocation" })
             .then(function (result) {
-                if (result.state == "granted") {
+                if (result.state === "granted") {
                     setIsLoading(true);
                     getLatLong((lat_lng) => {
                         getWoeid(lat_lng.latitude, lat_lng.longitude).then(
@@ -35,7 +35,7 @@ function App() {
                             }
                         );
                     });
-                } else if (result.state == "denied") {
+                } else if (result.state === "denied") {
                     alert("Make sure your location permission is enabled");
                 }
             });
