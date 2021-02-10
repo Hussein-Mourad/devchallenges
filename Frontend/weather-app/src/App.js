@@ -16,8 +16,7 @@ function App() {
     const [woeid, setWoeid] = useState(tmp);
 
     const { data, error, isLoading, setIsLoading } = useFetch(
-        "https://obscure-mesa-98003.herokuapp.com/https://www.metaweather.com/api/location/" +
-            woeid
+        "https://www.metaweather.com/api/location/" + woeid
     );
 
     const getUserLocation = () => {

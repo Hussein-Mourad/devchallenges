@@ -1,6 +1,5 @@
 function getWoeid(latitude, longitude) {
-    const url =
-        "https://obscure-mesa-98003.herokuapp.com/https://www.metaweather.com/api/location/search/?lattlong=";
+    const url = "https://www.metaweather.com/api/location/search/?lattlong=";
     return fetch(url + latitude + "," + longitude)
         .then((res) => {
             return res.json();
