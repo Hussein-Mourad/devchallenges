@@ -25,7 +25,8 @@ function LocationMenu({
 
     const getPlaces = async (query) => {
         const res = await fetch(
-            "https://www.metaweather.com/api/location/search/?query=" + query
+            "https://obscure-mesa-98003.herokuapp.com/https://www.metaweather.com/api/location/search/?query=" +
+                query
         );
         const data = await res.json();
         setChoices(data);
