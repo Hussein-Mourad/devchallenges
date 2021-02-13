@@ -1,5 +1,6 @@
 import DarkModeSwitch from "../components/DarkModeSwitch";
 import Footer from "../components/Footer";
+
 function Layout({ children }) {
   return (
     <div className="container mx-auto px-4 py-3 sm:py-6 min-h-screen relative">
@@ -10,7 +11,7 @@ function Layout({ children }) {
         <DarkModeSwitch />
       </div>
       <main>{children}</main>
-      <Footer className="absolute bottom-0 left-1/2 transform -translate-x-1/2" />
+      <Footer />
     </div>
   );
 }

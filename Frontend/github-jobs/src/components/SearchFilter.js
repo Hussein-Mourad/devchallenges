@@ -14,7 +14,7 @@ const ListItem = ({ children }) => {
 
 function SearchFilter() {
   return (
-    <div className="mt-8 font-medium">
+    <div className="mt-8 md:mt-4 font-medium">
       <div className="align-middle">
         {" "}
         <input

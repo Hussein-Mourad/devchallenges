@@ -2,7 +2,7 @@ import Icon from "@material-ui/core/Icon";
 
 function JobCard() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-md shadow-md p-4  w-full">
+    <div className="bg-white dark:bg-gray-800 rounded-md shadow-md p-4 my-4 w-full">
       <div className="flex">
         <img
           className="rounded-sm mr-4 w-32 h-32"
