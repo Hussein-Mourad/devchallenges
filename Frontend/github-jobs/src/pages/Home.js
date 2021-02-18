@@ -1,33 +1,27 @@
 import SearchBar from "./../components/SearchBar";
 import SearchFilter from "./../components/SearchFilter";
 import JobCard from "./../components/JobCard";
-import Navigator from "./../components/Navigator";
+import Navigator,{Nav} from "./../components/Navigator";
+import { useState } from "react";
+import Pagination from "@material-ui/lab/Pagination";
 
 function Home() {
-  // const [projects] = useState(objects);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [projectsPerPage] = useState(3);
+  var list = [];
+  for (var i = 1; i <= 100; i++) {
+    list.push(i);
+  }
+  const [projects] = useState(list);
 
-  // // Gets current Projects
-  // const indexOfLastProject = currentPage * projectsPerPage;
-  // const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  // const currentProjects = projects.slice(
-  //   indexOfFirstProject,
-  //   indexOfLastProject
-  // );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [projectsPerPage] = useState(5);
 
-  // // Change Page
-  // const paginate = (pageNumber, previous, next) => {
-  //   const previousPage = currentPage - 1;
-  //   const nextPage = currentPage + 1;
-  //   if (previous) {
-  //     setCurrentPage(previousPage);
-  //   } else if (next) {
-  //     setCurrentPage(nextPage);
-  //   } else {
-  //     setCurrentPage(pageNumber);
-  //   }
-  // };
+  // Gets current Projects
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = projects.slice(
+    indexOfFirstProject,
+    indexOfLastProject
+  );
 
   return (
     <div>
@@ -37,17 +31,29 @@ function Home() {
           <SearchFilter />
         </div>
         <div className="mt-5 md:m-0 md:w-9/12">
-          <JobCard />
-          <JobCard />
-          <JobCard />
-          <JobCard />
-          <JobCard />
-          <JobCard />
-          <JobCard />
-          <JobCard />
+          {currentProjects.map((p) => (
+            <div className="w-full h-20 my-4 border border-blue-400">{p}</div>
+          ))}
         </div>
       </div>
-      <Navigator></Navigator>
+      <div className="flex flex-col justify-evenly items-end">
+        <Nav
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          projectsPerPage={projectsPerPage}
+          totalProjects={projects.length}
+        />
+        
+        <Navigator/>
+        <Pagination
+          count={projects.length}
+          page={currentPage}
+          onChange={(e, value) => setCurrentPage(value)}
+          variant="outlined"
+          shape="rounded"
+          color="#333"
+        />
+      </div>
     </div>
   );
 }

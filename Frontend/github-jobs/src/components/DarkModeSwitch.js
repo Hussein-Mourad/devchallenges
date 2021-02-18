@@ -10,7 +10,7 @@ function DarkModeSwitch({ toggle }) {
   }
 
   return (
-    <label className="relative cursor-pointer">
+    <label className="relative inline-flex cursor-pointer">
       <input
         className="hidden"
         type="checkbox"
@@ -45,7 +45,6 @@ function DarkModeSwitch({ toggle }) {
           )}
         </>
       )}
-      
     </label>
   );
 }

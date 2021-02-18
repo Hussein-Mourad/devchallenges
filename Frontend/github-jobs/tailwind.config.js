@@ -1,4 +1,4 @@
-﻿const colors = require("tailwindcss/colors")
+﻿const colors = require("tailwindcss/colors");
 module.exports = {
   purge: {
     enabled: false,
@@ -10,6 +10,16 @@ module.exports = {
   },
   darkMode: "class",
   theme: {
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      black: colors.black,
+      white: colors.white,
+      gray: colors.trueGray,
+      red: colors.red,
+      yellow: colors.amber,
+      blue: colors.blue,
+    },
     extend: {
       colors: {
         blueGray: colors.blueGray,
@@ -23,6 +33,7 @@ module.exports = {
       textColor: ["disabled"],
       display: ["group-hover"],
       cursor: ["disabled"],
+      borderColor: ["disabled"],
     },
   },
   plugins: [],
