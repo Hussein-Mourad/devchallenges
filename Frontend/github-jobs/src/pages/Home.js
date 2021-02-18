@@ -1,9 +1,9 @@
 import SearchBar from "./../components/SearchBar";
 import SearchFilter from "./../components/SearchFilter";
 import JobCard from "./../components/JobCard";
-import Navigator,{Nav} from "./../components/Navigator";
+import Navigator from "./../components/Navigator";
 import { useState } from "react";
-import Pagination from "@material-ui/lab/Pagination";
+import { usePagination } from "@material-ui/lab/Pagination";
 
 function Home() {
   var list = [];
@@ -11,7 +11,6 @@ function Home() {
     list.push(i);
   }
   const [projects] = useState(list);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [projectsPerPage] = useState(5);
 
@@ -23,6 +22,11 @@ function Home() {
     indexOfLastProject
   );
 
+  const { items } = usePagination({
+    count: projects.length / projectsPerPage,
+    onChange: (e, value) => setCurrentPage(value),
+  });
+
   return (
     <div>
       <SearchBar />
@@ -31,28 +35,22 @@ function Home() {
           <SearchFilter />
         </div>
         <div className="mt-5 md:m-0 md:w-9/12">
-          {currentProjects.map((p) => (
-            <div className="w-full h-20 my-4 border border-blue-400">{p}</div>
-          ))}
+          {currentProjects.map((p) => {
+            if (p % 2 === 0) return <JobCard isLoading={true} />;
+            else return <JobCard isLoading={false} />;
+          })}
         </div>
       </div>
       <div className="flex flex-col justify-evenly items-end">
-        <Nav
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          projectsPerPage={projectsPerPage}
-          totalProjects={projects.length}
-        />
-        
-        <Navigator/>
-        <Pagination
+        <Navigator items={items} />
+        {/* <Pagination
           count={projects.length}
           page={currentPage}
           onChange={(e, value) => setCurrentPage(value)}
           variant="outlined"
           shape="rounded"
           color="#333"
-        />
+        /> */}
       </div>
     </div>
   );
