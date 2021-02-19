@@ -4,53 +4,40 @@ import JobCard from "./../components/JobCard";
 import Navigator from "./../components/Navigator";
 import { useState } from "react";
 import { usePagination } from "@material-ui/lab/Pagination";
+import { Link } from "react-router-dom";
 
-function Home() {
-  var list = [];
-  for (var i = 1; i <= 100; i++) {
-    list.push(i);
-  }
-  const [projects] = useState(list);
+function Home({ jobs }) {
+  const [items] = useState(jobs);
   const [currentPage, setCurrentPage] = useState(1);
-  const [projectsPerPage] = useState(5);
+  const [itemsPerPage] = useState(5);
 
   // Gets current Projects
-  const indexOfLastProject = currentPage * projectsPerPage;
-  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  const currentProjects = projects.slice(
-    indexOfFirstProject,
-    indexOfLastProject
-  );
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
-  const { items } = usePagination({
-    count: projects.length / projectsPerPage,
+  const { items: pageItems } = usePagination({
+    count: items.length / itemsPerPage,
     onChange: (e, value) => setCurrentPage(value),
   });
 
   return (
     <div>
       <SearchBar />
-      <div className="md:flex mt-5 ">
-        <div className="md:w-3/12 md:mr-10">
+      <div className="lg:flex mt-5 ">
+        <div className="lg:w-3/12 lg:mr-10">
           <SearchFilter />
         </div>
-        <div className="mt-5 md:m-0 md:w-9/12">
-          {currentProjects.map((p) => {
-            if (p % 2 === 0) return <JobCard isLoading={true} />;
-            else return <JobCard isLoading={false} />;
-          })}
+        <div className="mt-5 lg:m-0 lg:w-9/12">
+          {currentItems.map((data, index) => (
+            <Link to={`/${data.id}`}>
+              <JobCard key={data.id} job={data} />
+            </Link>
+          ))}
         </div>
       </div>
       <div className="flex flex-col justify-evenly items-end">
-        <Navigator items={items} />
-        {/* <Pagination
-          count={projects.length}
-          page={currentPage}
-          onChange={(e, value) => setCurrentPage(value)}
-          variant="outlined"
-          shape="rounded"
-          color="#333"
-        /> */}
+        <Navigator items={pageItems} />
       </div>
     </div>
   );

@@ -14,13 +14,17 @@ export default function Navigator({ items, className }) {
 
           if (type === "start-ellipsis" || type === "end-ellipsis") {
             children = (
-              <span className="flex justify-center items-center w-8 h-8 mr-1 text-gray-700 ">
+              <span
+                key={index}
+                className="flex justify-center items-center w-8 h-8 mr-1 text-gray-700 "
+              >
                 ...
               </span>
             );
           } else if (type === "page") {
             children = (
               <button
+                key={index}
                 className={selected ? btnActiveStyle : btnStyle}
                 type="button"
                 {...item}
@@ -30,13 +34,14 @@ export default function Navigator({ items, className }) {
             );
           } else if (type === "previous") {
             children = (
-              <button className={btnStyle} type="button" {...item}>
+              <button key={index} className={btnStyle} type="button" {...item}>
                 <NavigateBeforeIcon />
               </button>
             );
           } else {
             children = (
               <button
+                key={index}
                 //  changes class name (mr-3 to mr-3fix)
                 className={`${btnStyle}fix`}
                 type="button"

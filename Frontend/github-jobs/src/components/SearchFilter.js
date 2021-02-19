@@ -30,7 +30,7 @@ function SearchFilter() {
         <div className="flex items-center bg-white rounded-md mt-4">
           <Icon className="text-gray-400 ml-2 mt-1">public</Icon>
           <input
-            className="px-2 py-4 placeholder-gray-400 w-full"
+            className="px-2 py-4 placeholder-gray-400 w-full rounded-md"
             type="text"
             placeholder="City, state, zip code or country"
           />

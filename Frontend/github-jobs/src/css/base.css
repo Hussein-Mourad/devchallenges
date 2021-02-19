@@ -15,6 +15,10 @@ html.dark img {
   filter: brightness(0.8) contrast(1.2);
 }
 
+.job-description p {
+  @apply my-3 font-medium;
+}
+
 @media only screen and (max-width: 640px) {
   html {
     font-size: 14px;
