@@ -45,7 +45,7 @@ export default function Info({ jobs }) {
         </div>
         <div className="mt-8 flex flex-wrap">
           <img
-            className="rounded-sm mr-4 mb-3"
+            className="rounded-sm mr-4 mb-3 w-32 h-32"
             src={
               job.company_logo ||
               "https://via.placeholder.com/100x100.png?text=Not+Found"

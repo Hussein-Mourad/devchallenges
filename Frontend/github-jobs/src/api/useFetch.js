@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
-import getRandomArray from "../utils/getRandomArray";
 
-const useFetch = (url) => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+const useFetch = (link, params) => {
+  var url = new URL(link);
+  var params = params;
 
+  url.search = new URLSearchParams(params).toString();
+  const [state, setState] = useState({
+    data: null,
+    isLoading: true,
+    error: null,
+  });
+  
   const loadData = () => {
     const abortCont = new AbortController();
     fetch(url, { signal: abortCont.signal })
@@ -17,19 +22,14 @@ const useFetch = (url) => {
         return res.json();
       })
       .then((data) => {
-        for (let index = 0; index < data.length; index++)
-          if (data[index].capital === "") delete data[index];
-        setData({ data: data, questions: getRandomArray(data, 10) });
-        setError(null);
-        setIsLoading(false);
+        setState({ data: data, error: null, isLoading: false });
       })
       .catch((err) => {
         if (err.name === "AbortError") {
-          console.log("fetch aborted");
+          console.info("fetch aborted");
         } else {
           // auto catches network / connection error
-          setIsLoading(false);
-          setError(err.message);
+          setState({ data: null, error: err.message, isLoading: false });
         }
       });
     return abortCont;
@@ -41,7 +41,12 @@ const useFetch = (url) => {
     // eslint-disable-next-line
   }, [url]);
 
-  return { data, isLoading, error, loadData };
+  return {
+    data: state.data,
+    isLoading: state.isLoading,
+    error: state.error,
+    loadData,
+  };
 };
 
 export default useFetch;

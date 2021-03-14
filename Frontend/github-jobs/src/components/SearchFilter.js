@@ -1,5 +1,5 @@
 import Icon from "@material-ui/core/Icon";
-
+import { countries } from "../data/countries";
 const ListItem = ({ children }) => {
   return (
     <li className="flex items-center my-3 ">
@@ -12,9 +12,9 @@ const ListItem = ({ children }) => {
   );
 };
 
-function SearchFilter() {
+export default function SearchFilter() {
   return (
-    <div className="mt-8 md:mt-4 font-medium">
+    <aside className="mt-8 md:mt-4 font-medium">
       <div className="align-middle">
         {" "}
         <input
@@ -32,8 +32,14 @@ function SearchFilter() {
           <input
             className="px-2 py-4 placeholder-gray-400 w-full rounded-md"
             type="text"
+            list="countries"
             placeholder="City, state, zip code or country"
           />
+          <datalist id="countries">
+            {countries.map((country) => (
+              <option value={country} />
+            ))}
+          </datalist>
         </div>
         <ul className="mt-6">
           <ListItem>London</ListItem>
@@ -42,8 +48,6 @@ function SearchFilter() {
           <ListItem>Berlin</ListItem>
         </ul>
       </div>
-    </div>
+    </aside>
   );
 }
-
-export default SearchFilter;

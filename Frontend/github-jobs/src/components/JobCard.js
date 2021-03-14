@@ -2,6 +2,7 @@ import Icon from "@material-ui/core/Icon";
 import Skeleton from "@material-ui/lab/Skeleton";
 import JobBadge from "./JobBadge";
 import getDifferenceInDays from "./../utils/getDifferenceInDays";
+import { useState, useEffect } from "react";
 
 const JobCardSkeleton = () => {
   return (
@@ -85,10 +86,11 @@ const JobCardSkeleton = () => {
 };
 
 export default function JobCard({ isLoading, job }) {
+  
   return (
     <div className="flex bg-white dark:bg-gray-800 rounded-md shadow-md p-4 my-4 w-full">
       {isLoading && <JobCardSkeleton />}
-      {!isLoading && (
+      {!isLoading && job.company && (
         <>
           <img
             className="rounded-sm mr-4 w-32 h-32"

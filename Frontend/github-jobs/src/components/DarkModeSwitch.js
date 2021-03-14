@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
 import Icon from "@material-ui/core/Icon";
 
-function DarkModeSwitch({ toggle }) {
+export default function DarkModeSwitch({ toggle }) {
   const { theme, setTheme } = useContext(ThemeContext);
 
   function changeTheme(e) {
@@ -49,4 +49,3 @@ function DarkModeSwitch({ toggle }) {
   );
 }
 
-export default DarkModeSwitch;
