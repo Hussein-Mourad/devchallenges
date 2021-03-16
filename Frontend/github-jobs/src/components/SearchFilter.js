@@ -36,8 +36,8 @@ export default function SearchFilter() {
             placeholder="City, state, zip code or country"
           />
           <datalist id="countries">
-            {countries.map((country) => (
-              <option value={country} />
+            {countries.map((country,index) => (
+              <option key={index} value={country} />
             ))}
           </datalist>
         </div>

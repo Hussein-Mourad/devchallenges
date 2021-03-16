@@ -1,10 +1,12 @@
 import SearchBg from "../assets/backgroundImg.png";
 import Icon from "@material-ui/core/Icon";
-import { useState } from "react";
+import { useState, useReducer } from "react";
+import { reducer, initialState } from "./../reducer";
 
 export default function SearchBar({ setSearchTerm, loadData }) {
   const [value, setValue] = useState("");
-
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state);
   return (
     <div className="relative mt-8">
       <img className="h-36 md:h-32 w-full rounded-md" src={SearchBg} alt="" />
@@ -21,9 +23,9 @@ export default function SearchBar({ setSearchTerm, loadData }) {
         <button
           className="px-8 py-3 sm:py-2 bg-blue-500 text-gray-200 rounded-md m-1"
           onClick={() => {
-            setSearchTerm(value);
-            loadData();
-            setValue("")
+            dispatch({ type: "setSearchTerm", payload: value });
+            // loadData();
+            setValue("");
           }}
         >
           Search

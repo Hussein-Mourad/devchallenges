@@ -1,16 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-const useFetch = (link, params) => {
+const useFetch = (link, params, dispatch) => {
   var url = new URL(link);
   var params = params;
-
   url.search = new URLSearchParams(params).toString();
-  const [state, setState] = useState({
-    data: null,
-    isLoading: true,
-    error: null,
-  });
-  
+  console.log(url);
   const loadData = () => {
     const abortCont = new AbortController();
     fetch(url, { signal: abortCont.signal })
@@ -22,14 +16,14 @@ const useFetch = (link, params) => {
         return res.json();
       })
       .then((data) => {
-        setState({ data: data, error: null, isLoading: false });
+        dispatch({ type: "setData", payload: data });
       })
       .catch((err) => {
         if (err.name === "AbortError") {
           console.info("fetch aborted");
         } else {
           // auto catches network / connection error
-          setState({ data: null, error: err.message, isLoading: false });
+          dispatch({ type: "setError", payload: err.message });
         }
       });
     return abortCont;
@@ -39,12 +33,9 @@ const useFetch = (link, params) => {
     // abort the fetch
     return () => abortCont.abort();
     // eslint-disable-next-line
-  }, [url]);
+  }, [link]);
 
   return {
-    data: state.data,
-    isLoading: state.isLoading,
-    error: state.error,
     loadData,
   };
 };

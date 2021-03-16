@@ -2,11 +2,14 @@ import SearchBar from "./../components/SearchBar";
 import SearchFilter from "./../components/SearchFilter";
 import JobCard from "./../components/JobCard";
 import Navigator from "./../components/Navigator";
-import { useState, useEffect } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { usePagination } from "@material-ui/lab/Pagination";
 import { Link } from "react-router-dom";
+import { reducer, initialState, init } from './../reducer';
 
 function Home({ jobs, isLoading, ...props }) {
+  const [state, dispatch] = useReducer(reducer, initialState, init);
+  
   useEffect(() => {
     if (jobs) {
       setItems(jobs);
@@ -18,9 +21,9 @@ function Home({ jobs, isLoading, ...props }) {
   const [itemsPerPage] = useState(5);
 
   // Gets current Projects
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+  var indexOfLastItem = currentPage * itemsPerPage;
+  var indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  var currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
   const { items: pageItems } = usePagination({
     count: items.length / itemsPerPage,
