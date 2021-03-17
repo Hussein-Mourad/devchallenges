@@ -13,17 +13,29 @@ export function init() {
 export function reducer(state, action) {
   switch (action.type) {
     case "setSearchTerm":
-      return { ...state, searchTerm: action.payload, isLoading: true };
+      state.searchTerm = action.payload;
+      state.isLoading = true;
+      return state;
     case "setFullTime":
-      return { ...state, fullTime: action.payload, isLoading: true };
+      state.fullTime = action.payload;
+      state.isLoading = true;
+      return state;
     case "setLocation":
-      return { ...state, location: action.payload, isLoading: true };
+      state.location = action.payload;
+      state.isLoading = true;
+      return state;
     case "setIsLoading":
-      return { ...state, isLoading: true };
+      state.isLoading = true;
+      return state;
     case "setError":
-      return { ...state, isLoading:false, error: action.payload };
+      state.isLoading = false;
+      state.error = action.payload;
+      return state;
     case "setData":
-      return { ...state, data: action.payload, isLoading: false, error: null };
+      state.data = action.payload;
+      state.isLoading = false;
+      state.error = null;
+      return state;
     default:
       throw new Error();
   }

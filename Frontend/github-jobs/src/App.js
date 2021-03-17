@@ -18,10 +18,14 @@ function App() {
   // );
 
   useEffect(() => {
-     var url = new URL("https://obscure-mesa-98003.herokuapp.com/https://jobs.github.com/positions.json");
-     url.search = new URLSearchParams(params).toString();
+    var url = new URL(
+      "https://obscure-mesa-98003.herokuapp.com/https://jobs.github.com/positions.json"
+    );
+    url.search = new URLSearchParams(params).toString();
     fetch(url)
-      .then((res) => {return res.json()})
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
         dispatch({ type: "setData", payload: data });
       })
@@ -33,16 +37,16 @@ function App() {
           dispatch({ type: "setError", payload: err.message });
         }
       });
-  }, [state.searchTerm, state.fullTime, state.location])
+  }, [state.searchTerm, state.fullTime, state.location]);
 
-  const props = {
+  var props = {
     jobs: state.data,
     isLoading: state.isLoading,
     error: state.error,
   };
-  
-  console.log(state);
 
+  console.log(state);
+  console.log(props);
   if (state.error) {
     return (
       <div className="flex items-center justify-center h-screen text-red-500 font-medium text-lg ">

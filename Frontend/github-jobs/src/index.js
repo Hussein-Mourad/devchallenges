@@ -1,6 +1,7 @@
 ﻿import React from "react";
 import ReactDOM from "react-dom";
-import "./css/base.css";
+// import "./css/base.css";
+import "./css/tailwind.css"
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "./ThemeContext";
