@@ -83,4 +83,4 @@ $ npm start:craco
 
 - Website [hussein.ninja](https://hussein.ninja)
 - GitHub [Hussein-Mourad](https://github.com/Hussein-Mourad)
-- Twitter [HusseinMourad0](https://HusseinMourad0)
+- Twitter [HusseinMourad0](https://twitter.com/HusseinMourad0)
