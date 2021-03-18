@@ -1,12 +1,24 @@
 import { Link, useParams } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import JobBadge from "./../components/JobBadge";
-import getDifferenceInDays from "./../utils/getDifferenceInDays";
+import GetDiffInDates from "../utils/GetDiffInDates";
 import Icon from "@material-ui/core/Icon";
+import { useContext } from "react";
+import { GlobalState } from "../GlobalState";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-export default function Info({ jobs }) {
+export default function Info() {
+  const { state } = useContext(GlobalState);
   const { jobId } = useParams();
-  const job = jobs.find((obj) => obj.id === jobId);
+  const job = state.data.find((obj) => obj.id === jobId);
+
+  if (state.isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <CircularProgress />
+      </div>
+    );
+  }
 
   return (
     <div className="lg:flex lg:mt-2">
@@ -41,17 +53,19 @@ export default function Info({ jobs }) {
         </div>
         <div className="inline-flex items-center text-gray-400 mt-2">
           <Icon className="mr-2">access_time</Icon>{" "}
-          <span>{getDifferenceInDays(job.created_at)} days ago</span>
+          <GetDiffInDates dateString={job.created_at} />
         </div>
-        <div className="mt-8 flex flex-wrap">
-          <img
-            className="rounded-sm mr-4 mb-3 w-32 h-32"
-            src={
-              job.company_logo ||
-              "https://via.placeholder.com/100x100.png?text=Not+Found"
-            }
-            alt=""
-          />
+        <div className="mt-8 flex flex-col flex-wrap">
+          <div className="rounded-sm mr-4 mb-4 max-w-xs">
+            <img
+              className=""
+              src={
+                job.company_logo ||
+                "https://via.placeholder.com/100x100.png?text=Not+Found"
+              }
+              alt=""
+            />
+          </div>
           <div>
             {" "}
             <h2 className="text-gray-800 dark:text-gray-200 text-lg font-bold">

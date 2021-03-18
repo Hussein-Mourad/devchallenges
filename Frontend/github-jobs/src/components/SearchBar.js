@@ -1,12 +1,12 @@
 import SearchBg from "../assets/backgroundImg.png";
 import Icon from "@material-ui/core/Icon";
-import { useState, useReducer } from "react";
-import { reducer, initialState } from "./../reducer";
+import { useState, useContext } from "react";
+import { GlobalState } from "./../GlobalState";
 
-export default function SearchBar({ setSearchTerm, loadData }) {
+export default function SearchBar() {
   const [value, setValue] = useState("");
-  const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state);
+  const { setState } = useContext(GlobalState);
+
   return (
     <div className="relative mt-8">
       <img className="h-36 md:h-32 w-full rounded-md" src={SearchBg} alt="" />
@@ -23,8 +23,14 @@ export default function SearchBar({ setSearchTerm, loadData }) {
         <button
           className="px-8 py-3 sm:py-2 bg-blue-500 text-gray-200 rounded-md m-1"
           onClick={() => {
-            dispatch({ type: "setSearchTerm", payload: value });
-            // loadData();
+            setState((state) => {
+              return {
+                ...state,
+                searchTerm: value,
+                isLoading: true,
+                error: null,
+              };
+            });
             setValue("");
           }}
         >
