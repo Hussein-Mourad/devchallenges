@@ -29,6 +29,7 @@ export default function SearchBar() {
                 searchTerm: value,
                 isLoading: true,
                 error: null,
+                data:[]
               };
             });
             setValue("");

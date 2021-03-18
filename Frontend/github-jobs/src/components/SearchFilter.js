@@ -21,16 +21,18 @@ const ListItem = ({ children, onChange, checked }) => {
 };
 
 export default function SearchFilter() {
-  const { setState } = useContext(GlobalState);
-  const [checked, setChecked] = useState(false);
+  const { state, setState } = useContext(GlobalState);
+  const [checked, setChecked] = useState(state.fullTime);
   const [inputValue, setInputValue] = useState("");
   const [radioValue, setRadioValue] = useState("");
   const topCountries = ["London", "Canada", "Berlin", "New York"];
 
   useEffect(() => {
-    setState((state) => {
-      return { ...state, fullTime: checked, isLoading: true, error: null };
-    });
+    if (checked != state.fullTime) {
+      setState((state) => {
+        return { ...state, fullTime: checked, isLoading: true, error: null, data:[] };
+      });
+    }
   }, [checked]);
 
   return (
@@ -40,6 +42,7 @@ export default function SearchFilter() {
         <input
           className="transform scale-125 mr-2 bg-red-200"
           type="checkbox"
+          checked={checked}
           onChange={(e) => {
             setChecked(e.target.checked);
           }}
@@ -75,6 +78,7 @@ export default function SearchFilter() {
                   location: inputValue,
                   isLoading: true,
                   error: null,
+                  data:[]
                 };
               });
               setInputValue("");
@@ -97,6 +101,7 @@ export default function SearchFilter() {
                     location: country,
                     isLoading: true,
                     error: null,
+                    data:[]
                   };
                 });
               }}

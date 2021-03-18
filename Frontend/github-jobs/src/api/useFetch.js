@@ -5,9 +5,7 @@ const useFetch = (link, params, state, setState) => {
   var params = params;
   url.search = new URLSearchParams(params).toString();
 
-
   const loadData = () => {
-
     const abortCont = new AbortController();
     fetch(url, { signal: abortCont.signal })
       .then((res) => {
@@ -36,6 +34,7 @@ const useFetch = (link, params, state, setState) => {
   };
   useEffect(() => {
     const abortCont = loadData();
+
     // abort the fetch
     return () => abortCont.abort();
     // eslint-disable-next-line
