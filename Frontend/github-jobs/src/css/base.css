@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 button,
-input {
+input,
+a {
   @apply focus:outline-none;
 }
 

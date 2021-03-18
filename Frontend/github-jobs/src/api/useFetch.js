@@ -4,10 +4,10 @@ const useFetch = (link, params, state, setState) => {
   var url = new URL(link);
   var params = params;
   url.search = new URLSearchParams(params).toString();
-  console.log(url)
+
 
   const loadData = () => {
-    console.log("fetching...")
+
     const abortCont = new AbortController();
     fetch(url, { signal: abortCont.signal })
       .then((res) => {
