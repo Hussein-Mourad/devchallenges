@@ -2,20 +2,19 @@ import SearchBar from "./../components/SearchBar";
 import SearchFilter from "./../components/SearchFilter";
 import JobCard from "./../components/JobCard";
 import Navigator from "./../components/Navigator";
-import { useState, useReducer, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { usePagination } from "@material-ui/lab/Pagination";
 import { Link } from "react-router-dom";
-import { reducer, initialState, init } from './../reducer';
+import { GlobalState } from "./../GlobalState";
 
-function Home({ jobs, isLoading, ...props }) {
-  const [state, dispatch] = useReducer(reducer, initialState, init);
+function Home() {
+  const { state } = useContext(GlobalState);
   
+  console.log("State from home", state);
   useEffect(() => {
-    if (jobs) {
-      setItems(jobs);
-    }
-  }, [jobs]);
-  
+    setItems(state.data);
+  }, [state.data]);
+
   const [items, setItems] = useState([1, 2, 3, 4, 5]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
@@ -26,13 +25,13 @@ function Home({ jobs, isLoading, ...props }) {
   var currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
   const { items: pageItems } = usePagination({
-    count: items.length / itemsPerPage,
+    count: Math.ceil(items.length / itemsPerPage),
     onChange: (e, value) => setCurrentPage(value),
   });
 
   return (
     <div>
-      <SearchBar {...props} />
+      <SearchBar />
       <div className="lg:flex mt-5 ">
         <div className="lg:w-3/12 lg:mr-10">
           <SearchFilter />
@@ -40,7 +39,7 @@ function Home({ jobs, isLoading, ...props }) {
         <div className="mt-5 lg:m-0 lg:w-9/12">
           {currentItems.map((data) => (
             <Link key={data.id} to={`/${data.id}`}>
-              <JobCard key={data.id} job={data} isLoading={isLoading} />
+              <JobCard key={data.id} job={data} />
             </Link>
           ))}
         </div>

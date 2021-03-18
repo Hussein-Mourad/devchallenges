@@ -5,14 +5,20 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "./ThemeContext";
 import Layout from "./components/Layout";
+import { GlobalStateProvider } from "./GlobalState";
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <Layout>
-        <App/>
-      </Layout>
-    </ThemeProvider>
+    <GlobalStateProvider>
+      <ThemeProvider>
+        <Router>
+          <Layout>
+            <App />
+          </Layout>
+        </Router>
+      </ThemeProvider>
+    </GlobalStateProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

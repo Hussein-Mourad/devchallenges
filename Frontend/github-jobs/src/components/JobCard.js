@@ -1,8 +1,9 @@
 import Icon from "@material-ui/core/Icon";
 import Skeleton from "@material-ui/lab/Skeleton";
 import JobBadge from "./JobBadge";
-import getDifferenceInDays from "./../utils/getDifferenceInDays";
-import { useState, useEffect } from "react";
+import GetDiffInDates from "../utils/GetDiffInDates";
+import { useContext } from "react";
+import { GlobalState } from "./../GlobalState";
 
 const JobCardSkeleton = () => {
   return (
@@ -85,21 +86,23 @@ const JobCardSkeleton = () => {
   );
 };
 
-export default function JobCard({ isLoading, job }) {
-  
+export default function JobCard({ job }) {
+  const { state } = useContext(GlobalState);
+
   return (
     <div className="flex bg-white dark:bg-gray-800 rounded-md shadow-md p-4 my-4 w-full">
-      {isLoading && <JobCardSkeleton />}
-      {!isLoading && job.company && (
+      {state.isLoading && <JobCardSkeleton />}
+      {!state.isLoading && job.company && (
         <>
-          <img
-            className="rounded-sm mr-4 w-32 h-32"
-            src={
-              job.company_logo ||
-              "https://via.placeholder.com/100x100.png?text=Not+Found"
-            }
-            alt=""
-          />
+          <div className="w-32 h-32 overflow-hidden flex justify-center items-center rounded-sm mr-4">
+            <img
+              src={
+                job.company_logo ||
+                "https://via.placeholder.com/100x100.png?text=Not+Found"
+              }
+              alt=""
+            />
+          </div>
 
           <div className="font-medium md:w-full">
             <h2 className="text-gray-800 dark:text-gray-200 text-lg">
@@ -119,8 +122,8 @@ export default function JobCard({ isLoading, job }) {
                   <span>{job.location}</span>
                 </div>
                 <div className="inline-flex items-center">
-                  <Icon className="mr-2">access_time</Icon>{" "}
-                  <span>{getDifferenceInDays(job.created_at)} days ago</span>
+                  <Icon className="mr-2">access_time</Icon>
+                  <GetDiffInDates dateString={job.created_at} />
                 </div>
               </div>
             </div>

@@ -1,5 +1,7 @@
 import Icon from "@material-ui/core/Icon";
 import { countries } from "../data/countries";
+import { useState, useContext, useEffect } from "react";
+import { GlobalState } from "../GlobalState";
 const ListItem = ({ children }) => {
   return (
     <li className="flex items-center my-3 ">
@@ -13,6 +15,21 @@ const ListItem = ({ children }) => {
 };
 
 export default function SearchFilter() {
+  const { state, setState } = useContext(GlobalState);
+  const [checked, setChecked] = useState(false);
+  const [inputValue, setInputValue] = useState("")
+
+  useEffect(() => {
+    setState((state) => {
+      return { ...state, fullTime: checked, isLoading: true, error: null };
+    });
+  }, [checked]);
+  useEffect(() => {
+    setState((state) => {
+      return { ...state, location: inputValue, isLoading: true, error: null };
+    });
+  }, [inputValue]);
+
   return (
     <aside className="mt-8 md:mt-4 font-medium">
       <div className="align-middle">
@@ -20,6 +37,9 @@ export default function SearchFilter() {
         <input
           className="transform scale-125 mr-2 bg-red-200"
           type="checkbox"
+          onChange={(e) => {
+            setChecked(e.target.checked);
+          }}
         />{" "}
         <label className="text-gray-600 dark:text-gray-500 text-lg">
           Full time
@@ -34,13 +54,33 @@ export default function SearchFilter() {
             type="text"
             list="countries"
             placeholder="City, state, zip code or country"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
           />
+
           <datalist id="countries">
-            {countries.map((country,index) => (
+            {countries.map((country, index) => (
               <option key={index} value={country} />
             ))}
           </datalist>
-        </div>
+        <button
+          className="px-3 py-3 sm:py-2 bg-blue-500 text-gray-200 rounded-md m-1"
+          onClick={() => {
+            setState((state) => {
+              return {
+                ...state,
+                location: inputValue,
+                isLoading: true,
+                error: null,
+              };
+            });
+            setInputValue("");
+          }}
+        >
+          Go
+        </button>
+          </div>
+
         <ul className="mt-6">
           <ListItem>London</ListItem>
           <ListItem>Amsterdam</ListItem>
