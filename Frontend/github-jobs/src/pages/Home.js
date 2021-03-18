@@ -46,7 +46,7 @@ function Home() {
           {(state.searchTerm !== "" || state.location !== "") &&
             state.isLoading === false &&
             state.data.length === 0 && (
-              <div className="flex justify-center items-center h-full text-xl font-medium">
+              <div className="flex justify-center items-center h-full text-xl font-medium text-gray-800 dark:text-gray-300">
                 No Jobs Found
               </div>
             )}

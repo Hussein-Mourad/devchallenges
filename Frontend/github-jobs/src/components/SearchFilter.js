@@ -30,7 +30,13 @@ export default function SearchFilter() {
   useEffect(() => {
     if (checked != state.fullTime) {
       setState((state) => {
-        return { ...state, fullTime: checked, isLoading: true, error: null, data:[] };
+        return {
+          ...state,
+          fullTime: checked,
+          isLoading: true,
+          error: null,
+          data: [],
+        };
       });
     }
   }, [checked]);
@@ -63,6 +69,21 @@ export default function SearchFilter() {
             placeholder="City, state, zip code or country"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter" || e.keyCode === 13) {
+                setState((state) => {
+                  return {
+                    ...state,
+                    location: inputValue,
+                    isLoading: true,
+                    error: null,
+                    data: [],
+                  };
+                });
+                setInputValue("");
+                setRadioValue("");
+              }
+            }}
           />
           <datalist id="countries">
             {countries.map((country, index) => (
@@ -78,7 +99,7 @@ export default function SearchFilter() {
                   location: inputValue,
                   isLoading: true,
                   error: null,
-                  data:[]
+                  data: [],
                 };
               });
               setInputValue("");
@@ -101,7 +122,7 @@ export default function SearchFilter() {
                     location: country,
                     isLoading: true,
                     error: null,
-                    data:[]
+                    data: [],
                   };
                 });
               }}

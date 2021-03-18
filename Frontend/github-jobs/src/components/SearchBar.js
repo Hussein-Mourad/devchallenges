@@ -19,6 +19,20 @@ export default function SearchBar() {
           placeholder="Title, companies, expertise or benefits"
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter" ||e.keyCode===13) {
+              setState((state) => {
+                return {
+                  ...state,
+                  searchTerm: value,
+                  isLoading: true,
+                  error: null,
+                  data: [],
+                };
+              });
+              setValue("");
+            } 
+          }}
         />
         <button
           className="px-8 py-3 sm:py-2 bg-blue-500 text-gray-200 rounded-md m-1"
