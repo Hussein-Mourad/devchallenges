@@ -82,5 +82,5 @@ $ npm start:craco
 ## Contact
 
 - Website [hussein.ninja](https://hussein.ninja)
-- GitHub [Hussein-Mourad](https://Hussein-Mourad)
+- GitHub [Hussein-Mourad](https://github.com/Hussein-Mourad)
 - Twitter [HusseinMourad0](https://HusseinMourad0)
