@@ -1,0 +1,23 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "watch:css": "postcss -w ./public/stylesheets/tailwind.css -o ./public/stylesheets/styles.css"
+  },
+  "dependencies": {
+    "next": "10.0.9",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/jit": "^0.1.10",
+    "autoprefixer": "^10.2.5",
+    "cssnano": "^4.1.10",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.4"
+  }
+}
