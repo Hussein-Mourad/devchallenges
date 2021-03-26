@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "watch:css": "postcss -w ./public/stylesheets/tailwind.css -o ./public/stylesheets/styles.css"
+    "watch:css": "postcss -w ./styles/tailwind.css -o ./styles/globals.css"
   },
   "dependencies": {
     "next": "10.0.9",
