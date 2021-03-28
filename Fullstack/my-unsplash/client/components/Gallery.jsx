@@ -33,7 +33,7 @@ export default function Gallery() {
         <main className="masonry ">
             {images.map((img) => (
                 <ImageGroup
-                    className="shadow-sm rounded-lg mb-5"
+                    className="shadow-sm rounded-lg mb-6"
                     src={img.download_url}
                     alt="test"
                 />

@@ -5,7 +5,7 @@ export default function Button({ className, children, color, onClick }) {
         } else if (color === "danger") {
             return "bg-red-500 active:bg-red-600 text-gray-100 focus:ring focus:ring-red-200 ";
         } else {
-            return "text-gray-600 focus:ring-2 focus:ring-gray-500 ";
+            return "text-gray-600 active:bg-gray-300 focus:bg-gray-200 ";
         }
     };
     return (

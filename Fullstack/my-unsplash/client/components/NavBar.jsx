@@ -2,13 +2,13 @@ import Button from "./Button";
 import Input from "./Input";
 import { useState } from "react";
 
-export default function NavBar({className}) {
+export default function NavBar({ className }) {
     const [isMenuOpen, setIsMenuOpen] = useState(true);
     return (
         <header className={className}>
             <nav className="py-4 flex justify-between ">
                 <div className="flex">
-                    <img src="/my_unsplash_logo.svg" alt="logo" lazy="true"/>
+                    <img src="/my_unsplash_logo.svg" alt="logo" lazy="true" />
 
                     <div className="border border-gray-300 rounded-md hidden sm:inline-flex items-center relative ml-2">
                         <i className="w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2">
@@ -83,7 +83,7 @@ export default function NavBar({className}) {
                 </div>
             </nav>
             <nav
-                className={`sm:hidden shadow-md p-5 ${
+                className={`sm:hidden shadow-md p-5 w-full ${
                     isMenuOpen ? "" : "hidden"
                 }`}
             >
@@ -107,7 +107,7 @@ export default function NavBar({className}) {
                     <Input
                         type="text"
                         placeholder="Search by name"
-                        className="pl-11"
+                        className="pl-11 w-full"
                     />
                 </div>
                 <div className="flex justify-end">

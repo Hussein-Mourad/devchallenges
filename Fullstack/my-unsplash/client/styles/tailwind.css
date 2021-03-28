@@ -2,18 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-.masonry {
-    column-count: 3;
-    column-gap: 1.25rem;
+*:focus {
+    -webkit-tap-highlight-color: transparent;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    outline-color: black;
 }
 
-@media only screen and (max-width:1024px){
-    .masonry{
+.masonry {
+    column-count: 3;
+    column-gap: 1.5rem;
+}
+
+@media only screen and (max-width: 1024px) {
+    .masonry {
         column-count: 2;
     }
 }
-@media only screen and (max-width:640px){
-    .masonry{
+@media only screen and (max-width: 640px) {
+    .masonry {
         column-count: 1;
     }
 }
