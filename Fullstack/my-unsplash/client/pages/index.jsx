@@ -9,15 +9,15 @@ import Footer from "../components/Footer";
 import validateImg from "../utils/validateImg";
 
 export default function Home() {
+    const initialState = {
+        label: "",
+        url: "",
+        errors: { label: "", url: "" },
+    };
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [toBeDeleted, setToBeDeleted] = useState("");
-    const [addForm, setAddForm] = useState({
-        label: "",
-        url: "",
-        labelErr: "",
-        urlErr: "",
-    });
+    const [addForm, setAddForm] = useState({ ...initialState });
     console.log(addForm);
     // useEffect(async () => {
     //     const res = await fetch("/api/images");
@@ -85,41 +85,46 @@ export default function Home() {
                             setAddForm((state) => {
                                 return {
                                     ...state,
-                                    labelErr: "",
-                                    urlErr: "",
+                                    errors: { ...initialState.errors },
                                 };
                             });
-                            if (addForm.label === "") {
-                                setAddForm((state) => {
-                                    return {
-                                        ...state,
-                                        labelErr: "Please provide a label",
-                                    };
-                                });
-                            }
-                            if (addForm.url === "") {
-                                setAddForm((state) => {
-                                    return {
-                                        ...state,
-                                        urlErr: "Please provide a url",
-                                    };
-                                });
-                            } else {
-                                validateImg(addForm.url)
-                                    .then((res) => {
-                                        addImage({
-                                            label: addForm.label,
-                                            url: addForm.url,
-                                            width: res.width,
-                                            heigth: res.height,
-                                        });
+
+                            validateImg(addForm.url)
+                                .then((res) => {
+                                    addImage({
+                                        label: addForm.label,
+                                        url: addForm.url,
+                                        width: res.width,
+                                        heigth: res.height,
                                     })
-                                    .catch((err) => {
-                                        setAddForm((state) => {
-                                            return { ...state, urlErr: err };
+                                        .then((res) => {
+                                            return res.json();
+                                        })
+                                        .then((data) => {
+                                            console.log("data", data);
+                                        })
+                                        .catch((err) => {
+                                            setAddForm((state) => {
+                                                return {
+                                                    ...state,
+                                                    errors: {
+                                                        ...err,
+                                                    },
+                                                };
+                                            });
                                         });
+                                })
+                                .catch((err) => {
+                                    setAddForm((state) => {
+                                        return {
+                                            ...state,
+                                            errors: {
+                                                ...state.errors,
+                                                url: err,
+                                            },
+                                        };
                                     });
-                            }
+                                });
                         }}
                     >
                         <div className="flex flex-col mb-5">
@@ -142,7 +147,7 @@ export default function Home() {
                                 }}
                             />
                             <small className="mt-1 text-red-600">
-                                {addForm.labelErr}
+                                {addForm.errors.label}
                             </small>
                         </div>
                         <div className="flex flex-col mb-5">
@@ -165,7 +170,7 @@ export default function Home() {
                                 }}
                             />
                             <small className="mt-1 text-red-600">
-                                {addForm.urlErr}
+                                {addForm.errors.url}
                             </small>
                         </div>
                         <div className="flex justify-end">
