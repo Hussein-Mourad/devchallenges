@@ -82,49 +82,53 @@ export default function Home() {
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
+                            
                             setAddForm((state) => {
                                 return {
                                     ...state,
                                     errors: { ...initialState.errors },
                                 };
                             });
+                            addImage({
+                                label: addForm.label, url: addForm.url
+                            })
 
-                            validateImg(addForm.url)
-                                .then((res) => {
-                                    addImage({
-                                        label: addForm.label,
-                                        url: addForm.url,
-                                        width: res.width,
-                                        heigth: res.height,
-                                    })
-                                        .then((res) => {
-                                            return res.json();
-                                        })
-                                        .then((data) => {
-                                            console.log("data", data);
-                                        })
-                                        .catch((err) => {
-                                            setAddForm((state) => {
-                                                return {
-                                                    ...state,
-                                                    errors: {
-                                                        ...err,
-                                                    },
-                                                };
-                                            });
-                                        });
-                                })
-                                .catch((err) => {
-                                    setAddForm((state) => {
-                                        return {
-                                            ...state,
-                                            errors: {
-                                                ...state.errors,
-                                                url: err,
-                                            },
-                                        };
-                                    });
-                                });
+                            // validateImg(addForm.url)
+                            //     .then((res) => {
+                            //         addImage({
+                            //             label: addForm.label,
+                            //             url: addForm.url,
+                            //             width: res.width,
+                            //             heigth: res.height,
+                            //         })
+                            //             .then((res) => {
+                            //                 return res.json();
+                            //             })
+                            //             .then((data) => {
+                            //                 console.log("data", data);
+                            //             })
+                            //             .catch((err) => {
+                            //                 setAddForm((state) => {
+                            //                     return {
+                            //                         ...state,
+                            //                         errors: {
+                            //                             ...err,
+                            //                         },
+                            //                     };
+                            //                 });
+                            //             });
+                            //     })
+                            //     .catch((err) => {
+                            //         setAddForm((state) => {
+                            //             return {
+                            //                 ...state,
+                            //                 errors: {
+                            //                     ...state.errors,
+                            //                     url: err,
+                            //                 },
+                            //             };
+                            //         });
+                            //     });
                         }}
                     >
                         <div className="flex flex-col mb-5">
