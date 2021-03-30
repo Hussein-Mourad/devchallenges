@@ -1,9 +1,13 @@
 import Input from "./Input";
 import Button from "./Button";
 
-export default function Modal({ className, children, title}) {
+export default function Modal({ className, children, title, hidden }) {
     return (
-        <div className="fixed inset-0 h-screen w-screen bg-black bg-opacity-30 flex justify-center items-center">
+        <div
+            className={`fixed inset-0 h-screen w-screen bg-black bg-opacity-30 flex justify-center items-center ${
+                hidden ? "hidden" : ""
+            }`}
+        >
             <div
                 className={
                     "bg-white shadow-lg px-6 py-4 rounded-xl " + className

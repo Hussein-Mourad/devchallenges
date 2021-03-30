@@ -1,4 +1,4 @@
-export default function Button({ className, children, color, onClick }) {
+export default function Button({ className, children, color, onClick, ...props }) {
     const getColor = () => {
         if (color === "primary") {
             return "bg-green-500 active:bg-green-600 text-white focus:ring focus:ring-green-200 ";
@@ -16,6 +16,7 @@ export default function Button({ className, children, color, onClick }) {
                 className
             }
             onClick={onClick}
+            {...props}
         >
             {children}
         </button>

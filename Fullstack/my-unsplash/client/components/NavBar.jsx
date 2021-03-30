@@ -2,8 +2,8 @@ import Button from "./Button";
 import Input from "./Input";
 import { useState } from "react";
 
-export default function NavBar({ className }) {
-    const [isMenuOpen, setIsMenuOpen] = useState(true);
+export default function NavBar({ className, onBtnClick }) {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
         <header className={className}>
             <nav className="py-4 flex justify-between ">
@@ -35,7 +35,7 @@ export default function NavBar({ className }) {
                     </div>
                 </div>
 
-                <Button className="hidden sm:block" color="primary">
+                <Button className="hidden sm:block" color="primary" onClick={onBtnClick}>
                     Add a photo
                 </Button>
                 <div className="sm:hidden">
@@ -111,7 +111,7 @@ export default function NavBar({ className }) {
                     />
                 </div>
                 <div className="flex justify-end">
-                    <Button className="block my-5 " color="primary">
+                    <Button className="block my-5 " color="primary" onClick={onBtnClick}>
                         Add a photo
                     </Button>
                 </div>

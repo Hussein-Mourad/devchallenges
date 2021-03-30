@@ -1,10 +1,14 @@
 import Button from "./Button";
-export default function ImageGroup({ src, alt, label, ...props }) {
+export default function ImageGroup({ src, alt, label, onClick, ...props }) {
     return (
         <div className="relative group">
             <div className="hidden group-hover:block bg-black bg-opacity-50 absolute inset-0 rounded-lg p-5">
                 <div className="relative w-full h-full">
-                    <Button className="absolute top-0 right-0" color="danger">
+                    <Button
+                        className="absolute top-0 right-0"
+                        color="danger"
+                        onClick={onClick}
+                    >
                         Delete
                     </Button>
                     <p className="text-gray-100 absolute bottom-0 left-0 truncate overflow-hidden w-full">

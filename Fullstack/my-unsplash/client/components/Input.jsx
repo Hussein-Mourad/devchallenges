@@ -6,6 +6,7 @@ export default function Input({
     border,
     onChange,
     value,
+    ...props
 }) {
     if (border) {
         border = "border";
@@ -21,6 +22,7 @@ export default function Input({
             placeholder={placeholder}
             value={value}
             onChange={onChange}
+            {...props}
         />
     );
 }

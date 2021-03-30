@@ -3,11 +3,14 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const mongoose = require("mongoose");
+
+require("dotenv").config();
 
 const indexRouter = require("./routes/imageRouter");
 
 const app = express();
+
+const password = process.env.PASSWORD;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -20,17 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// database connection
-const dbURI =
-    "mongodb+srv://shaun:test1234@cluster0.del96.mongodb.net/node-auth";
-mongoose
-    .connect(dbURI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-    })
-    .then((result) => console.log(result))
-    .catch((err) => console.log(err));
+
+
 
 app.use("/", indexRouter);
 
@@ -47,7 +41,7 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render("error");
+    res.send(err.message || "error");
 });
 
 module.exports = app;
