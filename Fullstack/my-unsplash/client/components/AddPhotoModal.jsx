@@ -3,13 +3,11 @@ import { useReducer } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import Loader from "react-loader-spinner";
-import { addImage, getMeta } from "../services/ImageServices";
+import { addImage } from "../services/ImageServices";
 
 const initialState = {
     label: "",
     url: "",
-    width: "",
-    height: "",
     isLoading: false,
     errors: { label: "", url: "" },
 };
@@ -26,90 +24,61 @@ const reducer = (state, action) => {
                 ...state,
                 url: action.payload,
             };
-        case "setDimenstions":
-            return {
-                ...state,
-                width: action.payload.width,
-                height: action.payload.height,
-            };
         case "setIsLoading":
             return {
                 ...state,
                 isLoading: action.payload,
-            };
-        case "setLabelError":
-            return {
-                ...state,
-                errors: { ...state.errors, label: action.payload },
-            };
-        case "setURLError":
-            return {
-                ...state,
-                errors: { ...state.errors, url: action.payload },
             };
         case "setErrors":
             return {
                 ...state,
                 errors: { ...state.errors, ...action.payload },
             };
-        case "resetErrors":
-            return { ...state, errors: { ...initialState.errors } };
         case "resetAll":
             return initialState;
     }
 };
-export default function AddPhotoModal({ isAddModalOpen, closeAddModal }) {
+export default function AddPhotoModal({
+    isAddModalOpen,
+    closeAddModal,
+    updateImages,
+}) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    // console.log({ ...state });
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch({ type: "resetErrors" });
-        // dispatch({ type: "setIsLoading", payload: true });
-        getMeta(state.url)
-            .then((res) => {
-                dispatch({
-                    type: "setDimenstions",
-                    payload: res,
-                });
-            })
-            .then(() => {
-                addImage({
-                    label: state.label,
-                    url: state.url,
-                    width: state.width,
-                    height: state.height,
-                })
-                    .then((res) => {
-                        if (res.image) {
-                            dispatch({ type: "resetAll" });
-                            dispatch({
-                                type: "setIsLoading",
-                                payload: false,
-                            });
-
-                            closeAddModal();
-                        } else if (res.errors) {
-                            dispatch({
-                                type: "setErrors",
-                                payload: res.errors,
-                            });
-                            dispatch({
-                                type: "setIsLoading",
-                                payload: false,
-                            });
-                        }
-                    })
-                    .catch((err) => {
-                        console.log(err);
+        dispatch({ type: "setErrors", payload: { ...initialState.errors } });
+        dispatch({ type: "setIsLoading", payload: true });
+        addImage(
+            {
+                label: state.label,
+                url: state.url,
+            },
+            (err, data) => {
+                if (data.image) {
+                    dispatch({ type: "resetAll" });
+                    updateImages(data.image);
+                    closeAddModal();
+                } else if (data.errors) {
+                    dispatch({
+                        type: "setErrors",
+                        payload: data.errors,
                     });
-            })
-            .catch((err) => {
+                } else if (err) {
+                    dispatch({
+                        type: "setErrors",
+                        payload: {
+                            label: "",
+                            url: "Oops! unknown error please try again",
+                        },
+                    });
+                }
                 dispatch({
-                    type: "setURLError",
-                    payload: err,
+                    type: "setIsLoading",
+                    payload: false,
                 });
-            });
+            }
+        );
     };
     return (
         <Modal
@@ -170,28 +139,15 @@ export default function AddPhotoModal({ isAddModalOpen, closeAddModal }) {
                             dispatch({ type: "resetAll" });
                             closeAddModal();
                         }}
-                        disabled={state.isLoading}
+                        isLoading={state.isLoading}
                     >
                         Cancel
                     </Button>
                     <Button
-                        className="inline-flex items-center "
                         color="primary"
                         type="submit"
-                        disabled={state.isLoading}
+                        isLoading={state.isLoading}
                     >
-                        <div
-                            className={`mr-2 ${
-                                !state.isLoading ? "hidden" : ""
-                            }`}
-                        >
-                            <Loader
-                                type="Oval"
-                                color="#fff"
-                                height={15}
-                                width={15}
-                            />
-                        </div>
                         Submit
                     </Button>
                 </div>

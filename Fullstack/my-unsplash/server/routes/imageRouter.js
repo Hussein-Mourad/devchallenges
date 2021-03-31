@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 router.get("/api/images", imageController.getImages);
 router.get("/api/images/:query", imageController.filterImages);
 router.post("/api/image", imageController.saveImage);
-router.delete("/api/delete/:id", imageController.deleteImage);
+router.delete("/api/delete/:id/:password", imageController.deleteImage);
 
 
 module.exports = router;

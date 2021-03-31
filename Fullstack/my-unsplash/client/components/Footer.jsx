@@ -1,6 +1,6 @@
 export default function Footer({ className }) {
     return (
-        <footer className={"text-gray-800 w-full text-center " + " " + className}>
+        <footer className={"text-gray-800 w-full text-center mb-8 mt-10" + " " + className}>
             created by{" "}
             <a
                 className="underline"

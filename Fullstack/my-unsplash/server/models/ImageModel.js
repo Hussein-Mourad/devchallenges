@@ -23,6 +23,7 @@ const imageSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+// imageSchema.index({ label: "text" });
 // imageSchema.index({ label: "text", width: "text", heigth: "text" });
 imageSchema.pre("save", async function (next) {
     console.log(this);

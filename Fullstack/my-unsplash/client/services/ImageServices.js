@@ -24,40 +24,26 @@ export const addImage = async (image, callback) => {
     callback(error, data);
 };
 
-export const deleteImage = async (id, callback) => {
+export const deleteImage = async (id, password, callback) => {
     var error, data;
     try {
-        const res = await fetch(`/api/delete/${id}`);
+        const res = await fetch(`/api/delete/${id}/${password}`, {
+            method: "DELETE",
+        });
         data = await res.json();
     } catch (err) {
         error = err;
     }
-    callback(error,data);
+    callback(error, data);
 };
 
 export const filterImages = async (term, callback) => {
     var error, data;
     try {
         const res = await fetch(`/api/images/${term}`);
-        data= await res.json()
+        data = await res.json();
     } catch (err) {
         error = err;
     }
-    console.log(error, data)
-}
-
-export const getMeta = (url) => {
-    return new Promise((resolve, reject) => {
-        var img = new Image();
-        img.src = url;
-        img.onerror = img.onabort = function () {
-            reject("Please enter a valid url");
-        };
-        img.onload = function () {
-            resolve({
-                width: this.naturalWidth,
-                height: this.naturalHeight,
-            });
-        };
-    });
+    callback(error, data);
 };
