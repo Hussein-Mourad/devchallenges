@@ -3,7 +3,6 @@ import Input from "./Input";
 import Button from "./Button";
 import { useState } from "react";
 import { deleteImage } from "../services/ImageServices";
-import Loader from "react-loader-spinner";
 
 export default function DeleteModal({
   isDeleteModalOpen,
@@ -43,6 +42,7 @@ export default function DeleteModal({
         onSubmit={(e) => {
           handleSubmit(e);
         }}
+        autoComplete="off"
       >
         <div className="flex flex-col mb-5">
           <label className="text-sm text-gray-800 mb-1">Password</label>

@@ -2,7 +2,6 @@ const Image = require("../models/ImageModel");
 
 // handle errors
 const handleErrors = (err) => {
-    console.log(err);
     let errors = { label: "", url: "" };
     if (err.message === "Please enter a valid url") {
         errors.url = err.message;
@@ -24,6 +23,7 @@ module.exports.getImages = (req, res, next) => {
             res.json({ images: result });
         })
         .catch((err) => {
+            console.log(err)
             res.status(400).json({ errors: handleErrors(err) });
         });
 };
@@ -50,6 +50,7 @@ module.exports.saveImage = (req, res, next) => {
             res.json({ image: result });
         })
         .catch((err) => {
+            console.log(err)
             res.status(400).json({ errors: handleErrors(err) });
         });
 };
@@ -63,6 +64,7 @@ module.exports.deleteImage = (req, res, next) => {
                 res.json({ result });
             })
             .catch((err) => {
+                console.log(err)
                 res.status(400).json({ error: "Item not found" });
             });
     } else {

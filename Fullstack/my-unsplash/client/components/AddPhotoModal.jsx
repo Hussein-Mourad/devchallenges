@@ -2,7 +2,6 @@ import Modal from "./Modal";
 import { useReducer } from "react";
 import Input from "./Input";
 import Button from "./Button";
-import Loader from "react-loader-spinner";
 import { addImage } from "../services/ImageServices";
 
 const initialState = {
@@ -89,7 +88,8 @@ export default function AddPhotoModal({
             <form
                 onSubmit={(e) => {
                     handleSubmit(e);
-                }}
+          }}
+          autoComplete="off"
             >
                 <div className="flex flex-col mb-5">
                     <label className="text-sm text-gray-800 mb-1">Label</label>
@@ -126,6 +126,7 @@ export default function AddPhotoModal({
                                 payload: e.target.value,
                             });
                         }}
+                        
                     />
                     <small className="mt-1 text-red-600">
                         {state.errors.url}

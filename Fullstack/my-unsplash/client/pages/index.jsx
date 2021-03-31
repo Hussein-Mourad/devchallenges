@@ -13,7 +13,6 @@ export default function Home() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [toBeDeleted, setToBeDeleted] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -31,6 +30,8 @@ export default function Home() {
   };
 
   const filterById = (id) => {
+    setError("");
+    setIsLoading("");
     setImages((images) => {
       return images.filter((img) => {
         return img._id !== id;
@@ -38,6 +39,8 @@ export default function Home() {
     });
   };
   const updateImages = (image) => {
+    setError("");
+    setIsLoading(false);
     setImages((images) => {
       images.unshift(image);
       return images;
@@ -46,32 +49,35 @@ export default function Home() {
 
   useEffect(() => {
     getImages((err, data) => {
-      if (!err) {
+      if (!err && data.images.length !== 0) {
         setImages(data.images);
-      } else {
-        setError("No items found")
-      }
-      
-    });
-  }, []);
-  console.log({ ...images });
-
-  const filterByTerm = () => {
-    setIsLoading(true)
-    filterImages(searchTerm, (err, data) => {
-      if (!err && data.images) {
-        setImages(data.images);
-      } else if (!data.images) {
+      } else if (data.images.length === 0) {
         setImages([]);
         setError("No items found");
       } else {
         setImages([]);
         setError(err);
       }
-      setSearchTerm("");
       setIsLoading(false);
     });
-  }
+  }, []);
+
+  const filterByTerm = (searchTerm) => {
+    setIsLoading(true);
+    setError("");
+    filterImages(searchTerm, (err, data) => {
+      if (!err && data.images.length !== 0) {
+        setImages(data.images);
+      } else if (data.images.length === 0) {
+        setImages([]);
+        setError("No items found");
+      } else {
+        setImages([]);
+        setError(err);
+      }
+      setIsLoading(false);
+    });
+  };
 
   return (
     <>
@@ -88,18 +94,20 @@ export default function Home() {
         <NavBar
           className="mb-7"
           onBtnClick={openAddModal}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          setIsLoading={setIsLoading}
+          filterByTerm={filterByTerm}
         />
-        {(isLoading || error) && (
+
+        {isLoading && (
           <div className="w-full h-[70vh] flex justify-center items-center">
-            {isLoading && (
-              <Loader type="Oval" color="#000" height={35} width={35} />
-            )}
-            {error && <div className="text-red-600">{error}</div>}
+            <Loader type="Oval" color="#000" height={35} width={35} />
           </div>
         )}
+        {error && (
+          <div className="w-full h-[70vh] flex justify-center items-center text-gray-800">
+            {error}
+          </div>
+        )}
+
         {!isLoading && !error && (
           <Gallery
             openModal={openDeleteModal}

@@ -23,12 +23,9 @@ const imageSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-// imageSchema.index({ label: "text" });
-// imageSchema.index({ label: "text", width: "text", heigth: "text" });
+imageSchema.index({ label: "text" });
 imageSchema.pre("save", async function (next) {
-    console.log(this);
     const res = await probe(this.url);
-    console.log(res);
     if (res.width && res.height) {
         this.width = res.width;
         this.height = res.height;

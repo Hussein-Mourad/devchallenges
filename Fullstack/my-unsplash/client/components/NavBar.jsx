@@ -2,12 +2,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { useState } from "react";
 
-export default function NavBar({
-  className,
-  onBtnClick,
-  setSearchTerm,
-  setIsLoading,
-}) {
+export default function NavBar({ className, onBtnClick, filterByTerm }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [value, setValue] = useState("");
   return (
@@ -43,8 +38,8 @@ export default function NavBar({
               }}
               onKeyPress={(e) => {
                 if (e.key === "Enter" || e.keyCode === 13) {
-                  setSearchTerm(value);
-                  setIsLoading(true);
+                  filterByTerm(value);
+                  setValue("");
                 }
               }}
             />
