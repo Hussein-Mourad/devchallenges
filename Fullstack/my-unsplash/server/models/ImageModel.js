@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const isValidImg = require("../utils/isValidImg");
+const probe = require("probe-image-size");
 
 const imageSchema = new mongoose.Schema(
     {
@@ -22,6 +23,16 @@ const imageSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-imageSchema.index({ label: "text", width: "text", heigth: "text" });
+// imageSchema.index({ label: "text", width: "text", heigth: "text" });
+imageSchema.pre("save", async function (next) {
+    console.log(this);
+    const res = await probe(this.url);
+    console.log(res);
+    if (res.width && res.height) {
+        this.width = res.width;
+        this.height = res.height;
+    }
+    next();
+});
 const Image = mongoose.model("Image", imageSchema);
 module.exports = Image;

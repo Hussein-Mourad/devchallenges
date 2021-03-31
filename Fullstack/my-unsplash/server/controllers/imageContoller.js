@@ -2,6 +2,7 @@ const Image = require("../models/ImageModel");
 
 // handle errors
 const handleErrors = (err) => {
+    console.log(err)
     let errors = { label: "", url: "" };
     if (err.message === "Please enter a valid url") {
         errors.url = err.message;

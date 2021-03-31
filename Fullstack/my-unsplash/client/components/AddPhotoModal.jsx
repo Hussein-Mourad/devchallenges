@@ -3,6 +3,7 @@ import { useReducer } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import Loader from "react-loader-spinner";
+import { addImage, getMeta } from "../services/ImageServices";
 
 const initialState = {
     label: "",
@@ -59,34 +60,57 @@ const reducer = (state, action) => {
 };
 export default function AddPhotoModal({ isAddModalOpen, closeAddModal }) {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const addImage = async (image) => {
-        const res = await fetch("/api/image", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(image),
-        });
-        const data = await res.json();
 
-        return data;
-    };
-    console.log({ ...state });
-
-    const getMeta = (url) => {
-        return new Promise((resolve, reject) => {
-            var img = new Image();
-            img.src = url;
-            img.onerror = img.onabort = function () {
-                reject("Please enter a valid url");
-            };
-            img.onload = function () {
-                resolve({
-                    width: this.naturalWidth,
-                    height: this.naturalHeight,
+    // console.log({ ...state });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch({ type: "resetErrors" });
+        // dispatch({ type: "setIsLoading", payload: true });
+        getMeta(state.url)
+            .then((res) => {
+                dispatch({
+                    type: "setDimenstions",
+                    payload: res,
                 });
-            };
-        });
-    };
+            })
+            .then(() => {
+                addImage({
+                    label: state.label,
+                    url: state.url,
+                    width: state.width,
+                    height: state.height,
+                })
+                    .then((res) => {
+                        if (res.image) {
+                            dispatch({ type: "resetAll" });
+                            dispatch({
+                                type: "setIsLoading",
+                                payload: false,
+                            });
 
+                            closeAddModal();
+                        } else if (res.errors) {
+                            dispatch({
+                                type: "setErrors",
+                                payload: res.errors,
+                            });
+                            dispatch({
+                                type: "setIsLoading",
+                                payload: false,
+                            });
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            })
+            .catch((err) => {
+                dispatch({
+                    type: "setURLError",
+                    payload: err,
+                });
+            });
+    };
     return (
         <Modal
             className="w-11/12 sm:w-[600px]"
@@ -95,49 +119,7 @@ export default function AddPhotoModal({ isAddModalOpen, closeAddModal }) {
         >
             <form
                 onSubmit={(e) => {
-                    e.preventDefault();
-                    dispatch({ type: "resetErrors" });
-                    // dispatch({ type: "setIsLoading", payload: true });
-
-                    getMeta(state.url)
-                        .then((res) => {
-                            dispatch({
-                                type: "setDimenstions",
-                                payload: res,
-                            });
-                        })
-                        .then(() => {
-                            const image = {
-                                label: state.label,
-                                url: state.url,
-                                width: state.width,
-                                height: state.height,
-                            };
-                            addImage(image)
-                                .then((res) => {
-                                    if (res.image) {
-                                        dispatch({ type: "resetAll" });
-                                        dispatch({
-                                            type: "setIsLoading",
-                                            payload: false,
-                                        });
-
-                                        closeAddModal();
-                                    } else if (res.errors) {
-                                        dispatch({
-                                            type: "setErrors",
-                                            payload: res.errors,
-                                        });
-                                        dispatch({
-                                            type: "setIsLoading",
-                                            payload: false,
-                                        });
-                                    }
-                                })
-                                .catch((err) => {
-                                    console.log(err);
-                                });
-                        });
+                    handleSubmit(e);
                 }}
             >
                 <div className="flex flex-col mb-5">
