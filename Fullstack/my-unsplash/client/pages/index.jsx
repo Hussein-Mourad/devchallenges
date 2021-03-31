@@ -51,12 +51,12 @@ export default function Home() {
     getImages((err, data) => {
       if (!err && data.images.length !== 0) {
         setImages(data.images);
-      } else if (data.images.length === 0) {
+      } else if (!err && data.images.length === 0) {
         setImages([]);
         setError("No items found");
       } else {
         setImages([]);
-        setError(err);
+        setError("Oops! An Error has occurred. Please check your connection");
       }
       setIsLoading(false);
     });
@@ -68,12 +68,12 @@ export default function Home() {
     filterImages(searchTerm, (err, data) => {
       if (!err && data.images.length !== 0) {
         setImages(data.images);
-      } else if (data.images.length === 0) {
+      } else if (!err && data.images.length === 0) {
         setImages([]);
         setError("No items found");
       } else {
         setImages([]);
-        setError(err);
+        setError("Oops! An Error has occurred. Please check your connection");
       }
       setIsLoading(false);
     });

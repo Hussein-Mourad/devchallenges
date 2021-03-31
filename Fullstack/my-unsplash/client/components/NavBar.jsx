@@ -9,7 +9,13 @@ export default function NavBar({ className, onBtnClick, filterByTerm }) {
     <header className={className}>
       <nav className="py-4 flex justify-between ">
         <div className="flex">
-          <img src="/my_unsplash_logo.svg" alt="logo" lazy="true" />
+          <img
+            src="/my_unsplash_logo.svg"
+            alt="logo"
+            lazy="true"
+            className="cursor-pointer"
+            onClick={()=>{filterByTerm("")}}
+          />
 
           <div className="border border-gray-300 rounded-md hidden sm:inline-flex items-center relative ml-2">
             <i className="w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2">
