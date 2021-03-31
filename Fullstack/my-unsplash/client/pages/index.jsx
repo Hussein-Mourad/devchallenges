@@ -6,42 +6,20 @@ import { useState, useEffect } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
-import validateImg from "../utils/validateImg";
+import AddPhotoModal from "../components/AddPhotoModal";
 
 export default function Home() {
-    const initialState = {
-        label: "",
-        url: "",
-        errors: { label: "", url: "" },
-    };
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [toBeDeleted, setToBeDeleted] = useState("");
-    const [addForm, setAddForm] = useState({ ...initialState });
-    console.log(addForm);
-    // useEffect(async () => {
-    //     const res = await fetch("/api/images");
-    //     const { images } = await res.json();
-    //     console.log(images);
-    // }, []);
-
-    const addImage = async (image) => {
-        const res = await fetch("/api/image", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(image),
-        });
-        const data = await res.json();
-        console.log(data);
-        return data;
-    };
+    const [searchTerm, setSearchTerm] = useState("");
 
     const deleteImage = async (id) => {
         const res = await fetch(`/api/delete/${id}`, {
             method: "DELETE",
         });
         const data = await res.json();
-        console.log(data);
+
         return data;
     };
 
@@ -70,123 +48,19 @@ export default function Home() {
                     isAddModalOpen ? "overflow-hidden" : ""
                 }`}
             >
-                <NavBar className="mb-7" onBtnClick={openAddModal} />
+                <NavBar
+                    className="mb-7"
+                    onBtnClick={openAddModal}
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
+                />
 
-                {/* <Gallery openModal={openDeleteModal} setId={setToBeDeleted} /> */}
+                <Gallery openModal={openDeleteModal} setId={setToBeDeleted} searchTerm={searchTerm}/>
 
-                <Modal
-                    className="w-11/12 sm:w-[600px]"
-                    title="Add a new photo"
-                    hidden={!isAddModalOpen}
-                >
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            
-                            setAddForm((state) => {
-                                return {
-                                    ...state,
-                                    errors: { ...initialState.errors },
-                                };
-                            });
-                            addImage({
-                                label: addForm.label, url: addForm.url
-                            })
-
-                            // validateImg(addForm.url)
-                            //     .then((res) => {
-                            //         addImage({
-                            //             label: addForm.label,
-                            //             url: addForm.url,
-                            //             width: res.width,
-                            //             heigth: res.height,
-                            //         })
-                            //             .then((res) => {
-                            //                 return res.json();
-                            //             })
-                            //             .then((data) => {
-                            //                 console.log("data", data);
-                            //             })
-                            //             .catch((err) => {
-                            //                 setAddForm((state) => {
-                            //                     return {
-                            //                         ...state,
-                            //                         errors: {
-                            //                             ...err,
-                            //                         },
-                            //                     };
-                            //                 });
-                            //             });
-                            //     })
-                            //     .catch((err) => {
-                            //         setAddForm((state) => {
-                            //             return {
-                            //                 ...state,
-                            //                 errors: {
-                            //                     ...state.errors,
-                            //                     url: err,
-                            //                 },
-                            //             };
-                            //         });
-                            //     });
-                        }}
-                    >
-                        <div className="flex flex-col mb-5">
-                            <label className="text-sm text-gray-800 mb-1">
-                                Label
-                            </label>
-                            <Input
-                                type="text"
-                                name="label"
-                                className="border border-gray-400 w-full"
-                                placeholder="Enter a label for your photo"
-                                value={addForm.label}
-                                onChange={(e) => {
-                                    setAddForm((state) => {
-                                        return {
-                                            ...state,
-                                            label: e.target.value,
-                                        };
-                                    });
-                                }}
-                            />
-                            <small className="mt-1 text-red-600">
-                                {addForm.errors.label}
-                            </small>
-                        </div>
-                        <div className="flex flex-col mb-5">
-                            <label className="text-sm text-gray-800 mb-1">
-                                Photo URL
-                            </label>
-                            <Input
-                                type="text"
-                                name="url"
-                                className="border border-gray-400 w-full"
-                                placeholder="Enter the url of the photo"
-                                value={addForm.url}
-                                onChange={(e) => {
-                                    setAddForm((state) => {
-                                        return {
-                                            ...state,
-                                            url: e.target.value,
-                                        };
-                                    });
-                                }}
-                            />
-                            <small className="mt-1 text-red-600">
-                                {addForm.errors.url}
-                            </small>
-                        </div>
-                        <div className="flex justify-end">
-                            <Button className="mr-2" onClick={closeAddModal}>
-                                Cancel
-                            </Button>
-                            <Button color="primary" type="submit">
-                                Submit
-                            </Button>
-                        </div>
-                    </form>
-                </Modal>
+                <AddPhotoModal
+                    isAddModalOpen={isAddModalOpen}
+                    closeAddModal={closeAddModal}
+                />
 
                 <Modal
                     className="w-11/12 sm:w-[400px]"

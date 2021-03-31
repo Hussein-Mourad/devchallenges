@@ -21,7 +21,6 @@ module.exports=isValidImg = (url) => {
                     magigNumberInBody === magic.png ||
                     magigNumberInBody === magic.gif
                 ) {
-                    console.log("hi");
                     resolve(true);
                 }
             } else {

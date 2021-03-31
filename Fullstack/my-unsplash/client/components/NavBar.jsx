@@ -2,8 +2,9 @@ import Button from "./Button";
 import Input from "./Input";
 import { useState } from "react";
 
-export default function NavBar({ className, onBtnClick }) {
+export default function NavBar({ className, onBtnClick, setSearchTerm }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+const [value, setValue] = useState("")
     return (
         <header className={className}>
             <nav className="py-4 flex justify-between ">
@@ -31,11 +32,24 @@ export default function NavBar({ className, onBtnClick }) {
                             type="text"
                             placeholder="Search by name"
                             className="pl-11"
+                            value={value}
+                            onChange={(e) => {
+                                setValue(e.target.value);
+                            }}
+                            onKeyPress={(e) => {
+                                if (e.key === "Enter" || e.keyCode === 13) {
+                                    setSearchTerm(value)
+                                }
+                            }}
                         />
                     </div>
                 </div>
 
-                <Button className="hidden sm:block" color="primary" onClick={onBtnClick}>
+                <Button
+                    className="hidden sm:block"
+                    color="primary"
+                    onClick={onBtnClick}
+                >
                     Add a photo
                 </Button>
                 <div className="sm:hidden">
@@ -111,7 +125,11 @@ export default function NavBar({ className, onBtnClick }) {
                     />
                 </div>
                 <div className="flex justify-end">
-                    <Button className="block my-5 " color="primary" onClick={onBtnClick}>
+                    <Button
+                        className="block my-5 "
+                        color="primary"
+                        onClick={onBtnClick}
+                    >
                         Add a photo
                     </Button>
                 </div>

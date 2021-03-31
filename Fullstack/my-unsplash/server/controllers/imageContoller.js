@@ -23,21 +23,43 @@ module.exports.getImages = (req, res, next) => {
             res.json({ images: result });
         })
         .catch((err) => {
-            console.log(err);
-            res.json("Error getting Images");
+            res.status(400).json({ errors: handleErrors(err) });
         });
+};
+
+module.exports.filterImages = (req, res, next) => {
+    const query = req.params.query;
+    //   { $text: { $search: query } }
+    Image.find({ $text: { $search: query } })
+        .sort({ createdAt: -1 })
+        .exec(function (err, docs) {
+            if (!err) {
+                res.json({ images: docs });
+            } else {
+                console.log(err);
+                res.status(400).json({ errors: handleErrors(err) });
+            }
+        });
+    // .then((result) => {
+    //     console.log(res)
+    //     res.json({ images: result });
+    // })
+    // .catch((err) => {
+    //     console.log(err);
+    //     res.status(400).json({ errors: handleErrors(err) });
+    // });
 };
 
 module.exports.saveImage = (req, res, next) => {
     const image = new Image(req.body);
-
+    console.log(req.body)
     image
         .save()
         .then((result) => {
-            res.json(result);
+            res.json({ image: result });
         })
         .catch((err) => {
-            res.json({ ...handleErrors(err) });
+            res.status(400).json({ errors: handleErrors(err) });
         });
 };
 module.exports.deleteImage = (req, res, next) => {
@@ -47,6 +69,6 @@ module.exports.deleteImage = (req, res, next) => {
             res.json({ result });
         })
         .catch((err) => {
-            res.json({ ...handleErrors(err) });
+            res.status(400).json("Invalid Id");
         });
 };
