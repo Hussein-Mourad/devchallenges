@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "start:dev": "NODE_ENV='development'; node ./server",
-    "dev:watch": "npm-rull-all --parallel watch:css start:dev",
+    "dev:watch": "npm-run-all --parallel watch:css start:dev",
     "build": "next build",
     "start": "next start",
     "watch:css": "postcss -w ./styles/tailwind.css -o ./styles/globals.css"

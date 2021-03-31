@@ -25,7 +25,7 @@ const reducer = (state, action) => {
                 ...state,
                 url: action.payload,
             };
-        case "setDimenstions": // TODO Width and height doesn't reach the server 
+        case "setDimenstions":
             return {
                 ...state,
                 width: action.payload.width,
@@ -55,9 +55,6 @@ const reducer = (state, action) => {
             return { ...state, errors: { ...initialState.errors } };
         case "resetAll":
             return initialState;
-
-        default:
-            break;
     }
 };
 export default function AddPhotoModal({ isAddModalOpen, closeAddModal }) {
@@ -72,6 +69,7 @@ export default function AddPhotoModal({ isAddModalOpen, closeAddModal }) {
 
         return data;
     };
+    console.log({ ...state });
 
     const getMeta = (url) => {
         return new Promise((resolve, reject) => {
@@ -96,57 +94,49 @@ export default function AddPhotoModal({ isAddModalOpen, closeAddModal }) {
             hidden={!isAddModalOpen}
         >
             <form
-                onSubmit={ (e) => {
+                onSubmit={(e) => {
                     e.preventDefault();
                     dispatch({ type: "resetErrors" });
-                    dispatch({ type: "setIsLoading", payload: true });
+                    // dispatch({ type: "setIsLoading", payload: true });
+
                     getMeta(state.url)
                         .then((res) => {
-                            console.log('res: ', res);
                             dispatch({
                                 type: "setDimenstions",
                                 payload: res,
                             });
                         })
-                        .catch((err) => {
-                            console.log("err", err);
-                            
-                            dispatch({ type: "setURLError", payload: err });
-                        });
-                            console.log("before",{
-                        label: state.label,
-                        url: state.url,
-                        width: state.width,
-                        height: state.height,
-                    })
-                    addImage({
-                        label: state.label,
-                        url: state.url,
-                        width: state.width,
-                        height: state.height,
-                    })
-                        .then((res) => {
-                            if (res.image) {
-                                dispatch({ type: "resetAll" });
-                                dispatch({
-                                    type: "setIsLoading",
-                                    payload: false,
-                                });
+                        .then(() => {
+                            const image = {
+                                label: state.label,
+                                url: state.url,
+                                width: state.width,
+                                height: state.height,
+                            };
+                            addImage(image)
+                                .then((res) => {
+                                    if (res.image) {
+                                        dispatch({ type: "resetAll" });
+                                        dispatch({
+                                            type: "setIsLoading",
+                                            payload: false,
+                                        });
 
-                                closeAddModal();
-                            } else if (res.errors) {
-                                dispatch({
-                                    type: "setErrors",
-                                    payload: res.errors,
+                                        closeAddModal();
+                                    } else if (res.errors) {
+                                        dispatch({
+                                            type: "setErrors",
+                                            payload: res.errors,
+                                        });
+                                        dispatch({
+                                            type: "setIsLoading",
+                                            payload: false,
+                                        });
+                                    }
+                                })
+                                .catch((err) => {
+                                    console.log(err);
                                 });
-                                dispatch({
-                                    type: "setIsLoading",
-                                    payload: false,
-                                });
-                            }
-                        })
-                        .catch((err) => {
-                            console.log(err);
                         });
                 }}
             >
