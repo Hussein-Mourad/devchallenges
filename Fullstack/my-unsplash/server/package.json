@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./build/app.bundle.js",
+    "start": "node ./app.bundle.js",
     "build": "webpack",
     "dev": "nodemon ./bin/www"
   },

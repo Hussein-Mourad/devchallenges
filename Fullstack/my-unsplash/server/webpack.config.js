@@ -1,11 +1,11 @@
 const path = require("path");
 
 module.exports = {
-    entry: "./app.js",
+    entry: "./bin/www",
     mode: "production",
     target: "node",
     output: {
-        path: path.resolve(__dirname, "build"),
+        path: path.resolve(__dirname, "."),
         filename: "app.bundle.js",
     },
 };

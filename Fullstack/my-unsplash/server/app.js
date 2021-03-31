@@ -1,6 +1,7 @@
 const createError = require("http-errors");
 const express = require("express");
 const logger = require("morgan");
+const path=require("path")
 
 require("dotenv").config();
 
@@ -14,6 +15,7 @@ const password = process.env.PASSWORD;
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/", indexRouter);
 
