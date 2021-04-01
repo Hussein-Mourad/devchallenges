@@ -2,7 +2,11 @@
   "name": "server",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "v14.15.4"
+  },
   "scripts": {
+    "dev": "nodemon ./bin/www",
     "start": "node ./bin/www"
   },
   "dependencies": {
