@@ -1,57 +1,26 @@
-import Button from "./Button";
-import Input from "./Input";
 import { useState } from "react";
+import Button from "./Button";
+import SearchBar from "./SearchBar";
 
 export default function NavBar({ className, onBtnClick, filterByTerm }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [value, setValue] = useState("");
+
   return (
     <header className={className}>
-      <nav className="py-4 flex justify-between ">
+      <nav className="px-2 sm:px-5 py-4 flex justify-between ">
         <div className="flex">
           <img
             src="/my_unsplash_logo.svg"
             alt="logo"
             lazy="true"
             className="cursor-pointer"
-            onClick={()=>{filterByTerm("")}}
+            onClick={() => {
+              filterByTerm("");
+            }}
           />
 
-          <div className="border border-gray-300 rounded-md hidden sm:inline-flex items-center relative ml-2">
-            <i className="w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </i>
-
-            <Input
-              type="text"
-              placeholder="Search by name"
-              className="pl-11"
-              value={value}
-              onChange={(e) => {
-                setValue(e.target.value);
-              }}
-              onKeyPress={(e) => {
-                if (e.key === "Enter" || e.keyCode === 13) {
-                  filterByTerm(value);
-                  setValue("");
-                }
-              }}
-            />
-          </div>
+          <SearchBar className="hidden sm:inline-flex sm:ml-2" filterByTerm={filterByTerm}/>
         </div>
-
         <Button
           className="hidden sm:block"
           color="primary"
@@ -103,30 +72,8 @@ export default function NavBar({ className, onBtnClick, filterByTerm }) {
         </div>
       </nav>
       {isMenuOpen && (
-        <nav className="sm:hidden shadow-md p-5 w-full">
-          <div className="border border-gray-300 rounded-md inline-flex items-center relative w-full">
-            <i className="w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </i>
-
-            <Input
-              type="text"
-              placeholder="Search by name"
-              className="pl-11 w-full"
-            />
-          </div>
+        <nav className="sm:hidden shadow-md px-2 py-5 w-full">
+          <SearchBar className="w-full" filterByTerm={filterByTerm}/>
           <div className="flex justify-end">
             <Button
               className="block my-5 "

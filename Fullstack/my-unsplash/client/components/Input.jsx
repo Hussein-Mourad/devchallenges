@@ -15,8 +15,8 @@ export default function Input({
         <input
             type={type}
             className={
-                border +
-                " px-3 py-2 rounded-lg border-gray-300 text-gray-800 " +
+                border +" "+
+                "px-3 py-2 rounded-lg border-gray-300 text-gray-800 hover:border-gray-400 " + " "+
                 className
             }
             placeholder={placeholder}

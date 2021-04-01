@@ -19,7 +19,7 @@ export default function Button({
   return (
     <button
       className={
-        "px-3 py-2 rounded-lg font-medium inline-flex items-center hover:opacity-95 focus:outline-none disabled:cursor-not-allowed" +
+        "px-3 py-2 rounded-lg font-medium inline-flex items-center hover:opacity-90 hover:shadow  focus:outline-none disabled:cursor-not-allowed" +
         " " +
         getColor() +
         " " +

@@ -6,6 +6,8 @@
     "start": "node ./app.bundle.js",
     "build": "webpack",
     "dev": "nodemon ./bin/www"
+  },"engines": {
+    "node": "v14.15.4"
   },
   "dependencies": {
     "debug": "^2.6.9",

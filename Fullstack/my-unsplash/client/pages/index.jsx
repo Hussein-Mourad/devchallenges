@@ -87,7 +87,7 @@ export default function Home() {
       </Head>
 
       <div
-        className={`container mx-auto px-2 sm:px-5 min-h-screen ${
+        className={`container mx-auto min-h-screen ${
           isAddModalOpen ? "overflow-hidden" : ""
         }`}
       >
@@ -96,41 +96,42 @@ export default function Home() {
           onBtnClick={openAddModal}
           filterByTerm={filterByTerm}
         />
+        <div className="px-2 sm:px-5">
+          {isLoading && (
+            <div className="w-full h-[70vh] flex justify-center items-center">
+              <Loader type="Oval" color="#000" height={35} width={35} />
+            </div>
+          )}
+          {error && (
+            <div className="w-full h-[70vh] flex justify-center items-center text-gray-800">
+              {error}
+            </div>
+          )}
 
-        {isLoading && (
-          <div className="w-full h-[70vh] flex justify-center items-center">
-            <Loader type="Oval" color="#000" height={35} width={35} />
-          </div>
-        )}
-        {error && (
-          <div className="w-full h-[70vh] flex justify-center items-center text-gray-800">
-            {error}
-          </div>
-        )}
+          {!isLoading && !error && (
+            <Gallery
+              openModal={openDeleteModal}
+              setId={setToBeDeleted}
+              images={images}
+            />
+          )}
 
-        {!isLoading && !error && (
-          <Gallery
-            openModal={openDeleteModal}
-            setId={setToBeDeleted}
-            images={images}
+          <AddPhotoModal
+            isAddModalOpen={isAddModalOpen}
+            closeAddModal={closeAddModal}
+            updateImages={updateImages}
           />
-        )}
 
-        <AddPhotoModal
-          isAddModalOpen={isAddModalOpen}
-          closeAddModal={closeAddModal}
-          updateImages={updateImages}
-        />
+          <DeleteModal
+            isDeleteModalOpen={isDeleteModalOpen}
+            closeDeleteModal={closeDeleteModal}
+            id={toBeDeleted}
+            setId={setToBeDeleted}
+            filterById={filterById}
+          />
 
-        <DeleteModal
-          isDeleteModalOpen={isDeleteModalOpen}
-          closeDeleteModal={closeDeleteModal}
-          id={toBeDeleted}
-          setId={setToBeDeleted}
-          filterById={filterById}
-        />
-
-        <Footer />
+          <Footer />
+        </div>
       </div>
     </>
   );
