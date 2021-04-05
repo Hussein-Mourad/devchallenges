@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*:focus {
+  -webkit-tap-highlight-color: transparent;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  outline-color: black;
+}
+
+/* width */
+.search-autocomplete::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+/* Track */
+.search-autocomplete::-webkit-scrollbar-track {
+  @apply bg-gray-50;
+}
+
+/* Handle */
+.search-autocomplete::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-lg;
+}
+
+/* Handle on hover */
+.search-autocomplete::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+.masonry {
+  column-count: 3;
+  column-gap: 1.25rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .masonry {
+    column-count: 1;
+  }
+}
