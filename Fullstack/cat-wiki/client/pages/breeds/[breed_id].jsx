@@ -7,11 +7,33 @@ import Loader from "react-loader-spinner";
 export default function Cat() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { breed_id } = useRouter().query;
+  const fields = [
+    "temperament",
+    "origin",
+    "life_span",
+    "adaptability",
+    "affection_level",
+    "child_friendly",
+    "grooming",
+    "intelligence",
+    "health_issues",
+    "social_needs",
+    "stranger_friendly",
+  ];
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
   useEffect(async () => {
-    const res = await axios.get(`/api/${encodeURIComponent(breed_id)}`);
-    console.log(res.data[0]);
-    setData(res.data);
+    try {
+      const res = await axios.get(`/api/${encodeURIComponent(breed_id)}`);
+      console.log(res.data);
+      setData(res.data);
+    } catch (err) {
+      console.log(err);
+      setError(err);
+    }
     setIsLoading(false);
   }, []);
 
@@ -19,6 +41,13 @@ export default function Cat() {
     return (
       <div className="h-full grid place-items-center">
         <Loader type="Oval" color="#000" height={32} width={32} />
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="h-full grid place-items-center">
+        <h2 className="text-red-500 font-medium text-lg">{error}</h2>
       </div>
     );
   }
@@ -40,42 +69,14 @@ export default function Cat() {
                 {data[0].breeds[0]?.name}
               </h1>
               <p>{data[0].breeds[0]?.description}</p>
-              <Property title="Temperament">
-                {data[0].breeds[0]?.temperament}
-              </Property>
-              <Property title="Origin"> {data[0].breeds[0]?.origin}</Property>
-              <Property title="Life Span">
-                {" "}
-                {data[0].breeds[0]?.life_span} years
-              </Property>
-              <Property title="Adaptability" rating>
-                {data[0].breeds[0]?.adaptability}
-              </Property>
-              <Property title="Affection level" rating>
-                {data[0].breeds[0].affection_level}
-              </Property>
-
-              <Property title="Child friendly" rating>
-                {data[0].breeds[0].child_friendly}
-              </Property>
-
-              <Property title="Grooming" rating>
-                {data[0].breeds[0].grooming}
-              </Property>
-
-              <Property title="Intelligence" rating>
-                {data[0].breeds[0].intelligence}
-              </Property>
-
-              <Property title="Health issues" rating>
-                {data[0].breeds[0].health_issues}
-              </Property>
-              <Property title="Social needs" rating>
-                {data[0].breeds[0].social_needs}
-              </Property>
-              <Property title="Stranger friendly" rating>
-                {data[0].breeds[0].stranger_friendly}
-              </Property>
+              {fields.map((field, index) => (
+                <Property
+                  title={capitalizeFirstLetter(field.replace("_", " "))}
+                  rating={index >= 3}
+                >
+                  {data[0].breeds[0][field]}
+                </Property>
+              ))}
             </div>
           </>
         )}
@@ -99,22 +100,3 @@ export default function Cat() {
     </>
   );
 }
-
-// {data.map((cat, index) => (
-//         <div className="flex my-8">
-//           <div className="flex justify-center w-44 h-44 mr-8">
-//             <img
-//               className="rounded-lg cursor-pointer"
-//               src={cat.image.url}
-//               alt={cat.breeds.name}
-//             />
-//           </div>
-//           <div className="w-7/12">
-//             <h2 className="text-primary font-medium text-2xl mb-2 cursor-pointer">
-//               {index + 1}. {cat.breeds.name}
-//             </h2>
-
-//             <p>{cat.breeds.description}</p>
-//           </div>
-//         </div>
-//       ))}

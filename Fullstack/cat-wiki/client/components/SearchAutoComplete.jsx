@@ -1,22 +1,5 @@
-import { useEffect } from "react";
-import { useState } from "react";
 export default function SearchAutoComplete({ className, onClick, data }) {
-  // useEffect(async () => {
-  //   const res = await fetch("/api/breeds");
-  //   const data = await res.json();
-  //   setData(data);
-  // }, []);
-
   return (
-    // <select
-    //   className="mt-3 max-h-56 rounded-2xl absolute bg-white p-2 w-96 "
-    //   name=""
-    //   id=""
-    // >
-    //   {data.map((item) => (
-    //     <option value={item}>{item}</option>
-    //   ))}
-    // </select>
     <>
       {data && (
         <div

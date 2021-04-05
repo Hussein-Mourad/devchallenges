@@ -9,19 +9,25 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(async () => {
-    const res = await fetch("/api/heroImages");
-    const data = await res.json();
-    var sugg = [];
-    data.forEach((item) => sugg.push({ name: item.name, id: item.id }));
-    setSuggestions(sugg);
-    setData(
-      data
-        .filter((obj) => {
-          return obj.image.width === obj.image.height;
-        })
-        .slice(4, 8)
-    );
+    try {
+      const res = await fetch("/api/heroImages");
+      const data = await res.json();
+      var sugg = [];
+      data.forEach((item) => sugg.push({ name: item.name, id: item.id }));
+      setSuggestions(sugg);
+      setData(
+        data
+          .filter((obj) => {
+            return obj.image.width === obj.image.height;
+          })
+          .slice(4, 8)
+      );
+    } catch (err) {
+      console.log(err);
+      setError(err);
+    }
     setIsLoading(false);
   }, []);
 
@@ -32,10 +38,17 @@ export default function Home() {
       </div>
     );
   }
+  if (error) {
+    return (
+      <div className="h-full grid place-items-center">
+        <h2 className="text-red-500 font-medium text-lg">{error}</h2>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <Hero suggestions={suggestions} setSuggestions={setSuggestions} />
+      <Hero suggestions={suggestions} />
       <MostSearched>
         {data.map((item) => (
           <Link href={`/breeds/${encodeURIComponent(item.id)}`}>

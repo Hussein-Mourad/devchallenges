@@ -1,6 +1,11 @@
 import SearchBar from "./SearchBar";
 
-export default function SearchSmall({ isMenuOpen, setIsMenuOpen, children }) {
+export default function SearchSmall({
+  isMenuOpen,
+  setIsMenuOpen,
+  children,
+  suggestions,
+}) {
   return (
     <>
       {isMenuOpen && (
@@ -19,8 +24,13 @@ export default function SearchSmall({ isMenuOpen, setIsMenuOpen, children }) {
               />
             </button>
           </div>
-          <SearchBar type="text" placeholder="Enter your breed" />
-          <div>{ children}</div>
+          <SearchBar
+            className="inline-flex w-full"
+            type="text"
+            placeholder="Enter your breed"
+            suggestions={suggestions}
+          />
+          {children}
         </div>
       )}
     </>

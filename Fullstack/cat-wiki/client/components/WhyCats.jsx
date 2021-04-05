@@ -12,7 +12,12 @@ export default function WhyCats({ className }) {
           Having a cat around you can actually trigger the release of calming
           chemicals in your body which lower your stress and anxiety leves
         </p>
-        <button className="uppercase text-primary text-opacity-50 text-sm inline-flex items-center mt-3 md:mt-5 foucs:outline-none  hover:bg-primary hover:bg-opacity-10 active:bg-opacity-20 rounded-md px-2 py-1">
+
+        <a
+          className="uppercase text-primary text-opacity-50 text-sm inline-flex items-center mt-3 md:mt-5 focus:outline-none  hover:bg-primary hover:bg-opacity-10 active:bg-opacity-20 rounded-md px-2 py-1"
+          href="https://www.mentalfloss.com/article/51154/10-scientific-benefits-being-cat-owner"
+          target="_blank"
+        >
           read more
           <i className="ml-1 w-5">
             <svg
@@ -29,7 +34,7 @@ export default function WhyCats({ className }) {
               />
             </svg>
           </i>
-        </button>
+        </a>
       </div>
 
       <div className="mt-10 grid grid-cols-2 gap-5 md:w-6/12">
