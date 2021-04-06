@@ -16,6 +16,7 @@ export default async function helloAPI(req, res) {
         },
       }
     );
+
     res.json(result.data);
   } catch (error) {
     console.log(error);

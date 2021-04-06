@@ -1,29 +1,14 @@
 import { useState, useEffect } from "react";
 import Input from "./Input";
-import SearchAutoComplete from "./SearchAutoComplete";
-import { useRouter } from "next/router";
 
-export default function SearchBar({ className, suggestions, ...props }) {
+export default function SearchBar({
+  className,
+  children,
+  suggestions,
+  filterSugg,
+  ...props
+}) {
   const [value, setValue] = useState("");
-  const [isSuggOpen, setIsSuggOpen] = useState(false);
-  const [sugg, setSugg] = useState(suggestions);
-  const router = useRouter();
-
-  const search = (breed_id) => {
-    router.push(`/breeds/${encodeURIComponent(breed_id)}`);
-  };
-  const filterSugg = (val) => {
-    if (val === "") {
-      setSugg(suggestions);
-    }
-    var tmp = suggestions;
-    setSugg(
-      tmp.filter((item) => {
-        return item.name.toLowerCase().includes(val.toLowerCase());
-      })
-    );
-  };
-
   useEffect(() => {
     filterSugg(value);
   }, [value]);
@@ -32,7 +17,7 @@ export default function SearchBar({ className, suggestions, ...props }) {
     <>
       <div
         className={
-          "border border-gray-300 rounded-3xl hover:border-gray-400 hover:shadow-sm  px-3  focus-within:border-black focus-within:hover:border-black bg-white items-center mt-3 w-64 lg:w-96" +
+          "border border-gray-300 rounded-3xl hover:border-gray-400 hover:shadow-sm  px-3  focus-within:border-black focus-within:hover:border-black bg-white items-center mt-3 " +
           " " +
           className
         }
@@ -42,14 +27,6 @@ export default function SearchBar({ className, suggestions, ...props }) {
           value={value}
           onChange={(e) => {
             setValue(e.target.value);
-          }}
-          onFocus={() => {
-            setIsSuggOpen(true);
-          }}
-          onBlur={() => {
-            setTimeout(() => {
-              setIsSuggOpen(false);
-            }, 100);
           }}
           {...props}
         />
@@ -69,16 +46,7 @@ export default function SearchBar({ className, suggestions, ...props }) {
           </svg>
         </div>
       </div>
-      {isSuggOpen && (
-        <SearchAutoComplete
-          className="w-64 lg:w-96"
-          data={sugg}
-          onClick={(e) => {
-            console.log(e.target.value)
-            search(e.target.value);
-          }}
-        />
-      )}
+      <div>{children}</div>
     </>
   );
 }

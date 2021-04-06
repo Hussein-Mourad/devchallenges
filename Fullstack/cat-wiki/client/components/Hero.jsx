@@ -1,14 +1,30 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import SearchSmall from "./SearchSmall";
 import SearchBar from "./SearchBar";
+import SearchAutoComplete from "./SearchAutoComplete";
 
-export default function Hero({
-  className,
-  children,
-  suggestions,
-  setSuggestions,
-}) {
+export default function Hero({ className, children, suggestions }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSuggOpen, setIsSuggOpen] = useState(false);
+  const [sugg, setSugg] = useState(suggestions);
+
+  const router = useRouter();
+
+  const search = (breed_id) => {
+    router.push(`/breeds/${encodeURIComponent(breed_id)}`);
+  };
+  const filterSugg = (val) => {
+    if (val === "") {
+      setSugg(suggestions);
+    }
+    var tmp = suggestions;
+    setSugg(
+      tmp.filter((item) => {
+        return item.name.toLowerCase().includes(val.toLowerCase());
+      })
+    );
+  };
 
   return (
     <div className="relative">
@@ -34,18 +50,53 @@ export default function Hero({
         </button>
         <div>
           <SearchBar
-            className="hidden md:inline-flex"
+            className="hidden md:inline-flex w-64 lg:w-96"
             type="text"
             placeholder="Enter your breed"
             suggestions={suggestions}
-          />
+            filterSugg={filterSugg}
+            onFocus={() => {
+              setIsSuggOpen(true);
+            }}
+            onBlur={() => {
+              setTimeout(() => {
+                setIsSuggOpen(false);
+              }, 100);
+            }}
+          >
+            {isSuggOpen && (
+              <SearchAutoComplete
+                className="w-64 lg:w-96"
+                data={sugg}
+                onClick={(e) => {
+                  search(e.target.value);
+                }}
+              />
+            )}
+          </SearchBar>
         </div>
       </div>
       <SearchSmall
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
+        filterSugg={filterSugg}
         suggestions={suggestions}
-      />
+      >
+        <div className="mt-5 overflow-y-scroll search-autocomplete h-4/5">
+          {sugg.map((item, index) => (
+            <button
+              key={item.id}
+              className="block p-2 my-2 text-lg hover:bg-gray-200 active:bg-gray-300 w-full focus:outline-none text-left"
+              value={item.id}
+              onClick={(e) => {
+                search(e.target.value);
+              }}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
+      </SearchSmall>
 
       <img
         className="rounded-t-3xl"

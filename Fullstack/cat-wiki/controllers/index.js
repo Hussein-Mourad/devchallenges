@@ -1,3 +1,3 @@
 module.exports.getIndex = (req, res, next) => {
-  res.send("hifff")
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 }

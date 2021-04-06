@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Property from "../../components/Property";
 import Loader from "react-loader-spinner";
 
@@ -27,12 +26,12 @@ export default function Cat() {
   };
   useEffect(async () => {
     try {
-      const res = await axios.get(`/api/${encodeURIComponent(breed_id)}`);
-      console.log(res.data);
-      setData(res.data);
+      const res = await fetch(`/api/breeds/${encodeURIComponent(breed_id)}`);
+      const data = await res.json();
+      setData(data ?? []);
     } catch (err) {
       console.log(err);
-      setError(err);
+      setError("Oops! Something went wrong. Please try again");
     }
     setIsLoading(false);
   }, []);
@@ -60,7 +59,7 @@ export default function Cat() {
             <div className="mb-5 md:mr-7 w-full md:w-3/12">
               <img
                 className="rounded-md"
-                src={data[0]?.url}
+                src={data[0]?.url || "https://via.placeholder.com/250"}
                 alt={data[0].breeds[0]?.name}
               />
             </div>
@@ -89,6 +88,7 @@ export default function Cat() {
           <div className="masonry mt-8">
             {data.slice(1, 10).map((item) => (
               <img
+                key={item.id}
                 className="rounded-lg mb-5"
                 src={item?.url}
                 alt={item.breeds[0]?.name}

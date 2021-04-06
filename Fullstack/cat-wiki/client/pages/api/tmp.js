@@ -10,11 +10,10 @@ export default async function helloAPI(req, res) {
       },
     });
 
-    var breeds = [];
-    await result.data.forEach((obj) => {
-      breeds.push(obj.name);
+    const data = await result.data.filter((obj) => {
+      return obj && obj.image && Object.keys(obj.image).length !== 0;
     });
-    res.json(breeds);
+    res.json(data);
   } catch (error) {
     console.log(error);
     res.status(400).json({ error });

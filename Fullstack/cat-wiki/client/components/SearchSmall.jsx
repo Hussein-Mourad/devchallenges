@@ -4,6 +4,7 @@ export default function SearchSmall({
   isMenuOpen,
   setIsMenuOpen,
   children,
+  filterSugg,
   suggestions,
 }) {
   return (
@@ -29,6 +30,7 @@ export default function SearchSmall({
             type="text"
             placeholder="Enter your breed"
             suggestions={suggestions}
+            filterSugg={filterSugg}
           />
           {children}
         </div>

@@ -12,7 +12,7 @@ export default function Home() {
   const [error, setError] = useState(null);
   useEffect(async () => {
     try {
-      const res = await fetch("/api/heroImages");
+      const res = await fetch("/api/breeds/");
       const data = await res.json();
       var sugg = [];
       data.forEach((item) => sugg.push({ name: item.name, id: item.id }));
@@ -26,7 +26,7 @@ export default function Home() {
       );
     } catch (err) {
       console.log(err);
-      setError(err);
+      setError("Oops! Something went wrong. Please try again");
     }
     setIsLoading(false);
   }, []);
