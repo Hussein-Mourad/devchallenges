@@ -25,8 +25,8 @@ export default function Profile() {
         </div>
         <Button className="border border-gray-300"><Link href="/edit">Edit</Link></Button>
       </div>
-      {fields.map((field) => (
-        <ProfileItem title={field}>dkjddjkdkjfjkd</ProfileItem>
+      {fields.map((field, index) => (
+        <ProfileItem key={index} title={field}>dkjddjkdkjfjkd</ProfileItem>
       ))}
     </div>
   );
