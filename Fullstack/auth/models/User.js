@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
-const crypto = require("crypto")
-
+const crypto = require("crypto");
 
 const checkBio = (bio) => {
   return bio <= 100;
@@ -38,9 +37,9 @@ const userSchema = new mongoose.Schema(
   {
     authId: {
       type: String,
-      unique:true,
+      unique: true,
       required: true,
-      default: crypto.randomBytes(32).toString("hex")
+      default: crypto.randomBytes(32).toString("hex"),
     },
     name: String,
     bio: {
@@ -54,16 +53,14 @@ const userSchema = new mongoose.Schema(
     photo: {
       type: String,
     },
-    email: {
+    email: { // TODO make this field required again and find a workaround to save users and oauth users together
       type: String,
       unique: true,
       lowercase: true,
-      required: [true, "Please enter an email"],
       validate: [isEmail, "Please enter a valid email"],
     },
     password: {
       type: String,
-      required: [true, "Please enter a password"],
       minLength: [8, "Minimum length is 8 characters"],
       validate: [checkPassword, "Please enter a valid password"],
     },
@@ -74,8 +71,10 @@ const userSchema = new mongoose.Schema(
 userSchema.index({ email: "text" });
 
 userSchema.pre("save", async function (next) {
-  const salt = await bcrypt.genSalt();
-  this.password = await bcrypt.hash(this.password, salt);
+  if (this.password) {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+  }
   next();
 });
 

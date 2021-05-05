@@ -13,23 +13,16 @@ function passportConfig(passport) {
         callbackURL: "/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
-        if (!profile.emails) {
-          profile.emails = {
-            0: {
-              value:
-                Math.floor(Math.random() * 9999999999999).toString(16) +
-                "@dummy.com",
-            },
-          };
-        }
-        const newUser = {
+        let newUser = {
           authId: profile.id,
           name: profile.displayName,
-          photo: profile.photos[0].value,
-          email: profile.emails[0].value,
-          password:
-            "A" + Math.floor(Math.random() * 9999999999999).toString(16),
         };
+        if (profile.photos) {
+          newUser["photo"] = profile.photos[0].value;
+        }
+        if (profile.emails) {
+          newUser["email"] = profile.emails[0].value;
+        }
 
         try {
           let user = await User.findOne({ authId: profile.id });
@@ -52,26 +45,19 @@ function passportConfig(passport) {
         clientID: process.env.FACEBOOK_CLIENT_ID,
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL: "/auth/facebook/callback",
-        profileFields: ["id", "displayName", "photos", "email"],
+        profileFields: ["id", "displayName", "photos"],
       },
       async (accessToken, refreshToken, profile, done) => {
-        if (!profile.emails) {
-          profile.emails = {
-            0: {
-              value:
-                Math.floor(Math.random() * 9999999999999).toString(16) +
-                "@dummy.com",
-            },
-          };
-        }
-        const newUser = {
+        let newUser = {
           authId: profile.id,
           name: profile.displayName,
-          photo: profile.photos[0].value,
-          email: profile.emails[0].value,
-          password:
-            "A" + Math.floor(Math.random() * 9999999999999).toString(16),
         };
+        if (profile.photos) {
+          newUser["photo"] = profile.photos[0].value;
+        }
+        if (profile.emails) {
+          newUser["email"] = profile.emails[0].value;
+        }
 
         try {
           let user = await User.findOne({ authId: profile.id });
@@ -90,28 +76,21 @@ function passportConfig(passport) {
   passport.use(
     new TwitterStrategy(
       {
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: "/auth/facebook/callback",
+        consumerKey: process.env.TWITTER_CONSUMER_KEY,
+        consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+        callbackURL: "/auth/twitter/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
-        if (!profile.emails) {
-          profile.emails = {
-            0: {
-              value:
-                Math.floor(Math.random() * 9999999999999).toString(16) +
-                "@dummy.com",
-            },
-          };
-        }
-        const newUser = {
+        let newUser = {
           authId: profile.id,
           name: profile.displayName,
-          photo: profile.photos[0].value,
-          email: profile.emails[0].value,
-          password:
-            "A" + Math.floor(Math.random() * 9999999999999).toString(16),
         };
+        if (profile.photos) {
+          newUser["photo"] = profile.photos[0].value;
+        }
+        if (profile.emails) {
+          newUser["email"] = profile.emails[0].value;
+        }
 
         try {
           let user = await User.findOne({ authId: profile.id });
@@ -130,28 +109,21 @@ function passportConfig(passport) {
   passport.use(
     new GithubStrategy(
       {
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: "/auth/facebook/callback",
+        clientID: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        callbackURL: "/auth/github/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
-        if (!profile.emails) {
-          profile.emails = {
-            0: {
-              value:
-                Math.floor(Math.random() * 9999999999999).toString(16) +
-                "@dummy.com",
-            },
-          };
-        }
-        const newUser = {
+        let newUser = {
           authId: profile.id,
           name: profile.displayName,
-          photo: profile.photos[0].value,
-          email: profile.emails[0].value,
-          password:
-            "A" + Math.floor(Math.random() * 9999999999999).toString(16),
         };
+        if (profile.photos) {
+          newUser["photo"] = profile.photos[0].value;
+        }
+        if (profile.emails) {
+          newUser["email"] = profile.emails[0].value;
+        }
 
         try {
           let user = await User.findOne({ authId: profile.id });

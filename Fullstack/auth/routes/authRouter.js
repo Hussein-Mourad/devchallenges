@@ -57,14 +57,14 @@ router.get(
 // @desc    Auth with Github
 // @route   GET /auth/github
 router.get(
-  "/auth/github",
+  "/github",
   passport.authenticate("github", { scope: ["read:user","user:email"] })
 );
 
 // @desc    Github auth callback
 // @route   GET /auth/github/callback
 router.get(
-  "/auth/github/callback",
+  "/github/callback",
   passport.authenticate("github", {
     successRedirect: "/",
     failureRedirect: "/login",
@@ -74,14 +74,14 @@ router.get(
 // @desc    Auth with Twitter
 // @route   GET /auth/twitter
 router.get(
-  "/auth/twitter",
-  passport.authenticate("twitter", { scope: ["read:user","user:email"] })
+  "/twitter",
+  passport.authenticate("twitter")
 );
 
 // @desc    Twitter auth callback
 // @route   GET /auth/twitter/callback
 router.get(
-  "/auth/twitter/callback",
+  "/twitter/callback",
   passport.authenticate("twitter", {
     successRedirect: "/",
     failureRedirect: "/login",

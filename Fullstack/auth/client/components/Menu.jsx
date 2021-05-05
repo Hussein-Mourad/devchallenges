@@ -1,11 +1,13 @@
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import GroupIcon from "@material-ui/icons/Group";
+import Router from "next/router";
 import Button from "./Button";
-const MenuItem = ({ text, icon, className }) => {
+const MenuItem = ({ text, icon, className, onClick }) => {
   return (
     <Button
       className={`${className} hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-600 dark:active:bg-gray-700 w-full justify-start`}
+      onClick={onClick}
       leftIcon={icon}
     >
       {text}
@@ -21,6 +23,7 @@ export default function Menu() {
       <MenuItem
         className="text-red-500"
         icon={<ExitToAppIcon />}
+        onClick={()=>{Router.push("/login")}}
         text="Logout"
       />
     </div>
