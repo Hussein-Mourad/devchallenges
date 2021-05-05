@@ -6,5 +6,15 @@
   -webkit-tap-highlight-color: transparent;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
-  outline-color: black;
+  outline: none !important;
+}
+
+body {
+  @apply dark:bg-[#333];
+}
+
+@media only screen and (max-width: 425px) {
+  html {
+    font-size: 14px;
+  }
 }

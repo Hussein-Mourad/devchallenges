@@ -1,27 +1,28 @@
 import Head from "next/head";
-import LogInCard from "../components/LogInCard";
+import Link from "next/link";
+import AuthCard from "../components/AuthCard";
+import Footer from "../components/Footer";
 
 export default function Login() {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Auth app | Login</title>
       </Head>
-      <div className="sm:p-20 sm:flex justify-center items-center w-screen h-screen">
+      <div className="fixed inset-0 sm:flex justify-center items-center overflow-scroll">
         <div>
-          <LogInCard />
-          <div className="mt-3 hidden sm:flex justify-between text-sm text-gray-700 dark:text-gray-300 w-full max-w-md">
-            <span>
-              created by{" "}
-              <a
-                className="underline"
-                href="https://devchallenges.io/portfolio/Hussein-Mourad"
-              >
-                Hussein-Mourad
-              </a>
-            </span>
-            <a href="https://devchallenges.io">devchallenges.io</a>
-          </div>
+          <AuthCard title="Login" buttonText="Login">
+            <p className="mt-4">
+              Don't have an account yet?{" "}
+              <Link href="/signup">
+                <span className="text-blue-500 dark:text-blue-400 cursor-pointer">
+                  Register
+                </span>
+              </Link>
+            </p>
+          </AuthCard>
+
+          <Footer className="mt-3 hidden sm:flex max-w-md" />
         </div>
       </div>
     </>

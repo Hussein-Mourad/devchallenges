@@ -1,41 +1,24 @@
-import Head from "next/head";
-import SignUpCard from "../components/SignUpCard";
-import Link from "next/link";
-import AuthCard from '../components/AuthCard';
+import NavBar from "../components/NavBar";
+import Profile from "../components/Profile";
+import Footer from "../components/Footer";
+import {useEffect} from 'react';
 
-export default function Home() {
+export default function index() {
+  useEffect(async()=>{
+    const res = await fetch("/auth/");
+    const isAuth = await res.json();
+    console.log(isAuth)
+  },[])
   return (
     <>
-      <Head>
-        <title>Signup</title>
-      </Head>
-      <div className="sm:p-20 sm:flex justify-center items-center w-screen h-screen">
-        <div>
-          <SignUpCard />
-          <AuthCard
-            title="Join thousands of learners from around the world"
-            subTitle="Master web development by making real-life projects. There are multiple paths for you to choose"
-          >
-            <p className="mt-4">
-              Already a member?{" "}
-              <Link href="/login">
-                <span className="text-blue-500 dark:text-blue-400">Login</span>
-              </Link>
-            </p>
-          </AuthCard>
-          <div className="mt-3 hidden sm:flex justify-between text-sm text-gray-700 dark:text-gray-300 w-full max-w-md">
-            <span>
-              created by{" "}
-              <a
-                className="underline"
-                href="https://devchallenges.io/portfolio/Hussein-Mourad"
-              >
-                Hussein-Mourad
-              </a>
-            </span>
-            <a href="https://devchallenges.io">devchallenges.io</a>
-          </div>
-        </div>
+      <NavBar /> 
+      <div className="mx-auto mt-8 flex flex-col items-center justify-center text-gray-800 dark:text-gray-100 max-w-3xl">
+        <h1 className="text-3xl">Personal info</h1>
+        <p className="mt-2 dark:text-gray-200">
+          Basic info, like your name and photo
+        </p>
+        <Profile />
+        <Footer className="flex mt-2" />
       </div>
     </>
   );
