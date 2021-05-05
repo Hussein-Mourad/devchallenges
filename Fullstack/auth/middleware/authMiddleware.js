@@ -10,7 +10,6 @@ module.exports.requireAuth = (req, res, next) => {
   }
   jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
     if (!err) {
-      console.log(decodedToken);
       next();
     }
     res.redirect("/login");

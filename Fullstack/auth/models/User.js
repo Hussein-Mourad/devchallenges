@@ -27,7 +27,7 @@ const checkPassword = (password) => {
   // must contain at least one uppercase letter and one lowercase and one number
   const pattern = /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/gm;
   const result = password.match(pattern);
-  console.log("result: ", result);
+
   if (result === null) {
     return false;
   }

@@ -1,10 +1,8 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-const passport = require("passport");
 
 const handleErrors = (err) => {
   let errors = { email: "", password: "" };
-  console.log("Error message and code");
 
   // Incorrect email and/or password
   if (err.message === "Incorrect email or password") {
@@ -58,7 +56,7 @@ module.exports.signup_post = async (req, res, next) => {
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(201).json({ user: user._id });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.json(handleErrors(err));
   }
 };
@@ -71,7 +69,7 @@ module.exports.login_post = async (req, res, next) => {
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(201).json({ user: user._id });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.json(handleErrors(err));
   }
 };
@@ -79,12 +77,4 @@ module.exports.logout_get = async (req, res, next) => {
   res.cookie("jwt", "", { maxAge: 1 });
   req.logout(); 
   res.redirect("/");
-};
-
-module.exports.googleAuth = () => {
-  passport.authenticate("google", { scope: ["profile","email"] });
-};
-
-module.exports.googleCallback = () => {
-  passport.authenticate("google", { failureRedirect: "/" })
 };
