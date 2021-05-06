@@ -13,9 +13,12 @@ function passportConfig(passport) {
         callbackURL: "/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
+        console.log("Google",profile)
         let newUser = {
           authId: profile.id,
           name: profile.displayName,
+          email: profile.id+"@google.com",
+          password: "A"+crypto.randomBytes(64).toString("hex")
         };
         if (profile.photos) {
           newUser["photo"] = profile.photos[0].value;
@@ -48,9 +51,12 @@ function passportConfig(passport) {
         profileFields: ["id", "displayName", "photos"],
       },
       async (accessToken, refreshToken, profile, done) => {
+        console.log("Facebook",profile)
         let newUser = {
           authId: profile.id,
           name: profile.displayName,
+          email: profile.id+"@facebook.com",
+          password: "A"+crypto.randomBytes(64).toString("hex")
         };
         if (profile.photos) {
           newUser["photo"] = profile.photos[0].value;
@@ -81,9 +87,12 @@ function passportConfig(passport) {
         callbackURL: "/auth/twitter/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
+        console.log("Twitter",profile)
         let newUser = {
           authId: profile.id,
           name: profile.displayName,
+          email: profile.id+"@twitter.com",
+          password: "A"+crypto.randomBytes(64).toString("hex")
         };
         if (profile.photos) {
           newUser["photo"] = profile.photos[0].value;
@@ -114,9 +123,12 @@ function passportConfig(passport) {
         callbackURL: "/auth/github/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
+        console.log("github",profile)
         let newUser = {
           authId: profile.id,
           name: profile.displayName,
+          email: profile.id+"@github.com",
+          password: "A"+crypto.randomBytes(64).toString("hex")
         };
         if (profile.photos) {
           newUser["photo"] = profile.photos[0].value;
